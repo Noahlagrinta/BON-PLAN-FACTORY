@@ -1,4 +1,29 @@
 {
-  "last_updated": "2026-11-22T21:56:12.314362+00:00",
-  "offers": []
+  "last_updated": "2026-11-22T22:08:33.182334+00:00",
+  "offers": [
+    {
+      "title": "139° - [Unidays] Chaussures de running Homme On Cloudsurfer 2 - Black / Malibu (92€ les autres coloris) - Tailles du 40 au 49",
+      "store": "Dealabs",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/unidays-chaussures-de-running-homme-on-cloudsurfer-2-black-malibu-92eur-les-autres-coloris-tailles-du-40-au-49-3465470",
+      "image": "https://static-pepper.dealabs.com/threads/raw/x6O7R/3465470_1/re/150x150/qt/55/3465470_1.jpg",
+      "category": "Mode & sneakers",
+      "original_price": 195.74,
+      "sale_price": 92.0,
+      "discount_percent": 53,
+      "featured_score": 53
+    },
+    {
+      "title": "126° - 50% de réduction sur les bières de la brasserie Cambier - Ex: 6 Bières Blonde de 75Cl - Croix (59)",
+      "store": "Dealabs",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/50-sur-les-bieres-de-la-brasserie-cambier-a-croix-ex-6-x-75cl-de-blonde-3460566",
+      "image": "https://static-pepper.dealabs.com/threads/raw/009nt/3460566_1/re/150x150/qt/55/3460566_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": 28.5,
+      "sale_price": 14.25,
+      "discount_percent": 50,
+      "featured_score": 50
+    }
+  ]
 }
