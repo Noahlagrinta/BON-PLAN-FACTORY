@@ -4,10 +4,7 @@ name: Actualiser les promotions
 on:
   workflow_dispatch:
   schedule:
-    # Heure d'hiver : UTC+1
-    - cron: "0 6,11,17 * * *"
-    # Heure d'été : UTC+2
-    - cron: "0 5,10,16 * * *"
+    - cron: "0 * * * *"
 
 permissions:
   contents: write
@@ -25,8 +22,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Nettoyer les promotions
-        run: python scripts/refresh_deals.py
+      - name: Verifier l'heure francaise et nettoyer
+        run: |
+          HOUR=$(TZ=Europe/Paris date +%H)
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] || [ "$HOUR" = "07" ] || [ "$HOUR" = "12" ] || [ "$HOUR" = "18" ]; then
+            python scripts/refresh_deals.py
+          else
+            echo "Pas d'actualisation prévue à cette heure."
+          fi
 
       - name: Enregistrer les modifications
         run: |
