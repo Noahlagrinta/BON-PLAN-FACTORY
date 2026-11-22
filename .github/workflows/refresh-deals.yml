@@ -22,10 +22,12 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Verifier l'heure francaise et nettoyer
+      - name: Importer et nettoyer les promotions
         run: |
           HOUR=$(TZ=Europe/Paris date +%H)
+
           if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ] || [ "$HOUR" = "07" ] || [ "$HOUR" = "12" ] || [ "$HOUR" = "18" ]; then
+            python scripts/import_feed.py
             python scripts/refresh_deals.py
           else
             echo "Pas d'actualisation prévue à cette heure."
