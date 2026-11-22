@@ -1,144 +1,192 @@
 
-import csv
 import json
 import re
-from datetime import datetime, timezone
+import html
+import urllib.request
+import xml.etree.ElementTree as ET
 from pathlib import Path
+from urllib.parse import urljoin
 
-ROOT = Path(__file__).resolve().parent.parent
-CSV_FILE = ROOT / "product_feed.csv"
-JSON_FILE = ROOT / "product_feed.json"
-DEALS_FILE = ROOT / "deals.json"
+FEED_URL = "https://www.dealabs.com/rss/hot"
+OUTPUT = Path("deals.json")
+MAX_OFFERS = 50
 
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 BON-PLAN-FACTORY/1.0"
+}
 
-def read_feed():
-    if CSV_FILE.exists():
-        with CSV_FILE.open("r", encoding="utf-8-sig", newline="") as file:
-            sample = file.read(4096)
-            file.seek(0)
-            try:
-                dialect = csv.Sniffer().sniff(sample, delimiters=",;\t")
-            except csv.Error:
-                dialect = csv.excel
-            return list(csv.DictReader(file, dialect=dialect))
+def text_of(element, name):
+    for child in element.iter():
+        if child.tag.split("}")[-1].lower() == name.lower():
+            return "".join(child.itertext()).strip()
+    return ""
 
-    if JSON_FILE.exists():
-        with JSON_FILE.open("r", encoding="utf-8") as file:
-            data = json.load(file)
-        return data.get("offers", [])
+def clean_text(value):
+    value = re.sub(r"<[^>]+>", " ", value or "")
+    return re.sub(r"\s+", " ", html.unescape(value)).strip()
 
-    return []
+def get_image(item, description):
+    for child in item.iter():
+        tag = child.tag.split("}")[-1].lower()
 
+        if tag in ("thumbnail", "content", "enclosure"):
+            url = child.attrib.get("url", "")
+            if url.startswith("https://"):
+                return url
 
-def number(value):
-    if value is None:
-        return None
-    match = re.search(r"\d+(?:[.,]\d{1,2})?", str(value).replace(" ", ""))
-    if not match:
-        return None
-    return float(match.group(0).replace(",", "."))
+    match = re.search(
+        r'<img[^>]+src=["\']([^"\']+)["\']',
+        description or "",
+        re.IGNORECASE
+    )
 
+    if match:
+        url = html.unescape(match.group(1))
+        if url.startswith("https://"):
+            return url
 
-def main():
-    if not DEALS_FILE.exists():
-        raise FileNotFoundError("deals.json introuvable")
+    return ""
 
-    with DEALS_FILE.open("r", encoding="utf-8") as file:
-        deals = json.load(file)
+def get_prices(title, description):
+    combined = title + " " + clean_text(description)
 
-    rows = read_feed()
-    existing = {
-        offer.get("url"): offer
-        for offer in deals.get("offers", [])
-        if offer.get("url")
+    percent_match = re.search(
+        r'(?:-|−)\s*(\d{1,2})\s*%',
+        combined
+    )
+
+    percent = int(percent_match.group(1)) if percent_match else None
+
+    money_pattern = r'(?<!\w)(\d{1,5}(?:[ .]\d{3})*(?:[,.]\d{1,2})?)\s*(?:€|EUR)'
+
+    old_price = None
+
+    old_tags = re.findall(
+        r'<(?:del|s|strike)[^>]*>(.*?)</(?:del|s|strike)>',
+        description or "",
+        re.IGNORECASE | re.DOTALL
+    )
+
+    if old_tags:
+        old_match = re.search(money_pattern, clean_text(" ".join(old_tags)))
+        if old_match:
+            old_price = float(
+                old_match.group(1).replace(" ", "").replace(".", "").replace(",", ".")
+            )
+
+    prices = re.findall(money_pattern, combined)
+
+    if not prices:
+        return None, None, None
+
+    sale_price = float(
+        prices[0].replace(" ", "").replace(".", "").replace(",", ".")
+    )
+
+    if old_price and old_price > sale_price:
+        percent = round((1 - sale_price / old_price) * 100)
+        return old_price, sale_price, percent
+
+    if percent and 0 < percent < 100:
+        original_price = round(sale_price / (1 - percent / 100), 2)
+        return original_price, sale_price, percent
+
+    return None, sale_price, None
+
+def guess_category(text):
+    value = text.lower()
+
+    categories = {
+        "Gaming": ["gaming", "playstation", "xbox", "nintendo", "steam", "jeu vidéo"],
+        "High-tech": ["smartphone", "iphone", "samsung", "ordinateur", "pc portable", "tablette"],
+        "Mode & sneakers": ["nike", "adidas", "sneakers", "chaussures", "vêtement"],
+        "Football": ["football", "crampons", "maillot"],
+        "Basketball": ["basketball", "basket", "nba"],
+        "Impression 3D": ["imprimante 3d", "filament", "creality", "elegoo", "bambu lab"],
+        "Musique & studio": ["microphone", "micro", "enceinte", "studio", "casque audio"],
+        "LEGO & loisirs": ["lego", "jouet", "construction"],
+        "Création de contenu": ["caméra", "camera", "streaming", "éclairage", "appareil photo"]
     }
 
-    imported = 0
-    now = datetime.now(timezone.utc)
+    for category, keywords in categories.items():
+        if any(word in value for word in keywords):
+            return category
 
-    for row in rows:
-        try:
-            title = str(row.get("title", "")).strip()
-            store = str(
-                row.get("seller_name") or row.get("store") or ""
-            ).strip()
+    return "Autres bons plans"
 
-            url = str(
-                row.get("clickwise_link")
-                or row.get("link")
-                or row.get("url")
-                or ""
-            ).strip()
+def main():
+    request = urllib.request.Request(FEED_URL, headers=HEADERS)
 
-            original = number(
-                row.get("price") or row.get("original_price")
-            )
-            sale = number(
-                row.get("sale_price") or row.get("sale")
-            )
+    with urllib.request.urlopen(request, timeout=30) as response:
+        xml_data = response.read()
 
-            currency = str(row.get("currency", "EUR")).upper()
-            country = str(row.get("country", "FR")).upper()
-            availability = str(row.get("availability", "")).lower()
+    root = ET.fromstring(xml_data)
+    offers = []
+    seen = set()
 
-            if not title or not store or not url:
-                continue
-            if not url.startswith(("https://", "http://")):
-                continue
-            if original is None or sale is None:
-                continue
-            if original <= 0 or sale <= 0 or sale >= original:
-                continue
-            if currency != "EUR" or country != "FR":
-                continue
-            if availability and availability not in (
-                "in stock", "instock", "available", "en stock"
-            ):
-                continue
+    items = [
+        element for element in root.iter()
+        if element.tag.split("}")[-1].lower() == "item"
+    ]
 
-            discount = round((1 - sale / original) * 100)
-            if discount < 20:
-                continue
+    for item in items:
+        title = text_of(item, "title")
+        url = text_of(item, "link")
+        description = text_of(item, "description")
 
-            category = str(
-                row.get("category")
-                or row.get("product_type")
-                or "Autres"
-            ).strip()
-
-            image = str(
-                row.get("image_link")
-                or row.get("image")
-                or row.get("image_url")
-                or ""
-            ).strip()
-
-            existing[url] = {
-                "title": title,
-                "store": store,
-                "category": category,
-                "url": url,
-                "original_price": original,
-                "sale_price": sale,
-                "discount_percent": discount,
-                "currency": "EUR",
-                "image_url": image,
-                "checked_at": now.isoformat(),
-                "featured_score": 0
-            }
-            imported += 1
-
-        except (ValueError, TypeError, AttributeError):
+        if not title or not url:
             continue
 
-    deals["offers"] = list(existing.values())
-    deals["last_updated"] = now.isoformat()
+        url = urljoin(FEED_URL, url)
 
-    with DEALS_FILE.open("w", encoding="utf-8") as file:
-        json.dump(deals, file, ensure_ascii=False, indent=2)
+        if not url.startswith("https://") or url in seen:
+            continue
 
-    print(f"Import terminé : {imported} offre(s) importée(s).")
+        seen.add(url)
 
+        original, sale, discount = get_prices(title, description)
+
+        # Ne publier comme réduction chiffrée
+        # que les offres dont la remise est vérifiable.
+        if not original or not sale or not discount or discount < 20:
+            continue
+
+        if sale >= original:
+            continue
+
+        image = get_image(item, description)
+
+        offers.append({
+            "title": clean_text(title),
+            "store": "Dealabs",
+            "source": "Dealabs",
+            "url": url,
+            "image": image,
+            "category": guess_category(title + " " + description),
+            "original_price": original,
+            "sale_price": sale,
+            "discount_percent": discount,
+            "featured_score": discount
+        })
+
+    offers.sort(
+        key=lambda offer: offer["featured_score"],
+        reverse=True
+    )
+
+    data = {
+        "last_updated": __import__("datetime").datetime.now(
+            __import__("datetime").timezone.utc
+        ).isoformat(),
+        "offers": offers[:MAX_OFFERS]
+    }
+
+    OUTPUT.write_text(
+        json.dumps(data, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+
+    print(f"{len(data['offers'])} promotions vérifiables importées.")
 
 if __name__ == "__main__":
     main()
