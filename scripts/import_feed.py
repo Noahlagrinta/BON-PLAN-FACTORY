@@ -5,6 +5,7 @@ import html
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from datetime import datetime, timezone
 from urllib.parse import urljoin
 
 FEED_URL = "https://www.dealabs.com/rss/hot"
@@ -15,21 +16,38 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 BON-PLAN-FACTORY/1.0"
 }
 
-def text_of(element, name):
-    for child in element.iter():
+CATEGORIES = {
+    "Gaming": ["gaming", "playstation", "xbox", "nintendo", "steam"],
+    "High-tech": ["smartphone", "iphone", "samsung", "ordinateur", "pc portable"],
+    "Mode & sneakers": ["nike", "adidas", "sneakers", "chaussures", "vêtement"],
+    "Football": ["football", "crampons", "maillot"],
+    "Basketball": ["basketball", "basket", "nba"],
+    "Impression 3D": ["imprimante 3d", "filament", "creality", "elegoo", "bambu"],
+    "Musique & studio": ["microphone", "micro", "enceinte", "studio", "casque audio"],
+    "LEGO & loisirs": ["lego", "jouet", "construction"],
+    "Création de contenu": ["caméra", "camera", "streaming", "appareil photo"]
+}
+
+def clean(value):
+    value = re.sub(r"<[^>]+>", " ", value or "")
+    return re.sub(r"\s+", " ", html.unescape(value)).strip()
+
+def category_of(value):
+    value = value.lower()
+    for category, keywords in CATEGORIES.items():
+        if any(word in value for word in keywords):
+            return category
+    return "Autres bons plans"
+
+def get_tag(item, name):
+    for child in item.iter():
         if child.tag.split("}")[-1].lower() == name.lower():
             return "".join(child.itertext()).strip()
     return ""
 
-def clean_text(value):
-    value = re.sub(r"<[^>]+>", " ", value or "")
-    return re.sub(r"\s+", " ", html.unescape(value)).strip()
-
 def get_image(item, description):
     for child in item.iter():
-        tag = child.tag.split("}")[-1].lower()
-
-        if tag in ("thumbnail", "content", "enclosure"):
+        if child.tag.split("}")[-1].lower() in ("thumbnail", "content", "enclosure"):
             url = child.attrib.get("url", "")
             if url.startswith("https://"):
                 return url
@@ -40,27 +58,20 @@ def get_image(item, description):
         re.IGNORECASE
     )
 
-    if match:
-        url = html.unescape(match.group(1))
-        if url.startswith("https://"):
-            return url
+    if match and match.group(1).startswith("https://"):
+        return html.unescape(match.group(1))
 
     return ""
 
 def get_prices(title, description):
-    combined = title + " " + clean_text(description)
+    combined = title + " " + clean(description)
 
-    percent_match = re.search(
-        r'(?:-|−)\s*(\d{1,2})\s*%',
-        combined
-    )
-
+    percent_match = re.search(r'(?:-|−)\s*(\d{1,2})\s*%', combined)
     percent = int(percent_match.group(1)) if percent_match else None
 
-    money_pattern = r'(?<!\w)(\d{1,5}(?:[ .]\d{3})*(?:[,.]\d{1,2})?)\s*(?:€|EUR)'
+    money = r'(?<!\w)(\d{1,5}(?:[ .]\d{3})*(?:[,.]\d{1,2})?)\s*(?:€|EUR)'
 
     old_price = None
-
     old_tags = re.findall(
         r'<(?:del|s|strike)[^>]*>(.*?)</(?:del|s|strike)>',
         description or "",
@@ -68,71 +79,44 @@ def get_prices(title, description):
     )
 
     if old_tags:
-        old_match = re.search(money_pattern, clean_text(" ".join(old_tags)))
-        if old_match:
+        match = re.search(money, clean(" ".join(old_tags)))
+        if match:
             old_price = float(
-                old_match.group(1).replace(" ", "").replace(".", "").replace(",", ".")
+                match.group(1).replace(" ", "").replace(".", "").replace(",", ".")
             )
 
-    prices = re.findall(money_pattern, combined)
-
+    prices = re.findall(money, combined)
     if not prices:
         return None, None, None
 
-    sale_price = float(
-        prices[0].replace(" ", "").replace(".", "").replace(",", ".")
-    )
+    sale = float(prices[0].replace(" ", "").replace(".", "").replace(",", "."))
 
-    if old_price and old_price > sale_price:
-        percent = round((1 - sale_price / old_price) * 100)
-        return old_price, sale_price, percent
+    if old_price and old_price > sale:
+        percent = round((1 - sale / old_price) * 100)
+        return old_price, sale, percent
 
     if percent and 0 < percent < 100:
-        original_price = round(sale_price / (1 - percent / 100), 2)
-        return original_price, sale_price, percent
+        original = round(sale / (1 - percent / 100), 2)
+        return original, sale, percent
 
-    return None, sale_price, None
-
-def guess_category(text):
-    value = text.lower()
-
-    categories = {
-        "Gaming": ["gaming", "playstation", "xbox", "nintendo", "steam", "jeu vidéo"],
-        "High-tech": ["smartphone", "iphone", "samsung", "ordinateur", "pc portable", "tablette"],
-        "Mode & sneakers": ["nike", "adidas", "sneakers", "chaussures", "vêtement"],
-        "Football": ["football", "crampons", "maillot"],
-        "Basketball": ["basketball", "basket", "nba"],
-        "Impression 3D": ["imprimante 3d", "filament", "creality", "elegoo", "bambu lab"],
-        "Musique & studio": ["microphone", "micro", "enceinte", "studio", "casque audio"],
-        "LEGO & loisirs": ["lego", "jouet", "construction"],
-        "Création de contenu": ["caméra", "camera", "streaming", "éclairage", "appareil photo"]
-    }
-
-    for category, keywords in categories.items():
-        if any(word in value for word in keywords):
-            return category
-
-    return "Autres bons plans"
+    return None, None, None
 
 def main():
     request = urllib.request.Request(FEED_URL, headers=HEADERS)
 
     with urllib.request.urlopen(request, timeout=30) as response:
-        xml_data = response.read()
+        root = ET.fromstring(response.read())
 
-    root = ET.fromstring(xml_data)
     offers = []
     seen = set()
 
-    items = [
-        element for element in root.iter()
-        if element.tag.split("}")[-1].lower() == "item"
-    ]
+    for item in root.iter():
+        if item.tag.split("}")[-1].lower() != "item":
+            continue
 
-    for item in items:
-        title = text_of(item, "title")
-        url = text_of(item, "link")
-        description = text_of(item, "description")
+        title = get_tag(item, "title")
+        url = get_tag(item, "link")
+        description = get_tag(item, "description")
 
         if not title or not url:
             continue
@@ -142,51 +126,40 @@ def main():
         if not url.startswith("https://") or url in seen:
             continue
 
-        seen.add(url)
-
         original, sale, discount = get_prices(title, description)
 
-        # Ne publier comme réduction chiffrée
-        # que les offres dont la remise est vérifiable.
         if not original or not sale or not discount or discount < 20:
             continue
 
         if sale >= original:
             continue
 
-        image = get_image(item, description)
+        seen.add(url)
 
         offers.append({
-            "title": clean_text(title),
+            "title": clean(title),
             "store": "Dealabs",
             "source": "Dealabs",
             "url": url,
-            "image": image,
-            "category": guess_category(title + " " + description),
+            "image": get_image(item, description),
+            "category": category_of(title + " " + description),
             "original_price": original,
             "sale_price": sale,
             "discount_percent": discount,
             "featured_score": discount
         })
 
-    offers.sort(
-        key=lambda offer: offer["featured_score"],
-        reverse=True
-    )
-
-    data = {
-        "last_updated": __import__("datetime").datetime.now(
-            __import__("datetime").timezone.utc
-        ).isoformat(),
-        "offers": offers[:MAX_OFFERS]
-    }
+    offers.sort(key=lambda offer: offer["featured_score"], reverse=True)
 
     OUTPUT.write_text(
-        json.dumps(data, ensure_ascii=False, indent=2),
+        json.dumps({
+            "last_updated": datetime.now(timezone.utc).isoformat(),
+            "offers": offers[:MAX_OFFERS]
+        }, ensure_ascii=False, indent=2),
         encoding="utf-8"
     )
 
-    print(f"{len(data['offers'])} promotions vérifiables importées.")
+    print(f"{len(offers[:MAX_OFFERS])} promotions importées.")
 
 if __name__ == "__main__":
     main()
