@@ -3,671 +3,432 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080d18">
-<title>BON PLAN FACTORY — Les meilleures promos</title>
-<meta name="description" content="Les meilleures promotions et offres pour les passionnés.">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071426">
+<title>BON PLAN FACTORY | Les meilleures promos</title>
+<meta name="description" content="Retrouve les meilleures promotions et codes promo sur BON PLAN FACTORY.">
 <style>
-:root{
-  --bg:#080d18;
-  --panel:#111c30;
-  --panel2:#16243b;
-  --blue:#318bff;
-  --cyan:#55dcff;
-  --text:#f4f7ff;
-  --muted:#9aabc4;
-  --border:rgba(140,175,225,.16);
+:root {
+  --bg:#071426;
+  --panel:#10243d;
+  --panel2:#142d49;
+  --cyan:#38d9f5;
+  --blue:#2878ff;
+  --white:#f4f8ff;
+  --muted:#9db0c8;
+  --green:#38df9a;
+  --border:rgba(255,255,255,.09);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;color:var(--text);
-  font-family:Arial,sans-serif;
-  background:radial-gradient(ellipse at 50% -15%,rgba(40,120,255,.2),transparent 55%),var(--bg)
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
 }
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
-button{cursor:pointer}
-.container{width:min(1160px,92%);margin:auto}
 header{
-  position:sticky;top:0;z-index:10;
-  background:rgba(8,13,24,.95);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border)
+  position:sticky;top:0;z-index:20;
+  background:rgba(7,20,38,.94);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
 }
 .nav{
-  min-height:74px;display:flex;
-  align-items:center;justify-content:space-between;gap:18px
+  max-width:1200px;margin:auto;padding:17px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;
 }
-.logo{font-weight:950;font-size:19px;letter-spacing:-.7px}
-.logo span,.gradient{
-  background:linear-gradient(100deg,#58a2ff,#56e2ff);
-  -webkit-background-clip:text;background-clip:text;color:transparent
+.logo{font-size:21px;font-weight:900;letter-spacing:-.7px}
+.logo span{color:var(--cyan)}
+nav{display:flex;gap:22px;align-items:center}
+nav a{font-size:14px;color:var(--muted)}
+nav a:hover{color:var(--cyan)}
+.hero{
+  max-width:1200px;margin:auto;padding:75px 22px 55px;
+  text-align:center;
 }
-.navlinks{display:flex;gap:21px;color:var(--muted);font-size:13px}
-.navlinks a:hover{color:white}
-.hero{text-align:center;padding:83px 0 65px}
 .eyebrow{
-  display:inline-block;padding:9px 14px;
-  border:1px solid #2865a8;background:rgba(44,125,255,.1);
-  border-radius:30px;color:#9bc9ff;
-  font-size:11px;font-weight:bold;letter-spacing:1px
+  display:inline-block;padding:8px 13px;border-radius:30px;
+  color:var(--cyan);background:rgba(56,217,245,.1);
+  border:1px solid rgba(56,217,245,.2);
+  font-size:12px;font-weight:bold;
 }
-h1{font-size:clamp(42px,7vw,76px);line-height:1.04;letter-spacing:-3px;margin:25px 0 18px}
-.hero p{max-width:590px;margin:auto;color:var(--muted);line-height:1.7;font-size:15px}
+h1{font-size:clamp(36px,6vw,66px);line-height:1.05;margin:22px 0 15px}
+h1 span{color:var(--cyan)}
+.hero p{color:var(--muted);font-size:17px;line-height:1.6}
 .search{
-  display:flex;max-width:620px;margin:30px auto 0;
-  padding:7px;border:1px solid var(--border);
-  border-radius:15px;background:var(--panel)
+  max-width:620px;margin:28px auto 0;display:flex;gap:10px;
 }
-.search input{flex:1;min-width:0;padding:12px;background:transparent;border:0;outline:0;color:white}
-.search button{
-  border:0;border-radius:10px;background:var(--blue);
-  color:white;padding:0 18px;font-weight:bold
+.search input{
+  flex:1;min-width:0;padding:16px 18px;border-radius:13px;
+  border:1px solid var(--border);background:var(--panel);
+  color:white;outline:none;
 }
-.stats{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin-top:27px;color:var(--muted);font-size:12px}
-.stats strong{color:white}
-section{padding:39px 0}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:23px}
-.kicker{font-size:10px;letter-spacing:2px;font-weight:bold;color:#68adff;text-transform:uppercase}
-h2{font-size:clamp(26px,4vw,36px);letter-spacing:-1px;margin:8px 0}
-.sub{font-size:13px;color:var(--muted);line-height:1.6}
-.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.search input:focus{border-color:var(--cyan)}
+.search button,.primary{
+  border:0;border-radius:13px;padding:15px 20px;
+  background:linear-gradient(110deg,var(--blue),var(--cyan));
+  color:#061426;font-weight:900;cursor:pointer;
+}
+main{max-width:1200px;margin:auto;padding:0 22px 65px}
+.section{margin-top:45px}
+.section-head{
+  display:flex;justify-content:space-between;align-items:end;
+  gap:15px;margin-bottom:20px;
+}
+h2{font-size:27px;margin:0}
+.section-head p{color:var(--muted);font-size:13px;margin:7px 0 0}
+.categories{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:12px;
+}
 .category{
-  --accent:#328cff;position:relative;overflow:hidden;min-height:175px;
-  padding:21px;border-radius:18px;border:1px solid var(--border);
-  background:linear-gradient(145deg,var(--panel2),#0d1524);
-  cursor:pointer;transition:.25s
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:15px;padding:18px 12px;text-align:center;
+  cursor:pointer;transition:.2s;color:white;
 }
-.category:before{
-  content:"";position:absolute;width:140px;height:140px;
-  right:-55px;top:-65px;border-radius:50%;
-  background:var(--accent);opacity:.14;filter:blur(28px)
+.category:hover,.category.active{
+  border-color:var(--cyan);background:var(--panel2);
+  transform:translateY(-3px);
 }
-.category:hover{transform:translateY(-5px);border-color:var(--accent)}
-.cat-icon{
-  display:grid;place-items:center;width:46px;height:46px;
-  border-radius:14px;background:rgba(50,140,255,.15);font-size:23px
+.category .emoji{font-size:26px;display:block;margin-bottom:9px}
+.category strong{font-size:13px}
+.grid{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;
 }
-.category h3{font-size:18px;margin:17px 0 6px;position:relative}
-.category p{font-size:12px;color:var(--muted);line-height:1.6;margin:0;position:relative}
-.tags{font-size:10px;color:var(--accent);font-weight:bold;margin-top:11px;position:relative}
-.panel{
-  padding:24px;border:1px solid var(--border);border-radius:21px;
-  background:linear-gradient(145deg,#111d31,#0c1422)
+.card{
+  overflow:hidden;border:1px solid var(--border);
+  border-radius:17px;background:var(--panel);
+  transition:.2s;display:flex;flex-direction:column;
 }
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.filter{
-  padding:9px 14px;border-radius:30px;border:1px solid var(--border);
-  background:#111c2e;color:var(--muted);font-size:12px
+.card:hover{transform:translateY(-4px);border-color:rgba(56,217,245,.5)}
+.card-image{
+  height:190px;background:#142943;position:relative;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
 }
-.filter.active{background:var(--blue);border-color:var(--blue);color:white}
-.deals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.deal-card{overflow:hidden;border:1px solid var(--border);border-radius:16px;background:#0d1728;transition:.2s}
-.deal-card:hover{transform:translateY(-4px);border-color:#397dc5}
-.deal-image{height:175px;background:#16243b;display:grid;place-items:center;overflow:hidden}
-.deal-image img{width:100%;height:100%;object-fit:contain}
-.deal-image .placeholder{font-size:42px}
-.deal-content{padding:16px}
-.deal-category{font-size:10px;color:#80baff;font-weight:bold;text-transform:uppercase}
-.deal-content h3{font-size:15px;line-height:1.4;margin:9px 0}
-.deal-prices{display:flex;align-items:center;gap:9px;margin:12px 0;flex-wrap:wrap}
-.sale-price{font-size:21px;font-weight:900;color:#62e6a2}
-.old-price{font-size:12px;color:#8298b8;text-decoration:line-through}
-.discount{background:#173c34;color:#78f0b1;padding:6px 8px;border-radius:7px;font-size:11px;font-weight:bold}
-.deal-store{font-size:11px;color:var(--muted);margin-bottom:12px}
-.deal-link{display:block;text-align:center;padding:11px;border-radius:9px;background:#1b5cb0;font-size:12px;font-weight:bold}
-.empty{text-align:center;padding:38px 12px;border:1px dashed #344966;border-radius:15px}
-.empty-icon{font-size:36px}
-.empty h3{margin:12px 0 8px}
-.empty p{max-width:490px;margin:auto;color:var(--muted);font-size:13px;line-height:1.7}
-.empty small{display:block;color:#7188a8;margin-top:14px;font-size:11px}
-.brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.brand-group{background:var(--panel);border:1px solid var(--border);padding:20px;border-radius:16px}
-.brand-group h3{margin:0 0 14px;font-size:16px}
-.brand-chips{display:flex;flex-wrap:wrap;gap:8px}
-.brand-chip{padding:8px 11px;border:1px solid var(--border);background:#16243b;color:#dceaff;border-radius:20px;font-size:11px;font-weight:bold}
-.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.benefit{background:var(--panel);border:1px solid var(--border);padding:21px;border-radius:16px}
-.benefit .symbol{font-size:24px}
-.benefit h3{font-size:15px;margin:13px 0 7px}
-.benefit p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}
-.vip{
-  padding:35px;border-radius:23px;border:1px solid #315d9a;
-  background:radial-gradient(ellipse at 100% 0%,#17447a66,transparent 50%),linear-gradient(130deg,#101d34,#101326)
+.card-image img{width:100%;height:100%;object-fit:cover}
+.no-image{font-size:45px;opacity:.7}
+.discount{
+  position:absolute;top:12px;left:12px;
+  background:var(--green);color:#06291c;
+  font-size:13px;font-weight:900;padding:7px 10px;
+  border-radius:8px;
 }
-.vip h2{font-size:36px}
-.vip>p{max-width:650px;color:#a8bad5;font-size:14px;line-height:1.7}
-.vip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:23px}
-.vip-card{padding:21px;border:1px solid var(--border);border-radius:15px;background:#080e1b99}
-.vip-card.featured{border-color:#397dc5;background:#17447b55}
-.vip-card h3{margin:10px 0;font-size:17px}
-.vip-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}
-.vip-label{font-size:10px;color:#80baff;font-weight:bold;letter-spacing:1.5px}
-.vip-note{font-size:11px;color:#8298b8;margin-top:20px;line-height:1.6}
-footer{border-top:1px solid var(--border);padding:30px 0;margin-top:55px}
-.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:11px}
-footer strong{color:white}
-@media(max-width:760px){
-  .navlinks{display:none}
-  .hero{padding:60px 0 45px}
-  .category-grid,.benefits,.deals-grid,.brand-grid{grid-template-columns:repeat(2,1fr)}
-  .section-head{align-items:start;flex-direction:column}
-  .vip-grid{grid-template-columns:repeat(2,1fr)}
+.card-content{padding:17px;display:flex;flex-direction:column;flex:1}
+.tag{color:var(--cyan);font-size:11px;font-weight:bold;text-transform:uppercase}
+.card h3{font-size:16px;line-height:1.4;margin:9px 0}
+.prices{display:flex;gap:9px;align-items:center;margin:8px 0}
+.new-price{font-size:22px;font-weight:900;color:var(--green)}
+.old-price{font-size:13px;color:var(--muted);text-decoration:line-through}
+.store{font-size:12px;color:var(--muted);margin:5px 0 14px}
+.card-button{
+  display:block;text-align:center;margin-top:auto;
+  padding:12px;border-radius:10px;
+  background:rgba(56,217,245,.12);color:var(--cyan);
+  font-weight:bold;font-size:13px;
 }
-@media(max-width:480px){
-  .category-grid,.vip-grid,.benefits,.deals-grid,.brand-grid{grid-template-columns:1fr}
-  .category{min-height:150px}
-  h1{letter-spacing:-2px}
-  .vip{padding:23px}
-  .panel{padding:15px}
+.card-button:hover{background:var(--cyan);color:#061426}
+.empty{
+  grid-column:1/-1;text-align:center;padding:35px 20px;
+  color:var(--muted);background:var(--panel);
+  border:1px dashed var(--border);border-radius:15px;
+}
+.coupon-code{
+  padding:10px;border:1px dashed var(--cyan);
+  border-radius:9px;text-align:center;color:var(--cyan);
+  font-weight:bold;margin:8px 0 13px;
+}
+footer{
+  border-top:1px solid var(--border);padding:35px 22px;
+  text-align:center;color:var(--muted);font-size:13px;
+}
+footer strong{color:var(--white)}
+.small-note{color:var(--muted);font-size:11px;line-height:1.5}
+@media(max-width:850px){
+  .categories{grid-template-columns:repeat(3,1fr)}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav{gap:12px}
+}
+@media(max-width:560px){
+  .nav{padding:14px 16px;flex-wrap:wrap}
+  .logo{font-size:18px}
+  nav{width:100%;justify-content:space-between;gap:8px}
+  nav a{font-size:12px}
+  .hero{padding:52px 17px 35px}
+  main{padding:0 16px 45px}
+  .search{flex-direction:column}
+  .search button{width:100%}
+  .categories{grid-template-columns:repeat(2,1fr);gap:9px}
+  .category{padding:15px 8px}
+  .grid{grid-template-columns:1fr}
+  .card-image{height:210px}
+  h2{font-size:23px}
 }
 </style>
 </head>
-
 <body>
+
 <header>
-  <div class="container nav">
-    <a class="logo" href="#">BON PLAN <span>FACTORY.</span></a>
-    <nav class="navlinks">
+  <div class="nav">
+    <a class="logo" href="#">BON PLAN <span>FACTORY</span></a>
+    <nav>
       <a href="#categories">Catégories</a>
+      <a href="#deals">Pépites du jour</a>
+      <a href="#coupons">Codes promo</a>
       <a href="#brands">Marques</a>
-      <a href="#deals">Pépites</a>
-      <a href="#codes">Codes promo</a>
-      <a href="#vip">Factory Club</a>
     </nav>
   </div>
 </header>
 
-<main>
-<div class="container">
-
 <section class="hero">
-  <div class="eyebrow">✦ LE SPOT DES BONNES AFFAIRES</div>
-  <h1>Les meilleures promos,<br><span class="gradient">au meilleur moment.</span></h1>
-  <p>Gaming, high-tech, mode, sport, musique et bien plus. Les grandes marques mondiales, au meilleur prix.</p>
+  <span class="eyebrow">⚡ LE RENDEZ-VOUS DES BONNES AFFAIRES</span>
+  <h1>Les meilleures promos,<br><span>au meilleur moment.</span></h1>
+  <p>Découvre les réductions, les bons plans et les codes promo<br>pour acheter mieux sans payer trop cher.</p>
   <div class="search">
-    <input id="searchInput" type="search" placeholder="Recherche une marque, un produit, un univers...">
-    <button id="searchButton">Rechercher</button>
-  </div>
-  <div class="stats">
-    <span>✦ <strong>9 univers</strong></span>
-    <span>✦ <strong>Grandes marques mondiales</strong></span>
-    <span>✦ <strong>Accès gratuit</strong></span>
+    <input id="searchInput" type="search" placeholder="Recherche une marque, un produit, une catégorie...">
+    <button onclick="searchSite()">Rechercher</button>
   </div>
 </section>
 
-<section id="categories">
-  <div class="section-head">
-    <div>
-      <div class="kicker">Nos univers</div>
-      <h2>Quel est ton <span class="gradient">domaine ?</span></h2>
-      <div class="sub">Des catégories pensées pour trouver exactement ce que tu recherches.</div>
+<main>
+  <section class="section" id="categories">
+    <div class="section-head">
+      <div><h2>Explorer les catégories</h2><p>Trouve les bons plans qui t'intéressent.</p></div>
     </div>
-    <div class="sub" id="count">9 univers disponibles</div>
-  </div>
-
-  <div class="category-grid" id="categoryGrid">
-    <article class="category" data-name="gaming jeux consoles pc manettes playstation xbox nintendo steam" data-category="Gaming" style="--accent:#a58aff">
-      <div class="cat-icon">🎮</div><h3>Gaming</h3><p>Jeux, consoles, PC et accessoires gaming.</p><div class="tags">PLAYSTATION · XBOX · PC</div>
-    </article>
-    <article class="category" data-name="high tech smartphone téléphone tablette audio casque samsung apple xiaomi sony jbl" data-category="High-tech" style="--accent:#46c9ff">
-      <div class="cat-icon">⚡</div><h3>High-tech</h3><p>Smartphones, audio, tablettes et innovations.</p><div class="tags">APPLE · SAMSUNG · SONY</div>
-    </article>
-    <article class="category" data-name="mode vêtements sneakers chaussures nike adidas puma new balance converse vans" data-category="Mode & sneakers" style="--accent:#ff78b5">
-      <div class="cat-icon">👟</div><h3>Mode & sneakers</h3><p>Les marques et les styles à prix réduit.</p><div class="tags">NIKE · ADIDAS · PUMA</div>
-    </article>
-    <article class="category" data-name="football foot maillot crampons ballon équipement sport" data-category="Football" style="--accent:#65e59b">
-      <div class="cat-icon">⚽</div><h3>Football</h3><p>Maillots, crampons et équipements.</p><div class="tags">MAILLOTS · CRAMPONS · BALLONS</div>
-    </article>
-    <article class="category" data-name="basket basketball chaussures maillot ballon accessoires" data-category="Basketball" style="--accent:#ffad61">
-      <div class="cat-icon">🏀</div><h3>Basketball</h3><p>Shoes, vêtements et accessoires de basket.</p><div class="tags">BASKET · SHOES · ÉQUIPEMENT</div>
-    </article>
-    <article class="category" data-name="impression 3d imprimante filament elegoo creality bambu lab" data-category="Impression 3D" style="--accent:#6fe0d1">
-      <div class="cat-icon">🖨️</div><h3>Impression 3D</h3><p>Imprimantes, filaments et matériel créatif.</p><div class="tags">ELEGOO · CREALITY · BAMBU LAB</div>
-    </article>
-    <article class="category" data-name="musique studio microphone micro enceinte casque synthé guitare batterie" data-category="Musique & studio" style="--accent:#c18bff">
-      <div class="cat-icon">🎧</div><h3>Musique & studio</h3><p>Micros, enceintes, instruments et matériel studio.</p><div class="tags">SON · STUDIO · INSTRUMENTS</div>
-    </article>
-    <article class="category" data-name="lego loisirs robotique construction jouets maquettes" data-category="LEGO & loisirs" style="--accent:#ffdb67">
-      <div class="cat-icon">🧩</div><h3>LEGO & loisirs</h3><p>Construction, robotique et activités créatives.</p><div class="tags">LEGO · ROBOTIQUE · CRÉATIVITÉ</div>
-    </article>
-    <article class="category" data-name="création contenu caméra photo vidéo streaming éclairage micro" data-category="Création de contenu" style="--accent:#ff8b75">
-      <div class="cat-icon">📸</div><h3>Création de contenu</h3><p>Caméras, éclairages et accessoires vidéo.</p><div class="tags">PHOTO · VIDÉO · STREAMING</div>
-    </article>
-  </div>
-  <p class="sub" id="noCategory" style="display:none">Aucune catégorie trouvée.</p>
-</section>
-
-<section id="brands">
-  <div class="section-head">
-    <div>
-      <div class="kicker">Les références mondiales</div>
-      <h2>Les grandes <span class="gradient">marques.</span></h2>
-      <div class="sub">Retrouve les marques incontournables dans tous nos univers.</div>
+    <div class="categories" id="categoryGrid">
+      <button class="category" data-category="Gaming"><span class="emoji">🎮</span><strong>Gaming</strong></button>
+      <button class="category" data-category="High-tech"><span class="emoji">📱</span><strong>High-tech</strong></button>
+      <button class="category" data-category="Mode & sneakers"><span class="emoji">👟</span><strong>Mode & sneakers</strong></button>
+      <button class="category" data-category="Football"><span class="emoji">⚽</span><strong>Football</strong></button>
+      <button class="category" data-category="Basketball"><span class="emoji">🏀</span><strong>Basketball</strong></button>
+      <button class="category" data-category="Impression 3D"><span class="emoji">🖨️</span><strong>Impression 3D</strong></button>
+      <button class="category" data-category="Musique & studio"><span class="emoji">🎧</span><strong>Musique & studio</strong></button>
+      <button class="category" data-category="LEGO & loisirs"><span class="emoji">🧱</span><strong>LEGO & loisirs</strong></button>
+      <button class="category" data-category="Création de contenu"><span class="emoji">🎥</span><strong>Création de contenu</strong></button>
+      <button class="category" data-category="Toutes"><span class="emoji">🔥</span><strong>Toutes les offres</strong></button>
     </div>
-    <div class="eyebrow">CATALOGUE INTERNATIONAL</div>
-  </div>
-  <div class="brand-grid" id="brandDirectory">
-    <div class="brand-group">Chargement des marques...</div>
-  </div>
-</section>
+  </section>
 
-<section id="deals">
-  <div class="section-head">
-    <div>
-      <div class="kicker">La sélection Factory</div>
-      <h2>Les pépites <span class="gradient">du jour.</span></h2>
-      <div class="sub">Des réductions intéressantes, sélectionnées pour leur qualité et leur prix.</div>
+  <section class="section" id="deals">
+    <div class="section-head">
+      <div><h2>🔥 Les pépites du jour</h2><p>Les promotions sélectionnées pour toi.</p></div>
     </div>
-    <div class="eyebrow">OFFRES À VÉRIFIER</div>
-  </div>
+    <div class="grid" id="dealsGrid"><div class="empty">Chargement des promotions...</div></div>
+  </section>
 
-  <div class="panel">
-    <div class="filters">
-      <button class="filter active" data-filter="Toutes">Toutes</button>
-      <button class="filter" data-filter="Gaming">Gaming</button>
-      <button class="filter" data-filter="High-tech">High-tech</button>
-      <button class="filter" data-filter="Mode & sneakers">Mode</button>
-      <button class="filter" data-filter="Football">Football</button>
-      <button class="filter" data-filter="Basketball">Basketball</button>
-      <button class="filter" data-filter="Impression 3D">Impression 3D</button>
-      <button class="filter" data-filter="Musique & studio">Musique</button>
-      <button class="filter" data-filter="LEGO & loisirs">LEGO</button>
-      <button class="filter" data-filter="Création de contenu">Création</button>
+  <section class="section" id="coupons">
+    <div class="section-head">
+      <div><h2>🎟️ Codes promo & offres</h2><p>Retrouve les réductions disponibles chez les marchands.</p></div>
     </div>
-    <div class="deals-grid" id="dealsGrid"></div>
-    <div class="empty" id="dealsEmpty">
-      <div class="empty-icon">🔎</div>
-      <h3>La chasse aux pépites commence.</h3>
-      <p>Les promotions vérifiées apparaîtront ici avec leur image, leurs prix, la remise, la source et le lien.</p>
-      <small>Aucune promotion produit vérifiée n'est publiée pour le moment.</small>
-    </div>
-  </div>
-</section>
+    <div class="grid" id="couponsGrid"><div class="empty">Chargement des codes promo...</div></div>
+  </section>
 
-<section id="codes">
-  <div class="section-head">
-    <div>
-      <div class="kicker">Les avantages partenaires</div>
-      <h2>Codes promo <span class="gradient">& offres.</span></h2>
-      <div class="sub">Les offres et réductions disponibles dans notre flux partenaire.</div>
+  <section class="section" id="brands">
+    <div class="section-head">
+      <div><h2>🏷️ Les marques</h2><p>Retrouve facilement tes enseignes préférées.</p></div>
     </div>
-    <div class="eyebrow">OFFRES PARTENAIRES</div>
-  </div>
-
-  <div class="panel">
-    <div class="deals-grid" id="couponGrid"></div>
-    <div class="empty" id="couponsEmpty">
-      <div class="empty-icon">🎟️</div>
-      <h3>Chargement des offres...</h3>
-      <p>Les codes promo et offres partenaires apparaîtront ici.</p>
-    </div>
-    <p class="sub">Les conditions, la disponibilité en France et les éventuels codes sont à vérifier sur le site du marchand.</p>
-  </div>
-</section>
-
-<section id="avantages">
-  <div class="section-head">
-    <div>
-      <div class="kicker">L'esprit Factory</div>
-      <h2>Pas de blabla. <span class="gradient">Du concret.</span></h2>
-    </div>
-  </div>
-  <div class="benefits">
-    <div class="benefit"><div class="symbol">🎯</div><h3>Des offres sélectionnées</h3><p>Privilégier les vraies bonnes affaires plutôt que les réductions trompeuses.</p></div>
-    <div class="benefit"><div class="symbol">🧾</div><h3>Des prix transparents</h3><p>Prix initial, prix réduit, pourcentage et enseigne clairement indiqués.</p></div>
-    <div class="benefit"><div class="symbol">🔔</div><h3>Des alertes personnalisées</h3><p>Un futur système pour suivre les marques et les produits qui t'intéressent.</p></div>
-  </div>
-</section>
-
-<section id="vip">
-  <div class="vip">
-    <div class="kicker">Le club des passionnés</div>
-    <h2>Bienvenue dans le <span class="gradient">Factory Club.</span></h2>
-    <p>Un espace imaginé pour aller plus loin : sélections spéciales, avantages membres, accès anticipé et invitations privées.</p>
-    <div class="vip-grid">
-      <div class="vip-card"><div class="vip-label">ACCÈS GRATUIT</div><h3>🌐 Factory Free</h3><p>Accès aux promotions publiques, à toutes les catégories et aux sélections du moment.</p></div>
-      <div class="vip-card featured"><div class="vip-label">ACCÈS PRIVÉ 👑</div><h3>👑 Factory VIP</h3><p>Une sélection de pépites supplémentaires et des avantages réservés aux membres invités.</p></div>
-      <div class="vip-card"><div class="vip-label">SÉLECTION SPÉCIALE</div><h3>💎 Offres secrètes</h3><p>Des promotions particulièrement intéressantes mises en avant dans un espace privé.</p></div>
-      <div class="vip-card"><div class="vip-label">AVANT-PREMIÈRE</div><h3>⚡ Accès anticipé</h3><p>Découvrir certaines offres avant leur présentation dans la sélection publique.</p></div>
-      <div class="vip-card"><div class="vip-label">ALERTES PERSONNALISÉES</div><h3>🔔 Alertes Factory</h3><p>Suivre ses marques, catégories et produits préférés pour ne pas rater les bons plans.</p></div>
-      <div class="vip-card"><div class="vip-label">MEMBRES INVITÉS</div><h3>🤝 Club privé</h3><p>Des invitations personnelles et des avantages réservés aux membres sélectionnés.</p></div>
-    </div>
-    <div class="vip-note">Factory Club est actuellement en préparation. Aucun compte, abonnement ou paiement n'est activé pour le moment.</div>
-  </div>
-</section>
-
-</div>
+    <div class="grid" id="brandsGrid"><div class="empty">Chargement des marques...</div></div>
+  </section>
 </main>
 
 <footer>
-  <div class="container footer-inner">
-    <div><strong>BON PLAN FACTORY.</strong><br>Les meilleures promos, au meilleur moment.</div>
-    <div>Projet indépendant · Version en développement</div>
-    <div>© 2026 BON PLAN FACTORY</div>
-  </div>
+  <strong>BON PLAN FACTORY</strong><br>
+  Les meilleures promos, au meilleur moment.
+  <p class="small-note">Les réductions et disponibilités peuvent évoluer. Vérifie les conditions sur le site du marchand avant tout achat. Certains liens peuvent être affiliés.</p>
 </footer>
 
 <script>
-let allDeals=[];
+let allDeals = [];
+let allCoupons = [];
+let allBrands = [];
+let selectedCategory = "Toutes";
+let searchTerm = "";
 
-function renderBrands(brands){
-  const directory=document.getElementById("brandDirectory");
-  directory.innerHTML="";
-
-  Object.entries(brands).forEach(([category,names])=>{
-    const group=document.createElement("div");
-    group.className="brand-group";
-
-    const heading=document.createElement("h3");
-    heading.textContent=category;
-    group.appendChild(heading);
-
-    const chips=document.createElement("div");
-    chips.className="brand-chips";
-
-    names.forEach(name=>{
-      const chip=document.createElement("span");
-      chip.className="brand-chip";
-      chip.textContent=name;
-      chips.appendChild(chip);
-    });
-
-    group.appendChild(chips);
-    directory.appendChild(group);
-  });
+async function loadJSON(file) {
+  const response = await fetch(file + "?v=" + Date.now());
+  if (!response.ok) throw new Error("Impossible de charger " + file);
+  return response.json();
 }
 
-async function loadBrands(){
-  const directory=document.getElementById("brandDirectory");
-  try{
-    const response=await fetch("brands.json?update="+Date.now());
-    if(!response.ok)throw new Error("Catalogue indisponible");
-    const brands=await response.json();
-    renderBrands(brands);
-  }catch(error){
-    directory.textContent="Impossible de charger le catalogue. Vérifie brands.json.";
+function safeText(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[char]);
+}
+
+function safeURL(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : "";
+  } catch {
+    return "";
   }
 }
 
-function renderDeals(deals){
-  const grid=document.getElementById("dealsGrid");
-  const empty=document.getElementById("dealsEmpty");
-  grid.innerHTML="";
+function formatPrice(value, currency="EUR") {
+  const amount = Number(value);
+  if (!Number.isFinite(amount)) return "";
+  return new Intl.NumberFormat("fr-FR", {
+    style:"currency",currency:currency || "EUR"
+  }).format(amount);
+}
 
-  if(!deals.length){
-    empty.style.display="block";
+function renderDeals() {
+  const grid = document.getElementById("dealsGrid");
+  const filtered = allDeals.filter(deal => {
+    const categoryOK = selectedCategory === "Toutes" ||
+      (deal.category || "").toLowerCase() === selectedCategory.toLowerCase();
+    const text = [deal.title,deal.store,deal.category].join(" ").toLowerCase();
+    return categoryOK && text.includes(searchTerm);
+  });
+
+  grid.innerHTML = "";
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty">Aucune pépite trouvée pour le moment. Les prochaines offres arriveront ici !</div>';
     return;
   }
 
-  empty.style.display="none";
+  filtered.forEach(deal => {
+    const url = safeURL(deal.url);
+    if (!url) return;
 
-  deals.forEach(deal=>{
-    const card=document.createElement("article");
-    card.className="deal-card";
+    const imageURL = safeURL(deal.image);
+    const discount = Number(deal.discount_percent);
+    const image = imageURL
+      ? `<img src="${safeText(imageURL)}" alt="${safeText(deal.title)}" loading="lazy">`
+      : '<div class="no-image">🔥</div>';
 
-    const image=document.createElement("div");
-    image.className="deal-image";
-
-    if(deal.image){
-      const img=document.createElement("img");
-      img.src=deal.image;
-      img.alt=deal.title||"Produit en promotion";
-      img.loading="lazy";
-      img.onerror=()=>image.innerHTML='<div class="placeholder">🛍️</div>';
-      image.appendChild(img);
-    }else{
-      image.innerHTML='<div class="placeholder">🛍️</div>';
-    }
-
-    const content=document.createElement("div");
-    content.className="deal-content";
-
-    const category=document.createElement("div");
-    category.className="deal-category";
-    category.textContent=deal.category||"Bon plan";
-
-    const title=document.createElement("h3");
-    title.textContent=deal.title;
-
-    const prices=document.createElement("div");
-    prices.className="deal-prices";
-
-    if(deal.sale_price!==null&&deal.sale_price!==undefined){
-      const sale=document.createElement("span");
-      sale.className="sale-price";
-      sale.textContent=Number(deal.sale_price).toFixed(2).replace(".",",")+" €";
-      prices.appendChild(sale);
-    }
-
-    if(deal.original_price!==null&&deal.original_price!==undefined){
-      const old=document.createElement("span");
-      old.className="old-price";
-      old.textContent=Number(deal.original_price).toFixed(2).replace(".",",")+" €";
-      prices.appendChild(old);
-    }
-
-    if(deal.discount_percent){
-      const discount=document.createElement("span");
-      discount.className="discount";
-      discount.textContent="-"+Number(deal.discount_percent)+" %";
-      prices.appendChild(discount);
-    }
-
-    const store=document.createElement("div");
-    store.className="deal-store";
-    store.textContent="Source : "+(deal.store||"Dealabs");
-
-    const link=document.createElement("a");
-    link.className="deal-link";
-    link.textContent="Voir l'offre";
-    link.href=deal.url;
-    link.target="_blank";
-    link.rel="noopener noreferrer sponsored";
-
-    content.append(category,title,prices,store,link);
-    card.append(image,content);
-    grid.append(image,content);
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="card-image">
+        ${image}
+        ${discount > 0 ? `<span class="discount">-${discount}%</span>` : ""}
+      </div>
+      <div class="card-content">
+        <span class="tag">${safeText(deal.category || "Bon plan")}</span>
+        <h3>${safeText(deal.title)}</h3>
+        <div class="prices">
+          ${deal.sale_price != null ? `<span class="new-price">${formatPrice(deal.sale_price)}</span>` : ""}
+          ${deal.original_price != null ? `<span class="old-price">${formatPrice(deal.original_price)}</span>` : ""}
+        </div>
+        <p class="store">Source : ${safeText(deal.source || deal.store || "Offre partenaire")}</p>
+        <a class="card-button" href="${safeText(url)}" target="_blank" rel="noopener noreferrer">Voir l'offre ↗</a>
+      </div>`;
     grid.appendChild(card);
   });
 }
 
-async function loadDeals(){
-  const empty=document.getElementById("dealsEmpty");
-
-  try{
-    const response=await fetch("deals.json?update="+Date.now());
-    if(!response.ok)throw new Error("Fichier indisponible");
-
-    const data=await response.json();
-    const now=Date.now();
-
-    allDeals=(data.offers||[]).filter(deal=>{
-      const original=Number(deal.original_price);
-      const sale=Number(deal.sale_price);
-      const discount=Number(deal.discount_percent);
-
-      const hasValidPrices=
-        original>0&&sale>0&&sale<original&&discount>=20;
-
-      const hasValidUrl=/^https:\/\//i.test(deal.url||"");
-      const notExpired=!deal.expires_at||
-        new Date(deal.expires_at).getTime()>now;
-
-      return deal.title&&hasValidUrl&&notExpired&&hasValidPrices;
-    });
-
-    allDeals.sort((a,b)=>
-      Number(b.featured_score||0)-Number(a.featured_score||0)
-    );
-
-    renderDeals(allDeals.slice(0,5));
-
-  }catch(error){
-    empty.style.display="block";
-    empty.querySelector("h3").textContent="Promotions momentanément indisponibles.";
-    empty.querySelector("small").textContent="Vérifie le fichier deals.json.";
-  }
-}
-
-async function loadCoupons(){
-  const grid=document.getElementById("couponGrid");
-  const empty=document.getElementById("couponsEmpty");
-
-  try{
-    const response=await fetch("coupons.json?update="+Date.now());
-    if(!response.ok)throw new Error("Fichier indisponible");
-
-    const data=await response.json();
-    const now=Date.now();
-
-    const coupons=(data.coupons||[]).filter(coupon=>{
-      const urlOK=/^https:\/\//i.test(coupon.url||"");
-      const notExpired=!coupon.valid_until||
-        new Date(coupon.valid_until).getTime()>now;
-
-      const discount=Number(coupon.discount_percent||0);
-      const hasCode=Boolean(coupon.code&&coupon.code.trim());
-      const hasUsefulOffer=hasCode||discount>=20;
-
-      return coupon.merchant&&coupon.title&&urlOK&&notExpired&&hasUsefulOffer;
-    });
-
-    grid.innerHTML="";
-
-    if(!coupons.length){
-      empty.style.display="block";
-      empty.querySelector("h3").textContent="Aucun code ou offre à afficher.";
-      empty.querySelector("p").textContent="De nouvelles offres apparaîtront après la prochaine actualisation.";
-      return;
-    }
-
-    empty.style.display="none";
-
-    coupons.slice(0,30).forEach(coupon=>{
-      const card=document.createElement("article");
-      card.className="deal-card";
-
-      const image=document.createElement("div");
-      image.className="deal-image";
-      image.innerHTML='<div class="placeholder">🎟️</div>';
-
-      const content=document.createElement("div");
-      content.className="deal-content";
-
-      const merchant=document.createElement("div");
-      merchant.className="deal-category";
-      merchant.textContent=coupon.merchant;
-
-      const title=document.createElement("h3");
-      title.textContent=coupon.title;
-
-      const details=document.createElement("div");
-      details.className="deal-prices";
-
-      if(coupon.discount_percent){
-        const discount=document.createElement("span");
-        discount.className="discount";
-        discount.textContent="Jusqu'à -"+Number(coupon.discount_percent)+" %";
-        details.appendChild(discount);
-      }
-
-      const code=document.createElement("p");
-      code.className="sub";
-      code.textContent=coupon.code
-        ? "Code promo : "+coupon.code
-        : "Code non communiqué : consulte l'offre du marchand.";
-
-      const link=document.createElement("a");
-      link.className="deal-link";
-      link.textContent="Voir l'offre";
-      link.href=coupon.url;
-      link.target="_blank";
-      link.rel="noopener noreferrer sponsored";
-
-      content.append(merchant,title,details,code,link);
-      card.append(image,content);
-      grid.appendChild(card);
-    });
-
-  }catch(error){
-    empty.style.display="block";
-    empty.querySelector("h3").textContent="Offres momentanément indisponibles.";
-    empty.querySelector("p").textContent="Vérifie que coupons.json est bien présent à la racine du dépôt.";
-  }
-}
-
-function filterDeals(button,name){
-  document.querySelectorAll(".filter").forEach(item=>item.classList.remove("active"));
-  button.classList.add("active");
-
-  const matching=name==="Toutes"
-    ? allDeals
-    : allDeals.filter(deal=>deal.category===name);
-
-  renderDeals(matching.slice(0,5));
-}
-
-document.querySelectorAll(".filter").forEach(button=>{
-  button.addEventListener("click",()=>{
-    filterDeals(button,button.dataset.filter);
+function renderCoupons() {
+  const grid = document.getElementById("couponsGrid");
+  const filtered = allCoupons.filter(coupon => {
+    const text = [coupon.title,coupon.merchant].join(" ").toLowerCase();
+    return text.includes(searchTerm);
   });
+
+  grid.innerHTML = "";
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty">Aucun code promo disponible pour le moment.</div>';
+    return;
+  }
+
+  filtered.forEach(coupon => {
+    const url = safeURL(coupon.url);
+    if (!url) return;
+
+    const discount = Number(coupon.discount_percent);
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="card-image"><div class="no-image">🎟️</div>
+        ${discount > 0 ? `<span class="discount">-${discount}%</span>` : ""}
+      </div>
+      <div class="card-content">
+        <span class="tag">${safeText(coupon.merchant)}</span>
+        <h3>${safeText(coupon.title)}</h3>
+        ${coupon.code ? `<div class="coupon-code">${safeText(coupon.code)}</div>` : '<p class="store">Offre sans code communiqué</p>'}
+        <p class="store">${coupon.valid_until ? "Valable jusqu'au " + safeText(coupon.valid_until) : "Consulte les conditions de l'offre"}</p>
+        <a class="card-button" href="${safeText(url)}" target="_blank" rel="noopener noreferrer">Voir l'offre ↗</a>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function renderBrands() {
+  const grid = document.getElementById("brandsGrid");
+  grid.innerHTML = "";
+
+  if (!allBrands.length) {
+    grid.innerHTML = '<div class="empty">Les marques seront bientôt disponibles.</div>';
+    return;
+  }
+
+  allBrands.forEach(brand => {
+    const name = typeof brand === "string" ? brand : brand.name || brand.merchant || "";
+    if (!name) return;
+    const url = typeof brand === "object" ? safeURL(brand.url) : "";
+    const card = document.createElement("article");
+    card.className = "card";
+    card.innerHTML = `<div class="card-content"><span class="tag">Marque partenaire</span><h3>${safeText(name)}</h3>${url ? `<a class="card-button" href="${safeText(url)}" target="_blank" rel="noopener noreferrer">Visiter le site ↗</a>` : ""}</div>`;
+    grid.appendChild(card);
+  });
+}
+
+function searchSite() {
+  searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+  renderDeals();
+  renderCoupons();
+}
+
+document.getElementById("searchInput").addEventListener("keydown", event => {
+  if (event.key === "Enter") searchSite();
 });
 
-document.querySelectorAll(".category").forEach(card=>{
-  card.addEventListener("click",()=>{
-    const category=card.dataset.category;
-    const button=[...document.querySelectorAll(".filter")]
-      .find(item=>item.dataset.filter===category);
-
-    if(button)filterDeals(button,category);
-
+document.querySelectorAll(".category").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".category").forEach(item => item.classList.remove("active"));
+    button.classList.add("active");
+    selectedCategory = button.dataset.category;
+    renderDeals();
     document.getElementById("deals").scrollIntoView({behavior:"smooth"});
   });
 });
 
-function searchSite(){
-  const query=document.getElementById("searchInput").value.trim().toLowerCase();
-  const categories=document.querySelectorAll(".category");
-  let visible=0;
+async function startSite() {
+  try {
+    const data = await loadJSON("deals.json");
+    allDeals = Array.isArray(data.offers) ? data.offers : [];
+  } catch(error) {
+    allDeals = [];
+    console.error(error);
+  }
 
-  categories.forEach(card=>{
-    const match=(card.dataset.name+" "+card.innerText).toLowerCase().includes(query);
-    card.style.display=match?"block":"none";
-    if(match)visible++;
-  });
+  try {
+    const data = await loadJSON("coupons.json");
+    allCoupons = Array.isArray(data.coupons) ? data.coupons : [];
+  } catch(error) {
+    allCoupons = [];
+    console.error(error);
+  }
 
-  document.getElementById("noCategory").style.display=visible?"none":"block";
-  document.getElementById("count").textContent=visible+" univers affichés";
+  try {
+    const data = await loadJSON("brands.json");
+    allBrands = Array.isArray(data) ? data :
+      Array.isArray(data.brands) ? data.brands : [];
+  } catch(error) {
+    allBrands = [];
+    console.error(error);
+  }
 
-  const matches=allDeals.filter(deal=>
-    (deal.title+" "+deal.category+" "+deal.store).toLowerCase().includes(query)
-  );
-
-  renderDeals(query?matches.slice(0,5):allDeals.slice(0,5));
-  document.getElementById("deals").scrollIntoView({behavior:"smooth"});
+  renderDeals();
+  renderCoupons();
+  renderBrands();
 }
 
-document.getElementById("searchButton").addEventListener("click",searchSite);
-
-document.getElementById("searchInput").addEventListener("keydown",event=>{
-  if(event.key==="Enter")searchSite();
-});
-
-document.getElementById("searchInput").addEventListener("input",event=>{
-  if(!event.target.value.trim()){
-    document.querySelectorAll(".category").forEach(card=>card.style.display="block");
-    document.getElementById("noCategory").style.display="none";
-    document.getElementById("count").textContent="9 univers disponibles";
-    renderDeals(allDeals.slice(0,5));
-  }
-});
-
-loadBrands();
-loadDeals();
-loadCoupons();
+startSite();
 </script>
 </body>
 </html>
