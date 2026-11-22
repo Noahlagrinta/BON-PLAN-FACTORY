@@ -7,6 +7,7 @@
 <meta name="theme-color" content="#071426">
 <title>BON PLAN FACTORY | Les meilleures promos</title>
 <meta name="description" content="Retrouve les meilleures promotions et codes promo sur BON PLAN FACTORY.">
+
 <style>
 :root {
   --bg:#071426;
@@ -21,100 +22,42 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
-}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
-header{
-  position:sticky;top:0;z-index:20;
-  background:rgba(7,20,38,.94);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--border);
-}
-.nav{
-  max-width:1200px;margin:auto;padding:17px 22px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:18px;
-}
+header{position:sticky;top:0;z-index:20;background:rgba(7,20,38,.94);backdrop-filter:blur(15px);border-bottom:1px solid var(--border)}
+.nav{max-width:1200px;margin:auto;padding:17px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
 .logo{font-size:21px;font-weight:900;letter-spacing:-.7px}
 .logo span{color:var(--cyan)}
 nav{display:flex;gap:22px;align-items:center}
 nav a{font-size:14px;color:var(--muted)}
 nav a:hover{color:var(--cyan)}
-.hero{
-  max-width:1200px;margin:auto;padding:75px 22px 55px;
-  text-align:center;
-}
-.eyebrow{
-  display:inline-block;padding:8px 13px;border-radius:30px;
-  color:var(--cyan);background:rgba(56,217,245,.1);
-  border:1px solid rgba(56,217,245,.2);
-  font-size:12px;font-weight:bold;
-}
+.hero{max-width:1200px;margin:auto;padding:75px 22px 55px;text-align:center}
+.eyebrow{display:inline-block;padding:8px 13px;border-radius:30px;color:var(--cyan);background:rgba(56,217,245,.1);border:1px solid rgba(56,217,245,.2);font-size:12px;font-weight:bold}
 h1{font-size:clamp(36px,6vw,66px);line-height:1.05;margin:22px 0 15px}
 h1 span{color:var(--cyan)}
 .hero p{color:var(--muted);font-size:17px;line-height:1.6}
-.search{
-  max-width:620px;margin:28px auto 0;display:flex;gap:10px;
-}
-.search input{
-  flex:1;min-width:0;padding:16px 18px;border-radius:13px;
-  border:1px solid var(--border);background:var(--panel);
-  color:white;outline:none;
-}
+.search{max-width:620px;margin:28px auto 0;display:flex;gap:10px}
+.search input{flex:1;min-width:0;padding:16px 18px;border-radius:13px;border:1px solid var(--border);background:var(--panel);color:white;outline:none}
 .search input:focus{border-color:var(--cyan)}
-.search button,.primary{
-  border:0;border-radius:13px;padding:15px 20px;
-  background:linear-gradient(110deg,var(--blue),var(--cyan));
-  color:#061426;font-weight:900;cursor:pointer;
-}
+.search button,.primary{border:0;border-radius:13px;padding:15px 20px;background:linear-gradient(110deg,var(--blue),var(--cyan));color:#061426;font-weight:900;cursor:pointer}
 main{max-width:1200px;margin:auto;padding:0 22px 65px}
 .section{margin-top:45px}
-.section-head{
-  display:flex;justify-content:space-between;align-items:end;
-  gap:15px;margin-bottom:20px;
-}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:20px}
 h2{font-size:27px;margin:0}
 .section-head p{color:var(--muted);font-size:13px;margin:7px 0 0}
-.categories{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:12px;
-}
-.category{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:15px;padding:18px 12px;text-align:center;
-  cursor:pointer;transition:.2s;color:white;
-}
-.category:hover,.category.active{
-  border-color:var(--cyan);background:var(--panel2);
-  transform:translateY(-3px);
-}
+.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.category{background:var(--panel);border:1px solid var(--border);border-radius:15px;padding:18px 12px;text-align:center;cursor:pointer;transition:.2s;color:white}
+.category:hover,.category.active{border-color:var(--cyan);background:var(--panel2);transform:translateY(-3px)}
 .category .emoji{font-size:26px;display:block;margin-bottom:9px}
 .category strong{font-size:13px}
-.grid{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;
-}
-.card{
-  overflow:hidden;border:1px solid var(--border);
-  border-radius:17px;background:var(--panel);
-  transition:.2s;display:flex;flex-direction:column;
-}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.card{overflow:hidden;border:1px solid var(--border);border-radius:17px;background:var(--panel);transition:.2s;display:flex;flex-direction:column}
 .card:hover{transform:translateY(-4px);border-color:rgba(56,217,245,.5)}
-.card-image{
-  height:190px;background:#142943;position:relative;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-}
+.card-image{height:190px;background:#142943;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .card-image img{width:100%;height:100%;object-fit:cover}
 .no-image{font-size:45px;opacity:.7}
-.discount{
-  position:absolute;top:12px;left:12px;
-  background:var(--green);color:#06291c;
-  font-size:13px;font-weight:900;padding:7px 10px;
-  border-radius:8px;
-}
+.discount{position:absolute;top:12px;left:12px;background:var(--green);color:#06291c;font-size:13px;font-weight:900;padding:7px 10px;border-radius:8px}
 .card-content{padding:17px;display:flex;flex-direction:column;flex:1}
 .tag{color:var(--cyan);font-size:11px;font-weight:bold;text-transform:uppercase}
 .card h3{font-size:16px;line-height:1.4;margin:9px 0}
@@ -122,53 +65,19 @@ h2{font-size:27px;margin:0}
 .new-price{font-size:22px;font-weight:900;color:var(--green)}
 .old-price{font-size:13px;color:var(--muted);text-decoration:line-through}
 .store{font-size:12px;color:var(--muted);margin:5px 0 14px}
-.card-button{
-  display:block;text-align:center;margin-top:auto;
-  padding:12px;border-radius:10px;
-  background:rgba(56,217,245,.12);color:var(--cyan);
-  font-weight:bold;font-size:13px;
-}
+.card-button{display:block;text-align:center;margin-top:auto;padding:12px;border-radius:10px;background:rgba(56,217,245,.12);color:var(--cyan);font-weight:bold;font-size:13px}
 .card-button:hover{background:var(--cyan);color:#061426}
-.empty{
-  grid-column:1/-1;text-align:center;padding:35px 20px;
-  color:var(--muted);background:var(--panel);
-  border:1px dashed var(--border);border-radius:15px;
-}
-.coupon-code{
-  padding:10px;border:1px dashed var(--cyan);
-  border-radius:9px;text-align:center;color:var(--cyan);
-  font-weight:bold;margin:8px 0 13px;
-}
-footer{
-  border-top:1px solid var(--border);padding:35px 22px;
-  text-align:center;color:var(--muted);font-size:13px;
-}
+.empty{grid-column:1/-1;text-align:center;padding:35px 20px;color:var(--muted);background:var(--panel);border:1px dashed var(--border);border-radius:15px}
+.coupon-code{padding:10px;border:1px dashed var(--cyan);border-radius:9px;text-align:center;color:var(--cyan);font-weight:bold;margin:8px 0 13px}
+footer{border-top:1px solid var(--border);padding:35px 22px;text-align:center;color:var(--muted);font-size:13px}
 footer strong{color:var(--white)}
 .small-note{color:var(--muted);font-size:11px;line-height:1.5}
-@media(max-width:850px){
-  .categories{grid-template-columns:repeat(3,1fr)}
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  nav{gap:12px}
-}
-@media(max-width:560px){
-  .nav{padding:14px 16px;flex-wrap:wrap}
-  .logo{font-size:18px}
-  nav{width:100%;justify-content:space-between;gap:8px}
-  nav a{font-size:12px}
-  .hero{padding:52px 17px 35px}
-  main{padding:0 16px 45px}
-  .search{flex-direction:column}
-  .search button{width:100%}
-  .categories{grid-template-columns:repeat(2,1fr);gap:9px}
-  .category{padding:15px 8px}
-  .grid{grid-template-columns:1fr}
-  .card-image{height:210px}
-  h2{font-size:23px}
-}
+@media(max-width:850px){.categories{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:12px}}
+@media(max-width:560px){.nav{padding:14px 16px;flex-wrap:wrap}.logo{font-size:18px}nav{width:100%;justify-content:space-between;gap:8px}nav a{font-size:12px}.hero{padding:52px 17px 35px}main{padding:0 16px 45px}.search{flex-direction:column}.search button{width:100%}.categories{grid-template-columns:repeat(2,1fr);gap:9px}.category{padding:15px 8px}.grid{grid-template-columns:1fr}.card-image{height:210px}h2{font-size:23px}}
 </style>
 </head>
-<body>
 
+<body>
 <header>
   <div class="nav">
     <a class="logo" href="#">BON PLAN <span>FACTORY</span></a>
@@ -206,7 +115,7 @@ footer strong{color:var(--white)}
       <button class="category" data-category="Musique & studio"><span class="emoji">🎧</span><strong>Musique & studio</strong></button>
       <button class="category" data-category="LEGO & loisirs"><span class="emoji">🧱</span><strong>LEGO & loisirs</strong></button>
       <button class="category" data-category="Création de contenu"><span class="emoji">🎥</span><strong>Création de contenu</strong></button>
-      <button class="category" data-category="Toutes"><span class="emoji">🔥</span><strong>Toutes les offres</strong></button>
+      <button class="category active" data-category="Toutes"><span class="emoji">🔥</span><strong>Toutes les offres</strong></button>
     </div>
   </section>
 
@@ -245,14 +154,88 @@ let allBrands = [];
 let selectedCategory = "Toutes";
 let searchTerm = "";
 
-async function loadJSON(file) {
-  const response = await fetch(file + "?v=" + Date.now());
-  if (!response.ok) throw new Error("Impossible de charger " + file);
-  return response.json();
+const CATEGORY_KEYWORDS = {
+  "Gaming": [
+    "gaming","jeu video","jeux video","playstation","xbox",
+    "nintendo","steam","manette","console","ps5","switch",
+    "pc gamer","clavier gamer","souris gamer","carte graphique",
+    "gaming headset","casque gamer","jeu pc"
+  ],
+  "High-tech": [
+    "smartphone","telephone","iphone","samsung","xiaomi",
+    "tablette","ordinateur","pc portable","ecran","ssd",
+    "disque dur","chargeur","montre connectee","jbl","sony",
+    "processeur","ram","routeur","wifi","bluetooth"
+  ],
+  "Mode & sneakers": [
+    "mode","vetement","vetements","sneakers","chaussures",
+    "basket","nike","adidas","puma","veste","pantalon",
+    "survetement","new balance","converse","tee shirt",
+    "t shirt","sweat","hoodie","jeans"
+  ],
+  "Football": [
+    "football","foot","crampons","maillot de foot",
+    "ballon de foot","equipement football","protege tibias",
+    "gardien","football boots"
+  ],
+  "Basketball": [
+    "basketball","nba","chaussures de basket","maillot nba",
+    "ballon de basket","jordan","basket ball","basket shoes"
+  ],
+  "Impression 3D": [
+    "impression 3d","imprimante 3d","filament","pla",
+    "petg","resine 3d","elegoo","creality","bambu lab",
+    "buse","plateau imprimante","bobine filament",
+    "impression tridimensionnelle"
+  ],
+  "Musique & studio": [
+    "musique","music","studio","microphone","micro",
+    "casque audio","ecouteurs","enceinte bluetooth","enceinte",
+    "haut parleur","guitare","basse","piano","clavier musical",
+    "synthetiseur","batterie","platine dj","table de mixage",
+    "carte son","monitoring","midi","instrument","instruments",
+    "logiciel audio","home studio","audio interface",
+    "studio monitor","casque bluetooth","airpods","spotify"
+  ],
+  "LEGO & loisirs": [
+    "lego","jouet","jouets","construction","maquette",
+    "puzzle","loisir creatif","robotique","figurine",
+    "jeu de societe","playmobil","loisirs"
+  ],
+  "Création de contenu": [
+    "creation de contenu","camera","appareil photo",
+    "webcam","streaming","ring light","eclairage",
+    "trepied","capture video","gimbal","stabilisateur",
+    "fond vert","objectif photo","drone","youtube",
+    "tiktok","video creator"
+  ]
+};
+
+const CATEGORY_SYNONYMS = {
+  "Gaming": ["gaming","jeu","jeux","console","gamer"],
+  "High-tech": ["high tech","tech","telephone","smartphone","ordinateur"],
+  "Mode & sneakers": ["mode","vetement","vetements","sneakers","chaussures"],
+  "Football": ["football","foot","crampons"],
+  "Basketball": ["basketball","nba","basket"],
+  "Impression 3D": ["impression 3d","imprimante 3d","filament","3d"],
+  "Musique & studio": ["musique","music","studio","audio","son"],
+  "LEGO & loisirs": ["lego","loisirs","jouet","jouets"],
+  "Création de contenu": ["creation de contenu","video","photo","streaming","camera"]
+};
+
+function normalize(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/[’']/g," ")
+    .replace(/[^a-z0-9]+/g," ")
+    .trim()
+    .replace(/\s+/g," ");
 }
 
 function safeText(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
+  return String(value ?? "").replace(/[&<>"']/g,char => ({
     "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   })[char]);
 }
@@ -266,27 +249,131 @@ function safeURL(value) {
   }
 }
 
-function formatPrice(value, currency="EUR") {
+function formatPrice(value,currency="EUR") {
   const amount = Number(value);
   if (!Number.isFinite(amount)) return "";
-  return new Intl.NumberFormat("fr-FR", {
-    style:"currency",currency:currency || "EUR"
-  }).format(amount);
+  try {
+    return new Intl.NumberFormat("fr-FR",{
+      style:"currency",currency:currency || "EUR"
+    }).format(amount);
+  } catch {
+    return amount.toFixed(2) + " €";
+  }
+}
+
+async function loadJSON(file) {
+  const response = await fetch(file + "?v=" + Date.now());
+  if (!response.ok) throw new Error("Impossible de charger " + file);
+  return response.json();
+}
+
+function getItemText(item) {
+  return normalize([
+    item.title,
+    item.name,
+    item.store,
+    item.source,
+    item.merchant,
+    item.description,
+    item.category,
+    item.brand,
+    item.seller_name
+  ].join(" "));
+}
+
+function inferCategory(item) {
+  const original = normalize(item.category);
+  const text = getItemText(item);
+
+  // Si la catégorie fournie correspond déjà à une catégorie du site,
+  // on la conserve.
+  for (const category of Object.keys(CATEGORY_KEYWORDS)) {
+    if (original === normalize(category)) return category;
+  }
+
+  // On compte les mots-clés trouvés pour choisir la meilleure catégorie.
+  let bestCategory = "";
+  let bestScore = 0;
+
+  for (const [category, keywords] of Object.entries(CATEGORY_KEYWORDS)) {
+    let score = 0;
+
+    for (const keyword of keywords) {
+      const word = normalize(keyword);
+      if (!word) continue;
+
+      if (text.includes(word)) {
+        score += word.includes(" ") ? 3 : 1;
+      }
+    }
+
+    if (score > bestScore) {
+      bestScore = score;
+      bestCategory = category;
+    }
+  }
+
+  return bestCategory || "Autres bons plans";
+}
+
+function prepareDeal(deal) {
+  return {
+    ...deal,
+    category: inferCategory(deal)
+  };
+}
+
+function prepareCoupon(coupon) {
+  return {
+    ...coupon,
+    category: inferCategory(coupon)
+  };
+}
+
+function getCategoryFromQuery(query) {
+  const q = normalize(query);
+  if (!q) return null;
+
+  for (const [category, synonyms] of Object.entries(CATEGORY_SYNONYMS)) {
+    const categoryName = normalize(category);
+
+    if (categoryName === q || q === normalize(category.replace("&","et"))) {
+      return category;
+    }
+
+    if (synonyms.some(word => normalize(word) === q)) {
+      return category;
+    }
+  }
+
+  return null;
+}
+
+function matchesSearch(item) {
+  if (!searchTerm) return true;
+
+  const text = getItemText(item);
+  const words = searchTerm.split(" ").filter(Boolean);
+
+  return words.every(word => text.includes(word));
+}
+
+function matchesCategory(item) {
+  if (selectedCategory === "Toutes") return true;
+  return normalize(item.category) === normalize(selectedCategory);
 }
 
 function renderDeals() {
   const grid = document.getElementById("dealsGrid");
-  const filtered = allDeals.filter(deal => {
-    const categoryOK = selectedCategory === "Toutes" ||
-      (deal.category || "").toLowerCase() === selectedCategory.toLowerCase();
-    const text = [deal.title,deal.store,deal.category].join(" ").toLowerCase();
-    return categoryOK && text.includes(searchTerm);
-  });
+
+  const filtered = allDeals
+    .map(prepareDeal)
+    .filter(deal => matchesCategory(deal) && matchesSearch(deal));
 
   grid.innerHTML = "";
 
   if (!filtered.length) {
-    grid.innerHTML = '<div class="empty">Aucune pépite trouvée pour le moment. Les prochaines offres arriveront ici !</div>';
+    grid.innerHTML = '<div class="empty">Aucune pépite trouvée dans cette catégorie pour le moment. De nouvelles offres arriveront automatiquement !</div>';
     return;
   }
 
@@ -294,44 +381,51 @@ function renderDeals() {
     const url = safeURL(deal.url);
     if (!url) return;
 
-    const imageURL = safeURL(deal.image);
+    const imageURL = safeURL(deal.image || deal.image_link);
     const discount = Number(deal.discount_percent);
+
     const image = imageURL
       ? `<img src="${safeText(imageURL)}" alt="${safeText(deal.title)}" loading="lazy">`
       : '<div class="no-image">🔥</div>';
 
     const card = document.createElement("article");
     card.className = "card";
+
     card.innerHTML = `
       <div class="card-image">
         ${image}
         ${discount > 0 ? `<span class="discount">-${discount}%</span>` : ""}
       </div>
       <div class="card-content">
-        <span class="tag">${safeText(deal.category || "Bon plan")}</span>
+        <span class="tag">${safeText(deal.category)}</span>
         <h3>${safeText(deal.title)}</h3>
         <div class="prices">
-          ${deal.sale_price != null ? `<span class="new-price">${formatPrice(deal.sale_price)}</span>` : ""}
-          ${deal.original_price != null ? `<span class="old-price">${formatPrice(deal.original_price)}</span>` : ""}
+          ${deal.sale_price != null ? `<span class="new-price">${formatPrice(deal.sale_price,deal.currency)}</span>` : ""}
+          ${deal.original_price != null ? `<span class="old-price">${formatPrice(deal.original_price,deal.currency)}</span>` : ""}
         </div>
-        <p class="store">Source : ${safeText(deal.source || deal.store || "Offre partenaire")}</p>
+        <p class="store">Source : ${safeText(deal.source || deal.store || deal.seller_name || "Offre partenaire")}</p>
         <a class="card-button" href="${safeText(url)}" target="_blank" rel="noopener noreferrer">Voir l'offre ↗</a>
       </div>`;
+
     grid.appendChild(card);
   });
+
+  if (!grid.children.length) {
+    grid.innerHTML = '<div class="empty">Aucune offre avec un lien valide pour le moment.</div>';
+  }
 }
 
 function renderCoupons() {
   const grid = document.getElementById("couponsGrid");
-  const filtered = allCoupons.filter(coupon => {
-    const text = [coupon.title,coupon.merchant].join(" ").toLowerCase();
-    return text.includes(searchTerm);
-  });
+
+  const filtered = allCoupons
+    .map(prepareCoupon)
+    .filter(coupon => matchesCategory(coupon) && matchesSearch(coupon));
 
   grid.innerHTML = "";
 
   if (!filtered.length) {
-    grid.innerHTML = '<div class="empty">Aucun code promo disponible pour le moment.</div>';
+    grid.innerHTML = '<div class="empty">Aucun code promo correspondant dans cette catégorie pour le moment.</div>';
     return;
   }
 
@@ -342,19 +436,27 @@ function renderCoupons() {
     const discount = Number(coupon.discount_percent);
     const card = document.createElement("article");
     card.className = "card";
+
     card.innerHTML = `
-      <div class="card-image"><div class="no-image">🎟️</div>
+      <div class="card-image">
+        <div class="no-image">🎟️</div>
         ${discount > 0 ? `<span class="discount">-${discount}%</span>` : ""}
       </div>
       <div class="card-content">
-        <span class="tag">${safeText(coupon.merchant)}</span>
+        <span class="tag">${safeText(coupon.category)}</span>
         <h3>${safeText(coupon.title)}</h3>
         ${coupon.code ? `<div class="coupon-code">${safeText(coupon.code)}</div>` : '<p class="store">Offre sans code communiqué</p>'}
+        <p class="store">${safeText(coupon.merchant || "Marchand partenaire")}</p>
         <p class="store">${coupon.valid_until ? "Valable jusqu'au " + safeText(coupon.valid_until) : "Consulte les conditions de l'offre"}</p>
         <a class="card-button" href="${safeText(url)}" target="_blank" rel="noopener noreferrer">Voir l'offre ↗</a>
       </div>`;
+
     grid.appendChild(card);
   });
+
+  if (!grid.children.length) {
+    grid.innerHTML = '<div class="empty">Aucune offre avec un lien valide pour le moment.</div>';
+  }
 }
 
 function renderBrands() {
@@ -367,21 +469,80 @@ function renderBrands() {
   }
 
   allBrands.forEach(brand => {
-    const name = typeof brand === "string" ? brand : brand.name || brand.merchant || "";
+    const name = typeof brand === "string"
+      ? brand
+      : brand.name || brand.merchant || "";
+
     if (!name) return;
+
     const url = typeof brand === "object" ? safeURL(brand.url) : "";
     const card = document.createElement("article");
     card.className = "card";
-    card.innerHTML = `<div class="card-content"><span class="tag">Marque partenaire</span><h3>${safeText(name)}</h3>${url ? `<a class="card-button" href="${safeText(url)}" target="_blank" rel="noopener noreferrer">Visiter le site ↗</a>` : ""}</div>`;
+
+    card.innerHTML = `
+      <div class="card-content">
+        <span class="tag">Marque partenaire</span>
+        <h3>${safeText(name)}</h3>
+        ${url ? `<a class="card-button" href="${safeText(url)}" target="_blank" rel="noopener noreferrer">Visiter le site ↗</a>` : ""}
+      </div>`;
+
     grid.appendChild(card);
   });
 }
 
-function searchSite() {
-  searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+function updateActiveCategory() {
+  document.querySelectorAll(".category").forEach(button => {
+    button.classList.toggle(
+      "active",
+      button.dataset.category === selectedCategory
+    );
+  });
+}
+
+function refreshResults() {
   renderDeals();
   renderCoupons();
+  updateActiveCategory();
 }
+
+function searchSite() {
+  const input = document.getElementById("searchInput");
+  const value = input.value.trim();
+
+  const detectedCategory = getCategoryFromQuery(value);
+
+  if (detectedCategory) {
+    selectedCategory = detectedCategory;
+    searchTerm = "";
+  } else if (!value) {
+    selectedCategory = "Toutes";
+    searchTerm = "";
+  } else {
+    selectedCategory = "Toutes";
+    searchTerm = normalize(value);
+  }
+
+  refreshResults();
+
+  document.getElementById("deals").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+document.getElementById("searchInput").addEventListener("input", event => {
+  const value = event.target.value.trim();
+  const detectedCategory = getCategoryFromQuery(value);
+
+  if (detectedCategory) {
+    selectedCategory = detectedCategory;
+    searchTerm = "";
+  } else {
+    selectedCategory = "Toutes";
+    searchTerm = normalize(value);
+  }
+
+  refreshResults();
+});
 
 document.getElementById("searchInput").addEventListener("keydown", event => {
   if (event.key === "Enter") searchSite();
@@ -389,11 +550,15 @@ document.getElementById("searchInput").addEventListener("keydown", event => {
 
 document.querySelectorAll(".category").forEach(button => {
   button.addEventListener("click", () => {
-    document.querySelectorAll(".category").forEach(item => item.classList.remove("active"));
-    button.classList.add("active");
     selectedCategory = button.dataset.category;
-    renderDeals();
-    document.getElementById("deals").scrollIntoView({behavior:"smooth"});
+    searchTerm = "";
+    document.getElementById("searchInput").value = "";
+
+    refreshResults();
+
+    document.getElementById("deals").scrollIntoView({
+      behavior:"smooth"
+    });
   });
 });
 
@@ -403,7 +568,7 @@ async function startSite() {
     allDeals = Array.isArray(data.offers) ? data.offers : [];
   } catch(error) {
     allDeals = [];
-    console.error(error);
+    console.error("Erreur deals.json :",error);
   }
 
   try {
@@ -411,20 +576,22 @@ async function startSite() {
     allCoupons = Array.isArray(data.coupons) ? data.coupons : [];
   } catch(error) {
     allCoupons = [];
-    console.error(error);
+    console.error("Erreur coupons.json :",error);
   }
 
   try {
     const data = await loadJSON("brands.json");
-    allBrands = Array.isArray(data) ? data :
-      Array.isArray(data.brands) ? data.brands : [];
+    allBrands = Array.isArray(data)
+      ? data
+      : Array.isArray(data.brands)
+        ? data.brands
+        : [];
   } catch(error) {
     allBrands = [];
-    console.error(error);
+    console.error("Erreur brands.json :",error);
   }
 
-  renderDeals();
-  renderCoupons();
+  refreshResults();
   renderBrands();
 }
 
