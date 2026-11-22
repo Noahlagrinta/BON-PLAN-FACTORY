@@ -1,6 +1,5 @@
 
 import json
-import re
 import urllib.request
 from pathlib import Path
 from datetime import datetime, timezone
@@ -13,118 +12,78 @@ HEADERS = {
     "Accept": "application/json"
 }
 
-# Devises acceptées pour le marché français
 ALLOWED_CURRENCIES = {"", "EUR"}
 
-# Marchands et offres à exclure explicitement
 EXCLUDED_TERMS = [
-    "dji usa",
-    "hulu",
-    "noon food",
-    "deliveroo",
-    "hong kong",
-    "hk$",
-    "aed",
-    "brl",
-    "casa security",
+    "dji usa", "hulu", "noon food", "hong kong",
     "approval required"
 ]
-
-def is_french_offer(offer):
-    text = " ".join(str(offer.get(k, "")) for k in [
-        "merchant_name", "title", "description"
-    ]).lower()
-
-    if any(term in text for term in EXCLUDED_TERMS):
-        return False
-
-    currency = str(offer.get("discount_currency") or "").upper()
-
-    if currency not in ALLOWED_CURRENCIES:
-        return False
-
-    return True
-
-def get_discount(offer):
-    value = offer.get("discount_pct")
-
-    if value is None:
-        return None
-
-    try:
-        discount = float(value)
-    except (TypeError, ValueError):
-        return None
-
-    if not 20 <= discount <= 100:
-        return None
-
-    return discount
 
 def main():
     request = urllib.request.Request(API_URL, headers=HEADERS)
 
     with urllib.request.urlopen(request, timeout=30) as response:
-        raw_data = json.loads(response.read().decode("utf-8"))
-
-    source_offers = raw_data.get("results", [])
+        data = json.loads(response.read().decode("utf-8"))
 
     coupons = []
     seen = set()
 
-    for offer in source_offers:
+    for offer in data.get("results", []):
         merchant = str(offer.get("merchant_name") or "").strip()
         title = str(offer.get("title") or "").strip()
         url = str(offer.get("url") or "").strip()
-        code = str(offer.get("code") or "").strip()
+        currency = str(offer.get("discount_currency") or "").upper()
 
-        discount = get_discount(offer)
-
-        if not merchant or not title or not url:
+        try:
+            discount = float(offer.get("discount_pct"))
+        except (TypeError, ValueError):
             continue
 
-        if not url.startswith("https://"):
+        text = (merchant + " " + title).lower()
+
+        if not merchant or not title or not url.startswith("https://"):
             continue
 
-        if not discount or not is_french_offer(offer):
+        if currency not in ALLOWED_CURRENCIES:
             continue
 
-        unique_id = str(offer.get("id") or url)
-
-        if unique_id in seen:
+        if any(term in text for term in EXCLUDED_TERMS):
             continue
 
-        seen.add(unique_id)
+        if not 20 <= discount <= 100:
+            continue
+
+        offer_id = str(offer.get("id") or url)
+
+        if offer_id in seen:
+            continue
+
+        seen.add(offer_id)
 
         coupons.append({
-            "id": unique_id,
+            "id": offer_id,
             "merchant": merchant,
             "title": title,
-            "code": code,
+            "code": str(offer.get("code") or ""),
             "discount_percent": discount,
             "discount_amount": offer.get("discount_amount"),
-            "discount_currency": offer.get("discount_currency") or "EUR",
+            "discount_currency": currency or "EUR",
             "valid_until": offer.get("valid_until"),
             "url": url,
             "checked_at": datetime.now(timezone.utc).isoformat()
         })
 
-    coupons.sort(
-        key=lambda item: item["discount_percent"],
-        reverse=True
-    )
-
-    data = {
-        "last_updated": datetime.now(timezone.utc).isoformat(),
-        "coupons": coupons
-    }
+    coupons.sort(key=lambda item: item["discount_percent"], reverse=True)
 
     OUTPUT.write_text(
-        json.dumps(data, ensure_ascii=False, indent=2),
+        json.dumps({
+            "last_updated": datetime.now(timezone.utc).isoformat(),
+            "coupons": coupons
+        }, ensure_ascii=False, indent=2),
         encoding="utf-8"
     )
 
-    print(f"{len(coupons)} offres françaises filtrées.")
+    print(f"{len(coupons)} offres retenues.")
 
 if __name__ == "__main__":
     main()
