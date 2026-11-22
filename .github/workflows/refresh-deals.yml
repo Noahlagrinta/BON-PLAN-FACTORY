@@ -4,7 +4,10 @@ name: Actualiser les promotions
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"
+    # Heure d'hiver : UTC+1
+    - cron: "0 6,11,17 * * *"
+    # Heure d'été : UTC+2
+    - cron: "0 5,10,16 * * *"
 
 permissions:
   contents: write
