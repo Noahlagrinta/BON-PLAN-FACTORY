@@ -1,1 +1,307 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BON PLAN FACTORY</title>
+<style>
+:root {
+  --bg:#080d1b;
+  --panel:#111a30;
+  --panel2:#17233d;
+  --blue:#3988ff;
+  --violet:#865cff;
+  --white:#f5f7ff;
+  --muted:#9ca9c2;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+}
+header{
+  position:sticky;top:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:17px 7%;background:#080d1bf2;
+  border-bottom:1px solid #ffffff12;backdrop-filter:blur(12px);
+}
+.logo{font-size:21px;font-weight:900;letter-spacing:1px}
+.logo span{color:#559bff}
+nav{display:flex;gap:22px;align-items:center}
+nav a{color:var(--muted);text-decoration:none;font-size:14px}
+nav a:hover{color:white}
+.hero{
+  padding:85px 7% 65px;text-align:center;
+  background:radial-gradient(ellipse at 50% 0%,#263e79 0%,#10162c 45%,var(--bg) 75%);
+}
+.tag{
+  display:inline-block;padding:8px 14px;border-radius:30px;
+  background:#3988ff20;color:#82b5ff;font-size:12px;
+  border:1px solid #3988ff55;
+}
+h1{font-size:clamp(38px,7vw,68px);margin:22px 0 12px;line-height:1.05}
+h1 span{background:linear-gradient(90deg,#4a9cff,#a47aff);
+  -webkit-background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:17px;line-height:1.6}
+.search{
+  display:flex;max-width:570px;margin:30px auto 0;
+  background:var(--panel);border:1px solid #344563;
+  border-radius:14px;padding:6px;
+}
+.search input{
+  flex:1;min-width:0;background:transparent;border:0;
+  color:white;padding:13px;outline:none;font-size:15px;
+}
+.search button,.primary{
+  border:0;border-radius:10px;padding:13px 20px;
+  color:white;font-weight:bold;cursor:pointer;
+  background:linear-gradient(110deg,var(--blue),var(--violet));
+}
+section{padding:45px 7%}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+h2{font-size:27px;margin:0 0 8px}
+.subtitle{color:var(--muted);margin:0 0 25px;font-size:14px}
+.categories{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0}
+.cat{
+  border:1px solid #2b3955;background:var(--panel);
+  color:#c4cee0;border-radius:30px;padding:10px 16px;
+  cursor:pointer;font-size:13px;transition:.2s;
+}
+.cat:hover,.cat.active{background:#2864bd;border-color:#579aff;color:white}
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:17px;
+}
+.card{
+  background:linear-gradient(145deg,var(--panel),#0d1426);
+  border:1px solid #263653;border-radius:17px;
+  padding:20px;transition:.25s;min-height:190px;
+}
+.card:hover{transform:translateY(-5px);border-color:#528fff}
+.product-icon{
+  height:85px;border-radius:12px;background:var(--panel2);
+  display:grid;place-items:center;font-size:39px;margin-bottom:17px;
+}
+.card small{color:#83b4ff;font-weight:bold}
+.card h3{font-size:17px;margin:10px 0}
+.card p{color:var(--muted);font-size:13px;line-height:1.5}
+.status{
+  display:inline-block;background:#ffffff10;color:#b9c7df;
+  border-radius:20px;padding:6px 10px;font-size:11px;
+}
+.notice{
+  border:1px solid #344563;background:#111a30;
+  border-radius:13px;padding:17px;color:#b8c5dc;
+  font-size:13px;line-height:1.6;margin-top:20px;
+}
+.vip{
+  margin:20px 7% 60px;padding:40px 25px;text-align:center;
+  border-radius:22px;border:1px solid #7357cb;
+  background:radial-gradient(ellipse at top,#30215c,#11172b 70%);
+}
+.vip h2{font-size:32px}
+.vip p{color:#c1bdd9;line-height:1.6}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;max-width:650px;margin:25px auto}
+.plan{background:#ffffff0c;border:1px solid #ffffff20;border-radius:14px;padding:20px}
+.plan h3{margin-top:0}
+footer{
+  border-top:1px solid #ffffff15;padding:30px 7%;
+  color:var(--muted);font-size:12px;line-height:1.8;text-align:center;
+}
+.empty{display:none;color:var(--muted);padding:25px;text-align:center}
+@media(max-width:650px){
+  header{padding:15px 5%}
+  nav{gap:12px}
+  nav a{font-size:12px}
+  .hero{padding:65px 5% 50px}
+  section{padding:35px 5%}
+  .vip{margin:15px 5% 40px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BON PLAN <span>FACTORY</span></div>
+  <nav>
+    <a href="#offres">Promotions</a>
+    <a href="#categories">Catégories</a>
+    <a href="#vip">VIP</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="tag">⚡ LE RENDEZ-VOUS DES BONNES AFFAIRES</div>
+  <h1>Les bonnes affaires<br><span>commencent ici.</span></h1>
+  <p>Les meilleures promos, au meilleur moment.<br>
+  High-tech, gaming, mode, sport et bien plus.</p>
+  <div class="search">
+    <input id="search" type="search" placeholder="Rechercher un produit, une marque...">
+    <button onclick="filterCards()">Rechercher</button>
+  </div>
+</div>
+
+<section id="offres">
+  <div class="section-head">
+    <div>
+      <h2>🔥 Les pépites du jour</h2>
+      <p class="subtitle">Une sélection de bons plans à découvrir.</p>
+    </div>
+    <span class="status">Première version</span>
+  </div>
+  <div class="notice">
+    ℹ️ Les offres réelles sont en cours de préparation.
+    Aucune réduction ni aucun prix fictif n'est affiché.
+  </div>
+  <div class="grid" id="products" style="margin-top:20px">
+    <article class="card" data-category="gaming" data-search="gaming gta jeux">
+      <div class="product-icon">🎮</div>
+      <small>GAMING</small>
+      <h3>Univers gaming</h3>
+      <p>Les prochaines offres sur les jeux, consoles et accessoires seront affichées ici.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+    <article class="card" data-category="hightech" data-search="telephone smartphone samsung apple xiaomi">
+      <div class="product-icon">📱</div>
+      <small>HIGH-TECH</small>
+      <h3>Smartphones et audio</h3>
+      <p>Les prochaines promotions sur les grandes marques seront présentées ici.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+    <article class="card" data-category="mode" data-search="nike adidas puma chaussures vetements">
+      <div class="product-icon">👟</div>
+      <small>MODE</small>
+      <h3>Mode et sneakers</h3>
+      <p>Retrouve bientôt les réductions sur les vêtements et chaussures.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+    <article class="card" data-category="football" data-search="football maillot chaussures ballon">
+      <div class="product-icon">⚽</div>
+      <small>FOOTBALL</small>
+      <h3>Équipement football</h3>
+      <p>Maillots, chaussures, ballons et accessoires.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+    <article class="card" data-category="basket" data-search="basket basketball chaussures ballon">
+      <div class="product-icon">🏀</div>
+      <small>BASKETBALL</small>
+      <h3>Univers basket</h3>
+      <p>Chaussures, textiles et accessoires de basketball.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+    <article class="card" data-category="3d" data-search="impression 3d elegoo creality bambu">
+      <div class="product-icon">🖨️</div>
+      <small>IMPRESSION 3D</small>
+      <h3>Impression 3D</h3>
+      <p>Imprimantes, filaments et accessoires.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+    <article class="card" data-category="musique" data-search="musique studio micro casque synthé guitare">
+      <div class="product-icon">🎧</div>
+      <small>MUSIQUE & STUDIO</small>
+      <h3>Matériel de studio</h3>
+      <p>Micros, casques, enceintes, claviers et instruments.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+    <article class="card" data-category="creation" data-search="camera video streaming creation contenu">
+      <div class="product-icon">📸</div>
+      <small>CRÉATION</small>
+      <h3>Création de contenu</h3>
+      <p>Caméras, éclairages et matériel vidéo.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+    <article class="card" data-category="lego" data-search="lego robotique loisirs construction">
+      <div class="product-icon">🧱</div>
+      <small>LOISIRS</small>
+      <h3>LEGO et robotique</h3>
+      <p>Construction, créativité et nouvelles technologies.</p>
+      <span class="status">Offres à venir</span>
+    </article>
+  </div>
+  <div class="empty" id="empty">Aucune catégorie ou recherche correspondante.</div>
+</section>
+
+<section id="categories">
+  <h2>Explorer les catégories</h2>
+  <p class="subtitle">Choisis ton univers pour trouver les prochaines pépites.</p>
+  <div class="categories">
+    <button class="cat active" onclick="chooseCategory('all',this)">Tout voir</button>
+    <button class="cat" onclick="chooseCategory('gaming',this)">🎮 Gaming</button>
+    <button class="cat" onclick="chooseCategory('hightech',this)">📱 High-tech</button>
+    <button class="cat" onclick="chooseCategory('mode',this)">👟 Mode</button>
+    <button class="cat" onclick="chooseCategory('football',this)">⚽ Football</button>
+    <button class="cat" onclick="chooseCategory('basket',this)">🏀 Basketball</button>
+    <button class="cat" onclick="chooseCategory('3d',this)">🖨️ Impression 3D</button>
+    <button class="cat" onclick="chooseCategory('musique',this)">🎧 Musique</button>
+    <button class="cat" onclick="chooseCategory('creation',this)">📸 Création</button>
+    <button class="cat" onclick="chooseCategory('lego',this)">🧱 LEGO</button>
+  </div>
+</section>
+
+<div class="vip" id="vip">
+  <div class="tag">⭐ ESPACE PRIVILÉGIÉ</div>
+  <h2>Le club BON PLAN FACTORY</h2>
+  <p>Un espace imaginé pour retrouver les meilleures sélections,<br>
+  les alertes personnalisées et les avantages membres.</p>
+  <div class="plans">
+    <div class="plan">
+      <h3>FREE</h3>
+      <p>Accès gratuit aux bons plans publics.</p>
+      <span class="status">Disponible en version démo</span>
+    </div>
+    <div class="plan">
+      <h3>PREMIUM ⭐</h3>
+      <p>Alertes et sélections exclusives à venir.</p>
+      <span class="status">En préparation</span>
+    </div>
+    <div class="plan">
+      <h3>VIP 👑</h3>
+      <p>Un espace spécial pour les membres invités.</p>
+      <span class="status">En préparation</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>BON PLAN FACTORY</strong><br>
+  Les meilleures promos, au meilleur moment.<br>
+  Version de démonstration — les offres et espaces membres ne sont pas encore activés.<br>
+  Les promotions seront vérifiées avant leur publication.
+</footer>
+
+<script>
+let selectedCategory = "all";
+
+function filterCards(){
+  const query = document.getElementById("search").value.toLowerCase().trim();
+  const cards = document.querySelectorAll(".card");
+  let count = 0;
+
+  cards.forEach(card => {
+    const category = card.dataset.category;
+    const words = (card.dataset.search + " " + card.innerText).toLowerCase();
+    const categoryMatch = selectedCategory === "all" || category === selectedCategory;
+    const searchMatch = words.includes(query);
+    const visible = categoryMatch && searchMatch;
+    card.style.display = visible ? "block" : "none";
+    if(visible) count++;
+  });
+
+  document.getElementById("empty").style.display = count ? "none" : "block";
+}
+
+function chooseCategory(category, button){
+  selectedCategory = category;
+  document.querySelectorAll(".cat").forEach(btn => btn.classList.remove("active"));
+  button.classList.add("active");
+  filterCards();
+}
+
+document.getElementById("search").addEventListener("input", filterCards);
+</script>
+</body>
+</html>
+
