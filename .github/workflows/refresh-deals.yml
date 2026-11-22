@@ -1,0 +1,36 @@
+
+name: Actualiser les promotions
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le site
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Nettoyer les promotions
+        run: python scripts/refresh_deals.py
+
+      - name: Enregistrer les modifications
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add deals.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Actualisation automatique des promotions"
+            git push
+          fi
