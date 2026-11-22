@@ -1,93 +1,119 @@
 
+import csv
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FEED_FILE = ROOT / "product_feed.json"
+CSV_FILE = ROOT / "product_feed.csv"
+JSON_FILE = ROOT / "product_feed.json"
 DEALS_FILE = ROOT / "deals.json"
 
 
-def read_json(path, default):
-    if not path.exists():
-        return default
-    with path.open("r", encoding="utf-8") as file:
-        return json.load(file)
+def read_feed():
+    if CSV_FILE.exists():
+        with CSV_FILE.open("r", encoding="utf-8-sig", newline="") as file:
+            sample = file.read(4096)
+            file.seek(0)
+            try:
+                dialect = csv.Sniffer().sniff(sample, delimiters=",;\t")
+            except csv.Error:
+                dialect = csv.excel
+            return list(csv.DictReader(file, dialect=dialect))
+
+    if JSON_FILE.exists():
+        with JSON_FILE.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        return data.get("offers", [])
+
+    return []
 
 
-def available_in_france(item):
-    country = str(item.get("country", "")).upper()
-    shipping = item.get("shipping_countries", [])
-    if not isinstance(shipping, list):
-        shipping = []
-    shipping = [str(value).upper() for value in shipping]
-    return country == "FR" or "FR" in shipping
+def number(value):
+    if value is None:
+        return None
+    match = re.search(r"\d+(?:[.,]\d{1,2})?", str(value).replace(" ", ""))
+    if not match:
+        return None
+    return float(match.group(0).replace(",", "."))
 
 
 def main():
-    if not FEED_FILE.exists():
-        print("Aucun fichier product_feed.json trouvé.")
-        return
+    if not DEALS_FILE.exists():
+        raise FileNotFoundError("deals.json introuvable")
 
-    feed = read_json(FEED_FILE, {"offers": []})
-    deals = read_json(DEALS_FILE, {
-        "last_updated": None,
-        "offers": []
-    })
+    with DEALS_FILE.open("r", encoding="utf-8") as file:
+        deals = json.load(file)
 
-    if not isinstance(feed, dict) or not isinstance(deals, dict):
-        raise ValueError("Format JSON incorrect.")
-
-    current = {}
-    for offer in deals.get("offers", []):
-        if isinstance(offer, dict) and offer.get("url"):
-            current[offer["url"]] = offer
+    rows = read_feed()
+    existing = {
+        offer.get("url"): offer
+        for offer in deals.get("offers", [])
+        if offer.get("url")
+    }
 
     imported = 0
     now = datetime.now(timezone.utc)
 
-    for item in feed.get("offers", []):
-        if not isinstance(item, dict):
-            continue
-
+    for row in rows:
         try:
-            title = str(item["title"]).strip()
-            store = str(item["store"]).strip()
-            category = str(item["category"]).strip()
-            url = str(item["url"]).strip()
+            title = str(row.get("title", "")).strip()
+            store = str(
+                row.get("seller_name") or row.get("store") or ""
+            ).strip()
 
-            original = float(item["original_price"])
-            sale = float(item["sale_price"])
-            currency = str(item.get("currency", "EUR")).upper()
+            url = str(
+                row.get("clickwise_link")
+                or row.get("link")
+                or row.get("url")
+                or ""
+            ).strip()
 
-            if not all([title, store, category]):
+            original = number(
+                row.get("price") or row.get("original_price")
+            )
+            sale = number(
+                row.get("sale_price") or row.get("sale")
+            )
+
+            currency = str(row.get("currency", "EUR")).upper()
+            country = str(row.get("country", "FR")).upper()
+            availability = str(row.get("availability", "")).lower()
+
+            if not title or not store or not url:
                 continue
             if not url.startswith(("https://", "http://")):
                 continue
-            if currency != "EUR":
+            if original is None or sale is None:
                 continue
             if original <= 0 or sale <= 0 or sale >= original:
                 continue
-            if not available_in_france(item):
+            if currency != "EUR" or country != "FR":
+                continue
+            if availability and availability not in (
+                "in stock", "instock", "available", "en stock"
+            ):
                 continue
 
             discount = round((1 - sale / original) * 100)
             if discount < 20:
                 continue
 
-            expiry = item.get("expires_at")
-            if expiry:
-                expiry_date = datetime.fromisoformat(
-                    expiry.replace("Z", "+00:00")
-                )
-                if expiry_date.tzinfo is None:
-                    expiry_date = expiry_date.replace(
-                        tzinfo=timezone.utc
-                    )
-                if expiry_date <= now:
-                    continue
+            category = str(
+                row.get("category")
+                or row.get("product_type")
+                or "Autres"
+            ).strip()
 
-            current[url] = {
+            image = str(
+                row.get("image_link")
+                or row.get("image")
+                or row.get("image_url")
+                or ""
+            ).strip()
+
+            existing[url] = {
                 "title": title,
                 "store": store,
                 "category": category,
@@ -96,17 +122,16 @@ def main():
                 "sale_price": sale,
                 "discount_percent": discount,
                 "currency": "EUR",
-                "image_url": item.get("image_url", ""),
-                "expires_at": expiry,
+                "image_url": image,
                 "checked_at": now.isoformat(),
-                "featured_score": item.get("featured_score", 0)
+                "featured_score": 0
             }
             imported += 1
 
-        except (KeyError, ValueError, TypeError, AttributeError):
+        except (ValueError, TypeError, AttributeError):
             continue
 
-    deals["offers"] = list(current.values())
+    deals["offers"] = list(existing.values())
     deals["last_updated"] = now.isoformat()
 
     with DEALS_FILE.open("w", encoding="utf-8") as file:
