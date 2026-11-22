@@ -6,28 +6,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080d18">
 <title>BON PLAN FACTORY — Les meilleures promos</title>
-<meta name="description" content="Découvre les meilleures promotions en gaming, high-tech, mode, sport, musique et impression 3D.">
+<meta name="description" content="Les meilleures promotions en gaming, high-tech, mode, sport, musique et impression 3D.">
+
 <style>
 :root{
- --bg:#080d18;--panel:#111c30;--panel2:#16243b;
- --blue:#318bff;--cyan:#55dcff;--text:#f4f7ff;
- --muted:#9aabc4;--border:rgba(140,175,225,.16);
+ --bg:#080d18;
+ --panel:#111c30;
+ --panel2:#16243b;
+ --blue:#318bff;
+ --cyan:#55dcff;
+ --text:#f4f7ff;
+ --muted:#9aabc4;
+ --border:rgba(140,175,225,.16);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
- margin:0;color:var(--text);font-family:Arial,sans-serif;
+ margin:0;color:var(--text);
+ font-family:Arial,sans-serif;
  background:radial-gradient(ellipse at 50% -15%,rgba(40,120,255,.2),transparent 55%),var(--bg)
 }
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
+button{cursor:pointer}
 .container{width:min(1160px,92%);margin:auto}
+
 header{
  position:sticky;top:0;z-index:10;
- background:rgba(8,13,24,.91);backdrop-filter:blur(16px);
+ background:rgba(8,13,24,.94);
+ backdrop-filter:blur(16px);
  border-bottom:1px solid var(--border)
 }
-.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav{
+ min-height:74px;display:flex;
+ align-items:center;justify-content:space-between;gap:18px
+}
 .logo{font-weight:950;font-size:19px;letter-spacing:-.7px}
 .logo span,.gradient{
  background:linear-gradient(100deg,#58a2ff,#56e2ff);
@@ -37,108 +50,228 @@ header{
 .navlinks a:hover{color:white}
 .cta,.primary{
  background:linear-gradient(120deg,#287cff,#38baff);
- color:white;border:0;border-radius:11px;padding:12px 17px;font-weight:800
+ color:white;border:0;border-radius:11px;
+ padding:12px 17px;font-weight:800
 }
+
 .hero{text-align:center;padding:83px 0 65px}
 .eyebrow{
- display:inline-block;padding:9px 14px;border:1px solid #2865a8;
- background:rgba(44,125,255,.1);border-radius:30px;
- color:#9bc9ff;font-size:11px;font-weight:bold;letter-spacing:1px
+ display:inline-block;padding:9px 14px;
+ border:1px solid #2865a8;
+ background:rgba(44,125,255,.1);
+ border-radius:30px;color:#9bc9ff;
+ font-size:11px;font-weight:bold;letter-spacing:1px
 }
-h1{font-size:clamp(42px,7vw,76px);line-height:1.04;letter-spacing:-3px;margin:25px 0 18px}
-.hero p{max-width:590px;margin:auto;color:var(--muted);line-height:1.7;font-size:15px}
+h1{
+ font-size:clamp(42px,7vw,76px);
+ line-height:1.04;letter-spacing:-3px;margin:25px 0 18px
+}
+.hero p{
+ max-width:590px;margin:auto;color:var(--muted);
+ line-height:1.7;font-size:15px
+}
 .search{
- display:flex;max-width:620px;margin:30px auto 0;padding:7px;
- border:1px solid var(--border);border-radius:15px;background:var(--panel)
+ display:flex;max-width:620px;margin:30px auto 0;
+ padding:7px;border:1px solid var(--border);
+ border-radius:15px;background:var(--panel)
 }
-.search input{flex:1;min-width:0;padding:12px;background:transparent;border:0;outline:0;color:white}
-.search button{border:0;border-radius:10px;background:var(--blue);color:white;padding:0 18px;font-weight:bold}
-.stats{display:flex;justify-content:center;gap:25px;flex-wrap:wrap;margin-top:27px;color:var(--muted);font-size:12px}
+.search input{
+ flex:1;min-width:0;padding:12px;
+ background:transparent;border:0;outline:0;color:white
+}
+.search button{
+ border:0;border-radius:10px;background:var(--blue);
+ color:white;padding:0 18px;font-weight:bold
+}
+.stats{
+ display:flex;justify-content:center;gap:25px;
+ flex-wrap:wrap;margin-top:27px;color:var(--muted);font-size:12px
+}
 .stats strong{color:white}
+
 section{padding:39px 0}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:23px}
-.kicker{font-size:10px;letter-spacing:2px;font-weight:bold;color:#68adff;text-transform:uppercase}
+.section-head{
+ display:flex;justify-content:space-between;
+ align-items:end;gap:18px;margin-bottom:23px
+}
+.kicker{
+ font-size:10px;letter-spacing:2px;font-weight:bold;
+ color:#68adff;text-transform:uppercase
+}
 h2{font-size:clamp(26px,4vw,36px);letter-spacing:-1px;margin:8px 0}
 .sub{font-size:13px;color:var(--muted);line-height:1.6}
-.category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+
+.category-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:15px
+}
 .category{
- --accent:#328cff;position:relative;overflow:hidden;min-height:175px;
- padding:21px;border-radius:18px;border:1px solid var(--border);
+ --accent:#328cff;
+ position:relative;overflow:hidden;min-height:175px;
+ padding:21px;border-radius:18px;
+ border:1px solid var(--border);
  background:linear-gradient(145deg,var(--panel2),#0d1524);
  cursor:pointer;transition:.25s
 }
 .category:before{
- content:"";position:absolute;width:140px;height:140px;right:-55px;top:-65px;
- border-radius:50%;background:var(--accent);opacity:.14;filter:blur(28px)
+ content:"";position:absolute;width:140px;height:140px;
+ right:-55px;top:-65px;border-radius:50%;
+ background:var(--accent);opacity:.14;filter:blur(28px)
 }
-.category:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 12px 35px #0008}
-.cat-top{display:flex;justify-content:space-between;position:relative}
+.category:hover{
+ transform:translateY(-5px);
+ border-color:var(--accent);
+ box-shadow:0 12px 35px #0008
+}
+.cat-top{display:flex;position:relative}
 .cat-icon{
  display:grid;place-items:center;width:46px;height:46px;
- border-radius:14px;background:color-mix(in srgb,var(--accent) 17%,transparent);
+ border-radius:14px;
+ background:color-mix(in srgb,var(--accent) 17%,transparent);
  font-size:23px
 }
-.arrow{font-size:21px;color:var(--muted)}
 .category h3{font-size:18px;margin:17px 0 6px;position:relative}
-.category p{font-size:12px;color:var(--muted);line-height:1.6;margin:0;position:relative}
-.tags{font-size:10px;color:var(--accent);font-weight:bold;margin-top:11px;position:relative}
-.panel{padding:24px;border:1px solid var(--border);border-radius:21px;background:linear-gradient(145deg,#111d31,#0c1422)}
+.category p{
+ font-size:12px;color:var(--muted);
+ line-height:1.6;margin:0;position:relative
+}
+.tags{
+ font-size:10px;color:var(--accent);
+ font-weight:bold;margin-top:11px;position:relative
+}
+
+.panel{
+ padding:24px;border:1px solid var(--border);
+ border-radius:21px;
+ background:linear-gradient(145deg,#111d31,#0c1422)
+}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.filter{padding:9px 14px;border-radius:30px;border:1px solid var(--border);background:#111c2e;color:var(--muted);font-size:12px}
+.filter{
+ padding:9px 14px;border-radius:30px;
+ border:1px solid var(--border);
+ background:#111c2e;color:var(--muted);font-size:12px
+}
 .filter.active{background:var(--blue);border-color:var(--blue);color:white}
-.empty{text-align:center;padding:38px 12px;border:1px dashed #344966;border-radius:15px}
+
+.deals-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:15px
+}
+.deal-card{
+ overflow:hidden;border:1px solid var(--border);
+ border-radius:16px;background:#0d1728;
+ transition:.2s
+}
+.deal-card:hover{transform:translateY(-4px);border-color:#397dc5}
+.deal-image{
+ height:175px;background:#16243b;
+ display:grid;place-items:center;overflow:hidden
+}
+.deal-image img{width:100%;height:100%;object-fit:contain}
+.deal-image .placeholder{font-size:42px}
+.deal-content{padding:16px}
+.deal-category{font-size:10px;color:#80baff;font-weight:bold;text-transform:uppercase}
+.deal-content h3{font-size:15px;line-height:1.4;margin:9px 0}
+.deal-prices{display:flex;align-items:center;gap:9px;margin:12px 0}
+.sale-price{font-size:21px;font-weight:900;color:#62e6a2}
+.old-price{font-size:12px;color:#8298b8;text-decoration:line-through}
+.discount{
+ background:#173c34;color:#78f0b1;
+ padding:6px 8px;border-radius:7px;font-size:11px;font-weight:bold
+}
+.deal-store{font-size:11px;color:var(--muted);margin-bottom:12px}
+.deal-link{
+ display:block;text-align:center;padding:11px;
+ border-radius:9px;background:#1b5cb0;
+ font-size:12px;font-weight:bold
+}
+.empty{
+ text-align:center;padding:38px 12px;
+ border:1px dashed #344966;border-radius:15px
+}
 .empty-icon{font-size:36px}
 .empty h3{margin:12px 0 8px}
-.empty p{max-width:490px;margin:auto;color:var(--muted);font-size:13px;line-height:1.7}
+.empty p{
+ max-width:490px;margin:auto;color:var(--muted);
+ font-size:13px;line-height:1.7
+}
 .empty small{display:block;color:#7188a8;margin-top:14px;font-size:11px}
+
 .benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.benefit{background:var(--panel);border:1px solid var(--border);padding:21px;border-radius:16px}
+.benefit{
+ background:var(--panel);border:1px solid var(--border);
+ padding:21px;border-radius:16px
+}
 .benefit .symbol{font-size:24px}
 .benefit h3{font-size:15px;margin:13px 0 7px}
 .benefit p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}
+
 .vip{
  padding:35px;border-radius:23px;border:1px solid #315d9a;
  background:radial-gradient(ellipse at 100% 0%,#17447a66,transparent 50%),linear-gradient(130deg,#101d34,#101326)
 }
 .vip h2{font-size:36px}
 .vip>p{max-width:650px;color:#a8bad5;font-size:14px;line-height:1.7}
-.vip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:23px}
-.vip-card{padding:21px;border:1px solid var(--border);border-radius:15px;background:#080e1b99}
+.vip-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:14px;margin-top:23px
+}
+.vip-card{
+ padding:21px;border:1px solid var(--border);
+ border-radius:15px;background:#080e1b99;
+ transition:.2s
+}
+.vip-card:hover{transform:translateY(-4px);border-color:#397dc5}
 .vip-card.featured{border-color:#397dc5;background:#17447b55}
-.vip-card h3{margin:9px 0}
-.vip-card p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.vip-card h3{margin:10px 0;font-size:17px}
+.vip-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}
 .vip-label{font-size:10px;color:#80baff;font-weight:bold;letter-spacing:1.5px}
-.vip-note{font-size:11px;color:#8298b8;margin-top:18px}
+.vip-note{font-size:11px;color:#8298b8;margin-top:20px;line-height:1.6}
+
 .code-box{
  margin-top:20px;padding:22px;border-radius:17px;
- border:1px solid #315d9a;background:linear-gradient(120deg,#10213b,#10172a)
+ border:1px solid #315d9a;
+ background:linear-gradient(120deg,#10213b,#10172a)
 }
 .code-box h3{margin:0 0 9px}
 .code-box p{color:var(--muted);font-size:13px;line-height:1.7}
-.code-status{display:inline-block;margin-top:5px;padding:7px 11px;border-radius:20px;background:#1b3454;color:#9fcaff;font-size:10px;font-weight:bold}
+.code-status{
+ display:inline-block;margin-top:5px;padding:7px 11px;
+ border-radius:20px;background:#1b3454;
+ color:#9fcaff;font-size:10px;font-weight:bold
+}
+
 footer{border-top:1px solid var(--border);padding:30px 0;margin-top:55px}
-.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:11px}
+.footer-inner{
+ display:flex;justify-content:space-between;gap:15px;
+ flex-wrap:wrap;color:var(--muted);font-size:11px
+}
 footer strong{color:white}
 .toast{
- position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);
- background:#19375b;border:1px solid #397dc5;color:white;
- padding:12px 18px;border-radius:12px;font-size:12px;
- opacity:0;pointer-events:none;transition:.25s;z-index:20
+ position:fixed;bottom:20px;left:50%;
+ transform:translate(-50%,20px);
+ background:#19375b;border:1px solid #397dc5;
+ color:white;padding:12px 18px;border-radius:12px;
+ font-size:12px;opacity:0;pointer-events:none;
+ transition:.25s;z-index:20
 }
 .toast.show{opacity:1;transform:translate(-50%,0)}
+
 @media(max-width:760px){
- .navlinks{display:none}.hero{padding:60px 0 45px}
- .category-grid{grid-template-columns:repeat(2,1fr)}
- .benefits{grid-template-columns:1fr}
+ .navlinks{display:none}
+ .hero{padding:60px 0 45px}
+ .category-grid,.benefits,.deals-grid{grid-template-columns:repeat(2,1fr)}
  .section-head{align-items:start;flex-direction:column}
+ .vip-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:440px){
- .category-grid,.vip-grid{grid-template-columns:1fr}
- .category{min-height:150px}h1{letter-spacing:-2px}
+@media(max-width:480px){
+ .category-grid,.vip-grid,.benefits,.deals-grid{grid-template-columns:1fr}
+ .category{min-height:150px}
+ h1{letter-spacing:-2px}
  .vip{padding:23px}
+ .panel{padding:15px}
 }
 </style>
 </head>
+
 <body>
 <header>
  <div class="container nav">
@@ -149,126 +282,421 @@ footer strong{color:white}
    <a href="#codes">Codes exclusifs</a>
    <a href="#vip">Factory Club</a>
   </nav>
-  <a class="cta" href="#categories">Explorer ↗</a>
  </div>
 </header>
 
 <main>
 <div class="container">
- <section class="hero">
-  <div class="eyebrow">✦ LE SPOT DES BONNES AFFAIRES</div>
-  <h1>Les meilleures promos,<br><span class="gradient">au meilleur moment.</span></h1>
-  <p>Gaming, high-tech, mode, sport, musique et bien plus. Découvre les offres qui valent vraiment le détour.</p>
-  <div class="search">
-   <input id="searchInput" type="search" placeholder="Recherche une marque, un produit, un univers...">
-   <button onclick="searchCategories()">Rechercher</button>
-  </div>
-  <div class="stats">
-   <span>✦ <strong>9 univers</strong></span>
-   <span>✦ <strong>Offres sélectionnées</strong></span>
-   <span>✦ <strong>Accès gratuit</strong></span>
-  </div>
- </section>
 
- <section id="categories">
-  <div class="section-head">
-   <div><div class="kicker">Explore nos univers</div><h2>Quel est ton <span class="gradient">domaine ?</span></h2><div class="sub">Des catégories pensées pour trouver exactement ce que tu recherches.</div></div>
-   <div class="sub" id="count">9 univers à explorer</div>
-  </div>
-  <div class="category-grid" id="categoryGrid">
-   <article class="category" data-name="gaming jeux consoles pc manettes gta 6 playstation xbox nintendo" style="--accent:#a58aff" onclick="choose('Gaming')"><div class="cat-top"><div class="cat-icon">🎮</div><span class="arrow">↗</span></div><h3>Gaming</h3><p>Jeux, consoles, PC et accessoires gaming.</p><div class="tags">PLAYSTATION · XBOX · PC · GTA 6</div></article>
-   <article class="category" data-name="high tech smartphone téléphone tablette audio casque samsung apple xiaomi sony jbl" style="--accent:#46c9ff" onclick="choose('High-tech')"><div class="cat-top"><div class="cat-icon">⚡</div><span class="arrow">↗</span></div><h3>High-tech</h3><p>Smartphones, audio, tablettes et innovations.</p><div class="tags">APPLE · SAMSUNG · XIAOMI · JBL</div></article>
-   <article class="category" data-name="mode vêtements sneakers chaussures nike adidas puma new balance converse vans" style="--accent:#ff78b5" onclick="choose('Mode & sneakers')"><div class="cat-top"><div class="cat-icon">👟</div><span class="arrow">↗</span></div><h3>Mode & sneakers</h3><p>Les marques et les styles à prix réduit.</p><div class="tags">NIKE · ADIDAS · PUMA · VANS</div></article>
-   <article class="category" data-name="football foot maillot crampons ballon équipement sport" style="--accent:#65e59b" onclick="choose('Football')"><div class="cat-top"><div class="cat-icon">⚽</div><span class="arrow">↗</span></div><h3>Football</h3><p>Maillots, crampons et équipements de terrain.</p><div class="tags">MAILLOTS · CRAMPONS · BALLONS</div></article>
-   <article class="category" data-name="basket basketball chaussures maillot ballon accessoires" style="--accent:#ffad61" onclick="choose('Basketball')"><div class="cat-top"><div class="cat-icon">🏀</div><span class="arrow">↗</span></div><h3>Basketball</h3><p>Shoes, vêtements et accessoires de basket.</p><div class="tags">BASKET · SHOES · ÉQUIPEMENT</div></article>
-   <article class="category" data-name="impression 3d imprimante filament elegoo creality bambu lab pièces" style="--accent:#6fe0d1" onclick="choose('Impression 3D')"><div class="cat-top"><div class="cat-icon">🖨️</div><span class="arrow">↗</span></div><h3>Impression 3D</h3><p>Imprimantes, filaments et matériel créatif.</p><div class="tags">ELEGOO · CREALITY · BAMBU LAB</div></article>
-   <article class="category" data-name="musique studio microphone micro enceinte casque synthé guitare piano batterie" style="--accent:#c18bff" onclick="choose('Musique & studio')"><div class="cat-top"><div class="cat-icon">🎧</div><span class="arrow">↗</span></div><h3>Musique & studio</h3><p>Micros, enceintes, instruments et matériel studio.</p><div class="tags">SON · STUDIO · INSTRUMENTS</div></article>
-   <article class="category" data-name="lego loisirs robotique construction jouets maquettes" style="--accent:#ffdb67" onclick="choose('LEGO & loisirs')"><div class="cat-top"><div class="cat-icon">🧩</div><span class="arrow">↗</span></div><h3>LEGO & loisirs</h3><p>Construction, robotique et activités créatives.</p><div class="tags">LEGO · ROBOTIQUE · CRÉATIVITÉ</div></article>
-   <article class="category" data-name="création contenu caméra photo vidéo streaming éclairage micro" style="--accent:#ff8b75" onclick="choose('Création de contenu')"><div class="cat-top"><div class="cat-icon">📸</div><span class="arrow">↗</span></div><h3>Création de contenu</h3><p>Caméras, éclairages et accessoires vidéo.</p><div class="tags">PHOTO · VIDÉO · STREAMING</div></article>
-  </div>
-  <p class="sub" id="noCategory" style="display:none">Aucune catégorie trouvée. Essaie un autre mot.</p>
- </section>
+<section class="hero">
+ <div class="eyebrow">✦ LE SPOT DES BONNES AFFAIRES</div>
+ <h1>Les meilleures promos,<br><span class="gradient">au meilleur moment.</span></h1>
+ <p>Gaming, high-tech, mode, sport, musique et bien plus. Découvre les offres qui valent vraiment le détour.</p>
 
- <section id="deals">
-  <div class="section-head"><div><div class="kicker">La sélection Factory</div><h2>Les pépites <span class="gradient">du jour.</span></h2><div class="sub">Notre objectif : les meilleures offres, pas simplement les plus gros pourcentages.</div></div><div class="eyebrow">SÉLECTION EN PRÉPARATION</div></div>
-  <div class="panel">
-   <div class="filters">
-    <button class="filter active" onclick="filter(this,'Toutes')">Toutes</button>
-    <button class="filter" onclick="filter(this,'Gaming')">Gaming</button>
-    <button class="filter" onclick="filter(this,'High-tech')">High-tech</button>
-    <button class="filter" onclick="filter(this,'Mode')">Mode</button>
-    <button class="filter" onclick="filter(this,'Sport')">Sport</button>
+ <div class="search">
+  <input id="searchInput" type="search" placeholder="Recherche une marque, un produit, un univers...">
+  <button onclick="searchSite()">Rechercher</button>
+ </div>
+
+ <div class="stats">
+  <span>✦ <strong>9 univers</strong></span>
+  <span>✦ <strong>Promotions vérifiées</strong></span>
+  <span>✦ <strong>Accès gratuit</strong></span>
+ </div>
+</section>
+
+<section id="categories">
+ <div class="section-head">
+  <div>
+   <div class="kicker">Nos univers</div>
+   <h2>Quel est ton <span class="gradient">domaine ?</span></h2>
+   <div class="sub">Des catégories pensées pour trouver exactement ce que tu recherches.</div>
+  </div>
+  <div class="sub" id="count">9 univers disponibles</div>
+ </div>
+
+ <div class="category-grid" id="categoryGrid">
+  <article class="category" data-name="gaming jeux consoles pc manettes gta 6 playstation xbox nintendo" style="--accent:#a58aff" onclick="choose('Gaming')">
+   <div class="cat-top"><div class="cat-icon">🎮</div></div>
+   <h3>Gaming</h3><p>Jeux, consoles, PC et accessoires gaming.</p>
+   <div class="tags">PLAYSTATION · XBOX · PC · GTA 6</div>
+  </article>
+
+  <article class="category" data-name="high tech smartphone téléphone tablette audio casque samsung apple xiaomi sony jbl" style="--accent:#46c9ff" onclick="choose('High-tech')">
+   <div class="cat-top"><div class="cat-icon">⚡</div></div>
+   <h3>High-tech</h3><p>Smartphones, audio, tablettes et innovations.</p>
+   <div class="tags">APPLE · SAMSUNG · XIAOMI · JBL</div>
+  </article>
+
+  <article class="category" data-name="mode vêtements sneakers chaussures nike adidas puma new balance converse vans" style="--accent:#ff78b5" onclick="choose('Mode & sneakers')">
+   <div class="cat-top"><div class="cat-icon">👟</div></div>
+   <h3>Mode & sneakers</h3><p>Les marques et les styles à prix réduit.</p>
+   <div class="tags">NIKE · ADIDAS · PUMA · VANS</div>
+  </article>
+
+  <article class="category" data-name="football foot maillot crampons ballon équipement sport" style="--accent:#65e59b" onclick="choose('Football')">
+   <div class="cat-top"><div class="cat-icon">⚽</div></div>
+   <h3>Football</h3><p>Maillots, crampons et équipements de terrain.</p>
+   <div class="tags">MAILLOTS · CRAMPONS · BALLONS</div>
+  </article>
+
+  <article class="category" data-name="basket basketball chaussures maillot ballon accessoires" style="--accent:#ffad61" onclick="choose('Basketball')">
+   <div class="cat-top"><div class="cat-icon">🏀</div></div>
+   <h3>Basketball</h3><p>Shoes, vêtements et accessoires de basket.</p>
+   <div class="tags">BASKET · SHOES · ÉQUIPEMENT</div>
+  </article>
+
+  <article class="category" data-name="impression 3d imprimante filament elegoo creality bambu lab pièces" style="--accent:#6fe0d1" onclick="choose('Impression 3D')">
+   <div class="cat-top"><div class="cat-icon">🖨️</div></div>
+   <h3>Impression 3D</h3><p>Imprimantes, filaments et matériel créatif.</p>
+   <div class="tags">ELEGOO · CREALITY · BAMBU LAB</div>
+  </article>
+
+  <article class="category" data-name="musique studio microphone micro enceinte casque synthé guitare piano batterie" style="--accent:#c18bff" onclick="choose('Musique & studio')">
+   <div class="cat-top"><div class="cat-icon">🎧</div></div>
+   <h3>Musique & studio</h3><p>Micros, enceintes, instruments et matériel studio.</p>
+   <div class="tags">SON · STUDIO · INSTRUMENTS</div>
+  </article>
+
+  <article class="category" data-name="lego loisirs robotique construction jouets maquettes" style="--accent:#ffdb67" onclick="choose('LEGO & loisirs')">
+   <div class="cat-top"><div class="cat-icon">🧩</div></div>
+   <h3>LEGO & loisirs</h3><p>Construction, robotique et activités créatives.</p>
+   <div class="tags">LEGO · ROBOTIQUE · CRÉATIVITÉ</div>
+  </article>
+
+  <article class="category" data-name="création contenu caméra photo vidéo streaming éclairage micro" style="--accent:#ff8b75" onclick="choose('Création de contenu')">
+   <div class="cat-top"><div class="cat-icon">📸</div></div>
+   <h3>Création de contenu</h3><p>Caméras, éclairages et accessoires vidéo.</p>
+   <div class="tags">PHOTO · VIDÉO · STREAMING</div>
+  </article>
+ </div>
+ <p class="sub" id="noCategory" style="display:none">Aucune catégorie trouvée. Essaie un autre mot.</p>
+</section>
+
+<section id="deals">
+ <div class="section-head">
+  <div>
+   <div class="kicker">La sélection Factory</div>
+   <h2>Les pépites <span class="gradient">du jour.</span></h2>
+   <div class="sub">Des réductions intéressantes, sélectionnées pour leur qualité et leur prix.</div>
+  </div>
+  <div class="eyebrow">OFFRES VÉRIFIÉES</div>
+ </div>
+
+ <div class="panel">
+  <div class="filters">
+   <button class="filter active" onclick="filterDeals(this,'Toutes')">Toutes</button>
+   <button class="filter" onclick="filterDeals(this,'Gaming')">Gaming</button>
+   <button class="filter" onclick="filterDeals(this,'High-tech')">High-tech</button>
+   <button class="filter" onclick="filterDeals(this,'Mode & sneakers')">Mode</button>
+   <button class="filter" onclick="filterDeals(this,'Football')">Football</button>
+   <button class="filter" onclick="filterDeals(this,'Basketball')">Basketball</button>
+   <button class="filter" onclick="filterDeals(this,'Impression 3D')">Impression 3D</button>
+   <button class="filter" onclick="filterDeals(this,'Musique & studio')">Musique</button>
+   <button class="filter" onclick="filterDeals(this,'LEGO & loisirs')">LEGO</button>
+   <button class="filter" onclick="filterDeals(this,'Création de contenu')">Création</button>
+  </div>
+
+  <div class="deals-grid" id="dealsGrid"></div>
+  <div class="empty" id="dealsEmpty">
+   <div class="empty-icon">🔎</div>
+   <h3>La chasse aux pépites commence.</h3>
+   <p>Les promotions apparaîtront ici avec leur prix initial, leur prix réduit, la remise, le magasin et un lien direct.</p>
+   <small>Aucune promotion vérifiée n'est publiée pour le moment.</small>
+  </div>
+ </div>
+</section>
+
+<section id="codes">
+ <div class="section-head">
+  <div>
+   <div class="kicker">Les avantages partenaires</div>
+   <h2>Les codes <span class="gradient">exclusifs.</span></h2>
+   <div class="sub">Des réductions supplémentaires réservées à la communauté Factory.</div>
+  </div>
+ </div>
+
+ <div class="code-box">
+  <div class="kicker">FACTORY PARTNERS</div>
+  <h3>Des avantages qu'on ne trouve pas partout.</h3>
+  <p>Notre objectif : négocier des codes promo réservés à BON PLAN FACTORY, ainsi que des offres spéciales auprès de nos futurs partenaires.</p>
+  <span class="code-status">PARTENARIATS EN PRÉPARATION</span>
+ </div>
+</section>
+
+<section id="avantages">
+ <div class="section-head">
+  <div>
+   <div class="kicker">L'esprit Factory</div>
+   <h2>Pas de blabla. <span class="gradient">Du concret.</span></h2>
+  </div>
+ </div>
+
+ <div class="benefits">
+  <div class="benefit">
+   <div class="symbol">🎯</div>
+   <h3>Des offres sélectionnées</h3>
+   <p>Privilégier les vraies bonnes affaires plutôt que les réductions trompeuses.</p>
+  </div>
+  <div class="benefit">
+   <div class="symbol">🧾</div>
+   <h3>Des prix transparents</h3>
+   <p>Prix initial, prix réduit, pourcentage et enseigne clairement indiqués.</p>
+  </div>
+  <div class="benefit">
+   <div class="symbol">🔔</div>
+   <h3>Des alertes personnalisées</h3>
+   <p>Un futur système pour suivre les marques et les produits qui t'intéressent.</p>
+  </div>
+ </div>
+</section>
+
+<section id="vip">
+ <div class="vip">
+  <div class="kicker">Le club des passionnés</div>
+  <h2>Bienvenue dans le <span class="gradient">Factory Club.</span></h2>
+  <p>Un espace imaginé pour aller plus loin : sélections spéciales, avantages membres, accès anticipé et invitations privées.</p>
+
+  <div class="vip-grid">
+   <div class="vip-card">
+    <div class="vip-label">ACCÈS GRATUIT</div>
+    <h3>🌐 Factory Free</h3>
+    <p>Accès aux promotions publiques, à toutes les catégories et aux sélections du moment.</p>
    </div>
-   <div class="empty"><div class="empty-icon">🔎</div><h3>La chasse aux pépites commence.</h3><p>Les offres seront présentées avec leur prix initial, leur prix réduit, le pourcentage de remise, le magasin et un lien direct.</p><small>Aucune promotion vérifiée n'est publiée pour le moment.</small></div>
-  </div>
- </section>
 
- <section id="codes">
-  <div class="section-head"><div><div class="kicker">Les avantages partenaires</div><h2>Les codes <span class="gradient">exclusifs.</span></h2><div class="sub">Notre objectif : négocier des réductions supplémentaires auprès des marques et magasins.</div></div></div>
-  <div class="code-box">
-   <div class="kicker">FACTORY PARTNERS</div>
-   <h3>Des avantages qu'on ne trouve pas partout.</h3>
-   <p>Nous souhaitons obtenir des codes promo réservés à la communauté BON PLAN FACTORY, ainsi que des offres spéciales négociées avec nos futurs partenaires.</p>
-   <span class="code-status">PARTENARIATS EN PRÉPARATION</span>
-  </div>
- </section>
-
- <section id="avantages">
-  <div class="section-head"><div><div class="kicker">L'esprit Factory</div><h2>Pas de blabla. <span class="gradient">Du concret.</span></h2></div></div>
-  <div class="benefits">
-   <div class="benefit"><div class="symbol">🎯</div><h3>Des offres sélectionnées</h3><p>Privilégier les vraies bonnes affaires plutôt que les réductions trompeuses.</p></div>
-   <div class="benefit"><div class="symbol">🧾</div><h3>Des prix transparents</h3><p>Prix initial, prix réduit, pourcentage et enseigne seront clairement indiqués.</p></div>
-   <div class="benefit"><div class="symbol">🔔</div><h3>Des alertes à venir</h3><p>À terme, des notifications pour ne pas rater les meilleures occasions.</p></div>
-  </div>
- </section>
-
- <section id="vip">
-  <div class="vip">
-   <div class="kicker">Un niveau au-dessus</div>
-   <h2>Bienvenue dans le <span class="gradient">Factory Club.</span></h2>
-   <p>Un espace imaginé pour les passionnés de bons plans : sélections spéciales, avantages membres et invitations privées.</p>
-   <div class="vip-grid">
-    <div class="vip-card"><div class="vip-label">ACCÈS PUBLIC</div><h3>Factory Free</h3><p>Explore toutes les catégories et profite des promotions publiques.</p></div>
-    <div class="vip-card featured"><div class="vip-label">ACCÈS PRIVÉ 👑</div><h3>Factory VIP</h3><p>Des sélections exclusives et des avantages réservés aux membres invités.</p></div>
+   <div class="vip-card featured">
+    <div class="vip-label">ACCÈS PRIVÉ 👑</div>
+    <h3>👑 Factory VIP</h3>
+    <p>Une sélection de pépites supplémentaires et des avantages réservés aux membres invités.</p>
    </div>
-   <div class="vip-note">Espace en préparation : aucun compte, abonnement ou paiement n'est activé actuellement.</div>
+
+   <div class="vip-card">
+    <div class="vip-label">SÉLECTION SPÉCIALE</div>
+    <h3>💎 Offres secrètes</h3>
+    <p>Des promotions particulièrement intéressantes mises en avant dans un espace privé.</p>
+   </div>
+
+   <div class="vip-card">
+    <div class="vip-label">AVANT-PREMIÈRE</div>
+    <h3>⚡ Accès anticipé</h3>
+    <p>Découvrir certaines offres avant leur présentation dans la sélection publique.</p>
+   </div>
+
+   <div class="vip-card">
+    <div class="vip-label">ALERTES PERSONNALISÉES</div>
+    <h3>🔔 Alertes Factory</h3>
+    <p>Suivre ses marques, catégories et produits préférés pour ne pas rater les bons plans.</p>
+   </div>
+
+   <div class="vip-card">
+    <div class="vip-label">MEMBRES INVITÉS</div>
+    <h3>🤝 Club privé</h3>
+    <p>Des invitations personnelles et des avantages réservés aux membres sélectionnés.</p>
+   </div>
   </div>
- </section>
+
+  <div class="vip-note">
+   Factory Club est actuellement en préparation. Les avantages présentés sont des fonctionnalités prévues : aucun compte, abonnement, code partenaire ou paiement n'est activé pour le moment.
+  </div>
+ </div>
+</section>
+
 </div>
 </main>
+
 <footer>
  <div class="container footer-inner">
   <div><strong>BON PLAN FACTORY.</strong><br>Les meilleures promos, au meilleur moment.</div>
-  <div>Projet indépendant · Version de démonstration</div>
+  <div>Projet indépendant · Version en développement</div>
   <div>© 2026 BON PLAN FACTORY</div>
  </div>
 </footer>
+
 <div class="toast" id="toast"></div>
 
 <script>
 const cards=[...document.querySelectorAll(".category")];
 const input=document.getElementById("searchInput");
-function searchCategories(){
- const q=input.value.toLowerCase().trim();let n=0;
- cards.forEach(c=>{const ok=c.dataset.name.includes(q);c.style.display=ok?"block":"none";if(ok)n++});
- document.getElementById("noCategory").style.display=n?"none":"block";
- document.getElementById("count").textContent=n+" univers affichés";
- document.getElementById("categories").scrollIntoView({behavior:"smooth"});
-}
-input.addEventListener("keydown",e=>{if(e.key==="Enter")searchCategories()});
-input.addEventListener("input",()=>{
- if(!input.value.trim()){cards.forEach(c=>c.style.display="block");document.getElementById("noCategory").style.display="none";document.getElementById("count").textContent="9 univers à explorer"}
-});
+const dealsGrid=document.getElementById("dealsGrid");
+const dealsEmpty=document.getElementById("dealsEmpty");
+let allDeals=[];
+let currentCategory="Toutes";
+
 function notify(message){
- const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");
+ const t=document.getElementById("toast");
+ t.textContent=message;
+ t.classList.add("show");
  setTimeout(()=>t.classList.remove("show"),2500);
 }
-function choose(name){notify("Univers sélectionné : "+name+" — offres bientôt disponibles.")}
-function filter(button,name){
+
+function searchSite(){
+ const q=input.value.toLowerCase().trim();
+ let visible=0;
+
+ cards.forEach(card=>{
+  const ok=card.dataset.name.includes(q) || card.innerText.toLowerCase().includes(q);
+  card.style.display=ok?"block":"none";
+  if(ok)visible++;
+ });
+
+ document.getElementById("noCategory").style.display=visible?"none":"block";
+ document.getElementById("count").textContent=visible+" univers affichés";
+
+ const matchingDeals=allDeals.filter(deal=>{
+  const text=(deal.title+" "+deal.brand+" "+deal.category+" "+deal.store).toLowerCase();
+  return text.includes(q);
+ });
+
+ if(q){
+  currentCategory="Toutes";
+  renderDeals(matchingDeals);
+ }
+ document.getElementById("categories").scrollIntoView({behavior:"smooth"});
+}
+
+input.addEventListener("keydown",e=>{
+ if(e.key==="Enter")searchSite();
+});
+
+input.addEventListener("input",()=>{
+ if(!input.value.trim()){
+  cards.forEach(card=>card.style.display="block");
+  document.getElementById("noCategory").style.display="none";
+  document.getElementById("count").textContent="9 univers disponibles";
+  renderDeals(allDeals);
+ }
+});
+
+function choose(name){
+ currentCategory=name;
+ document.querySelectorAll(".filter").forEach(button=>{
+  button.classList.toggle("active",button.textContent.trim().toLowerCase()===name.toLowerCase());
+ });
+ renderDeals(allDeals.filter(deal=>deal.category===name));
+ document.getElementById("deals").scrollIntoView({behavior:"smooth"});
+}
+
+function filterDeals(button,name){
+ currentCategory=name;
  document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
  button.classList.add("active");
- notify("Filtre "+name+" sélectionné — offres en préparation.");
+
+ const filtered=name==="Toutes"
+  ?allDeals
+  :allDeals.filter(deal=>deal.category===name);
+
+ renderDeals(filtered);
 }
+
+function renderDeals(deals){
+ dealsGrid.innerHTML="";
+
+ if(!deals.length){
+  dealsEmpty.style.display="block";
+  return;
+ }
+
+ dealsEmpty.style.display="none";
+
+ deals.forEach(deal=>{
+  const card=document.createElement("article");
+  card.className="deal-card";
+
+  const image=document.createElement("div");
+  image.className="deal-image";
+
+  if(deal.image){
+   const img=document.createElement("img");
+   img.src=deal.image;
+   img.alt=deal.title||"Produit en promotion";
+   img.loading="lazy";
+   img.onerror=()=>{image.innerHTML='<div class="placeholder">🛍️</div>'};
+   image.appendChild(img);
+  }else{
+   image.innerHTML='<div class="placeholder">🛍️</div>';
+  }
+
+  const content=document.createElement("div");
+  content.className="deal-content";
+
+  const category=document.createElement("div");
+  category.className="deal-category";
+  category.textContent=deal.category||"Bon plan";
+
+  const title=document.createElement("h3");
+  title.textContent=deal.title||"Promotion";
+
+  const prices=document.createElement("div");
+  prices.className="deal-prices";
+
+  const sale=document.createElement("span");
+  sale.className="sale-price";
+  sale.textContent=Number(deal.sale_price).toFixed(2).replace(".",",")+" €";
+
+  const old=document.createElement("span");
+  old.className="old-price";
+  old.textContent=Number(deal.original_price).toFixed(2).replace(".",",")+" €";
+
+  const discount=document.createElement("span");
+  discount.className="discount";
+  discount.textContent="-"+Number(deal.discount_percent)+" %";
+
+  prices.append(sale,old,discount);
+
+  const store=document.createElement("div");
+  store.className="deal-store";
+  store.textContent="Magasin : "+(deal.store||"Non précisé");
+
+  const link=document.createElement("a");
+  link.className="deal-link";
+  link.textContent="Voir l'offre";
+  link.href=deal.url;
+  link.target="_blank";
+  link.rel="noopener noreferrer";
+
+  content.append(category,title,prices,store,link);
+  card.append(image,content);
+  dealsGrid.appendChild(card);
+ });
+}
+
+async function loadDeals(){
+ try{
+  const response=await fetch("deals.json?update="+Date.now());
+
+  if(!response.ok)throw new Error("Fichier indisponible");
+
+  const data=await response.json();
+  const now=Date.now();
+
+  allDeals=(data.offers||[]).filter(deal=>{
+   const validFields=
+    deal.title&&deal.category&&deal.store&&deal.url&&
+    Number(deal.original_price)>0&&
+    Number(deal.sale_price)>0&&
+    Number(deal.sale_price)<Number(deal.original_price)&&
+    Number(deal.discount_percent)>=20;
+
+   const validUrl=/^https?:\/\//i.test(deal.url||"");
+   const notExpired=!deal.expires_at||new Date(deal.expires_at).getTime()>now;
+
+   return validFields&&validUrl&&notExpired;
+  });
+
+  allDeals.sort((a,b)=>
+   Number(b.featured_score||0)-Number(a.featured_score||0)
+  );
+
+  renderDeals(allDeals);
+
+ }catch(error){
+  dealsEmpty.style.display="block";
+  dealsEmpty.querySelector("h3").textContent="Promotions momentanément indisponibles.";
+  dealsEmpty.querySelector("small").textContent="Réessaie dans quelques instants.";
+ }
+}
+
+loadDeals();
 </script>
 </body>
 </html>
