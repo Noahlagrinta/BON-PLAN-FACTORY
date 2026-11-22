@@ -146,7 +146,6 @@ h2{font-size:clamp(26px,4vw,36px);letter-spacing:-1px;margin:8px 0}
 .vip-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}
 .vip-label{font-size:10px;color:#80baff;font-weight:bold;letter-spacing:1.5px}
 .vip-note{font-size:11px;color:#8298b8;margin-top:20px;line-height:1.6}
-.code-status{display:inline-block;margin-top:8px;padding:7px 11px;border-radius:20px;background:#1b3454;color:#9fcaff;font-size:10px;font-weight:bold}
 footer{border-top:1px solid var(--border);padding:30px 0;margin-top:55px}
 .footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:11px}
 footer strong{color:white}
@@ -278,12 +277,11 @@ footer strong{color:white}
       <button class="filter" data-filter="LEGO & loisirs">LEGO</button>
       <button class="filter" data-filter="Création de contenu">Création</button>
     </div>
-
     <div class="deals-grid" id="dealsGrid"></div>
     <div class="empty" id="dealsEmpty">
       <div class="empty-icon">🔎</div>
       <h3>La chasse aux pépites commence.</h3>
-      <p>Les promotions apparaîtront ici avec leur prix initial, leur prix réduit, la remise, le magasin et un lien direct.</p>
+      <p>Les promotions vérifiées apparaîtront ici avec leur image, leurs prix, la remise, la source et le lien.</p>
       <small>Aucune promotion produit vérifiée n'est publiée pour le moment.</small>
     </div>
   </div>
@@ -429,7 +427,7 @@ function renderDeals(deals){
 
     const category=document.createElement("div");
     category.className="deal-category";
-    category.textContent=deal.category;
+    category.textContent=deal.category||"Bon plan";
 
     const title=document.createElement("h3");
     title.textContent=deal.title;
@@ -437,23 +435,30 @@ function renderDeals(deals){
     const prices=document.createElement("div");
     prices.className="deal-prices";
 
-    const sale=document.createElement("span");
-    sale.className="sale-price";
-    sale.textContent=Number(deal.sale_price).toFixed(2).replace(".",",")+" €";
+    if(deal.sale_price!==null&&deal.sale_price!==undefined){
+      const sale=document.createElement("span");
+      sale.className="sale-price";
+      sale.textContent=Number(deal.sale_price).toFixed(2).replace(".",",")+" €";
+      prices.appendChild(sale);
+    }
 
-    const old=document.createElement("span");
-    old.className="old-price";
-    old.textContent=Number(deal.original_price).toFixed(2).replace(".",",")+" €";
+    if(deal.original_price!==null&&deal.original_price!==undefined){
+      const old=document.createElement("span");
+      old.className="old-price";
+      old.textContent=Number(deal.original_price).toFixed(2).replace(".",",")+" €";
+      prices.appendChild(old);
+    }
 
-    const discount=document.createElement("span");
-    discount.className="discount";
-    discount.textContent="-"+Number(deal.discount_percent)+" %";
-
-    prices.append(sale,old,discount);
+    if(deal.discount_percent){
+      const discount=document.createElement("span");
+      discount.className="discount";
+      discount.textContent="-"+Number(deal.discount_percent)+" %";
+      prices.appendChild(discount);
+    }
 
     const store=document.createElement("div");
     store.className="deal-store";
-    store.textContent="Magasin : "+deal.store;
+    store.textContent="Source : "+(deal.store||"Dealabs");
 
     const link=document.createElement("a");
     link.className="deal-link";
@@ -464,6 +469,7 @@ function renderDeals(deals){
 
     content.append(category,title,prices,store,link);
     card.append(image,content);
+    grid.append(image,content);
     grid.appendChild(card);
   });
 }
@@ -481,19 +487,22 @@ async function loadDeals(){
     allDeals=(data.offers||[]).filter(deal=>{
       const original=Number(deal.original_price);
       const sale=Number(deal.sale_price);
-      const discount=Math.round((1-sale/original)*100);
+      const discount=Number(deal.discount_percent);
 
-      const valid=deal.title&&deal.category&&deal.store&&deal.url&&
+      const hasValidPrices=
         original>0&&sale>0&&sale<original&&discount>=20;
 
-      const validUrl=/^https:\/\//i.test(deal.url||"");
-      const notExpired=!deal.expires_at||new Date(deal.expires_at).getTime()>now;
+      const hasValidUrl=/^https:\/\//i.test(deal.url||"");
+      const notExpired=!deal.expires_at||
+        new Date(deal.expires_at).getTime()>now;
 
-      if(valid)deal.discount_percent=discount;
-      return valid&&validUrl&&notExpired;
+      return deal.title&&hasValidUrl&&notExpired&&hasValidPrices;
     });
 
-    allDeals.sort((a,b)=>Number(b.featured_score||0)-Number(a.featured_score||0));
+    allDeals.sort((a,b)=>
+      Number(b.featured_score||0)-Number(a.featured_score||0)
+    );
+
     renderDeals(allDeals.slice(0,5));
 
   }catch(error){
