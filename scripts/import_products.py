@@ -23,21 +23,48 @@ def main():
     seen = set()
 
     with CSV_FILE.open("r", encoding="utf-8-sig", newline="") as file:
-        reader = csv.DictReader(file)
+        sample = file.read(4096)
+        file.seek(0)
 
-        if not reader.fieldnames or not all(
-            column in reader.fieldnames for column in REQUIRED_COLUMNS
-        ):
-            raise ValueError("Les colonnes de product_feed.csv sont incorrectes.")
+        try:
+            dialect = csv.Sniffer().sniff(sample, delimiters=",;\t")
+        except csv.Error:
+            dialect = csv.excel
+
+        reader = csv.DictReader(file, dialect=dialect)
+
+        if not reader.fieldnames:
+            raise ValueError("Le fichier CSV est vide.")
+
+        reader.fieldnames = [
+            (name or "").strip().lower().lstrip("\ufeff")
+            for name in reader.fieldnames
+        ]
+
+        missing = [
+            column for column in REQUIRED_COLUMNS
+            if column not in reader.fieldnames
+        ]
+
+        if missing:
+            raise ValueError(
+                f"Colonnes manquantes : {missing}. "
+                f"Colonnes trouvées : {reader.fieldnames}"
+            )
 
         for row in reader:
-            name = (row.get("name") or "").strip()
-            merchant = (row.get("merchant") or "").strip()
-            url = (row.get("url") or "").strip()
-            currency = (row.get("currency") or "").strip().upper()
+            row = {
+                (key or "").strip().lower(): (value or "").strip()
+                for key, value in row.items()
+            }
+
+            name = row.get("name", "")
+            merchant = row.get("merchant", "")
+            url = row.get("url", "")
+            currency = row.get("currency", "").upper()
 
             try:
-                price = float((row.get("price") or "").replace(",", "."))
+                price = float(row.get("price", "").replace(",", "."))
             except ValueError:
                 continue
 
@@ -47,41 +74,37 @@ def main():
             if price <= 0 or currency != "EUR":
                 continue
 
-            product_id = (row.get("id") or "").strip()
-            if not product_id:
-                product_id = f"{name.lower()}-{merchant.lower()}"
+            product_id = row.get("id") or f"{name.lower()}-{merchant.lower()}"
 
             if product_id in seen:
                 continue
 
             seen.add(product_id)
 
-            image = (row.get("image") or "").strip()
+            image = row.get("image", "")
             if image and not valid_url(image):
                 image = ""
 
             products.append({
                 "id": product_id,
                 "name": name,
-                "brand": (row.get("brand") or "").strip(),
-                "category": (row.get("category") or "").strip(),
+                "brand": row.get("brand", ""),
+                "category": row.get("category", ""),
                 "image": image,
                 "merchant": merchant,
                 "price": round(price, 2),
                 "currency": "EUR",
                 "url": url,
-                "checked_at": (row.get("checked_at") or "").strip()
+                "checked_at": row.get("checked_at", "")
             })
 
     products.sort(key=lambda item: (item["name"].lower(), item["price"]))
 
-    output = {
-        "last_updated": datetime.now(timezone.utc).isoformat(),
-        "products": products
-    }
-
     JSON_FILE.write_text(
-        json.dumps(output, ensure_ascii=False, indent=2),
+        json.dumps({
+            "last_updated": datetime.now(timezone.utc).isoformat(),
+            "products": products
+        }, ensure_ascii=False, indent=2),
         encoding="utf-8"
     )
 
