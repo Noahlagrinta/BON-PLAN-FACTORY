@@ -1,5 +1,5 @@
 
-name: Actualiser les promotions
+name: Actualiser les promotions et produits
 
 on:
   workflow_dispatch:
@@ -26,16 +26,19 @@ jobs:
         continue-on-error: true
         run: python scripts/import_coupons.py
 
-      - name: Importer les pépites
+      - name: Importer les promotions
         run: python scripts/import_feed.py
+
+      - name: Importer les produits
+        run: python scripts/import_products.py
 
       - name: Enregistrer les modifications
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add deals.json coupons.json
+          git add deals.json coupons.json product_feed.json
 
           if ! git diff --cached --quiet; then
-            git commit -m "Actualisation des promotions"
+            git commit -m "Actualisation des offres et produits"
             git push
           fi
