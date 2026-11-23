@@ -1,4 +1,17 @@
 {
-  "last_updated": "2026-11-23T08:33:50.395807+00:00",
-  "offers": []
+  "last_updated": "2026-11-23T10:11:06.847918+00:00",
+  "offers": [
+    {
+      "title": "123° - Patins de Hockey Bauer X-LS - Du 37.5 au 40.5 et 42 au 45.5",
+      "store": "Dealabs",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/patins-de-hockey-bauer-x-ls-du-375-au-405-et-42-au-455-3464027",
+      "image": "https://static-pepper.dealabs.com/threads/raw/AysQx/3464027_1/re/150x150/qt/55/3464027_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": 99.99,
+      "sale_price": 79.99,
+      "discount_percent": 20,
+      "featured_score": 20
+    }
+  ]
 }
