@@ -1,4 +1,17 @@
 {
-  "last_updated": "2026-11-23T13:13:15.408681+00:00",
-  "offers": []
+  "last_updated": "2026-11-23T14:59:21.211486+00:00",
+  "offers": [
+    {
+      "title": "106° - Lego Star Wars 75394 Destroyer Stellaire de Classe Impérial & Lego Star Wars 75459 Navette Impériale de Classe Lambda",
+      "store": "Dealabs",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/destroyer-stellaire-de-classe-imperial-navette-imperiale-de-classe-lambda-3466139",
+      "image": "https://static-pepper.dealabs.com/threads/raw/fXvZT/3466139_1/re/150x150/qt/55/3466139_1.jpg",
+      "category": "LEGO & loisirs",
+      "original_price": 319.97,
+      "sale_price": 255.98,
+      "discount_percent": 20,
+      "featured_score": 20
+    }
+  ]
 }
