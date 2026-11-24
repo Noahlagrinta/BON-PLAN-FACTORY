@@ -70,17 +70,22 @@ def clean(value):
 
 def normalize(value):
     value = clean(value).lower()
-    value = value.replace("é", "e").replace("è", "e")
-    value = value.replace("ê", "e").replace("ë", "e")
-    value = value.replace("à", "a").replace("â", "a")
-    value = value.replace("î", "i").replace("ï", "i")
-    value = value.replace("ô", "o").replace("ù", "u")
+
+    replacements = {
+        "é": "e", "è": "e", "ê": "e", "ë": "e",
+        "à": "a", "â": "a",
+        "î": "i", "ï": "i",
+        "ô": "o", "ù": "u"
+    }
+
+    for old, new in replacements.items():
+        value = value.replace(old, new)
+
     return value
 
 
 def category_of(value):
     text = normalize(value)
-
     scores = {}
 
     for category, keywords in CATEGORIES.items():
@@ -154,7 +159,7 @@ def get_prices(title, description):
     old_price = None
 
     old_tags = re.findall(
-        r'<(?:del|s|strike)[^>]*>(.*?)</(?:del|s|strike)>',
+        r'<(?:del|s|strike)\b[^>]*>(.*?)</(?:del|s|strike)>',
         raw,
         re.IGNORECASE | re.DOTALL
     )
@@ -166,7 +171,7 @@ def get_prices(title, description):
             old_price = parse_price(old_match.group(1))
 
     without_old = re.sub(
-        r'<(?:del|s|strike)[^>]*>.*?</(?:del|s|strike)>',
+        r'<(?:del|s|strike)\b[^>]*>.*?</(?:del|s|strike)>',
         " ",
         raw,
         flags=re.IGNORECASE | re.DOTALL
@@ -177,21 +182,14 @@ def get_prices(title, description):
 
     sale_price = parse_price(prices[0]) if prices else None
 
-    discount = None
-
     if (
         old_price is not None
         and sale_price is not None
         and old_price > sale_price > 0
     ):
-        discount = round(
-            (1 - sale_price / old_price) * 100
-        )
-
+        discount = round((1 - sale_price / old_price) * 100)
         return old_price, sale_price, discount, True
 
-    # Ne jamais inventer un ancien prix.
-    # Sans deux prix explicites, on ne confirme pas le prix barré.
     return None, sale_price, None, False
 
 
@@ -230,10 +228,7 @@ def main():
         headers=HEADERS
     )
 
-    with urllib.request.urlopen(
-        request,
-        timeout=30
-    ) as response:
+    with urllib.request.urlopen(request, timeout=30) as response:
         root = ET.fromstring(response.read())
 
     offers = []
@@ -262,9 +257,8 @@ def main():
 
         image = get_image(item, description)
 
-        category = category_of(
-            title + " " + clean(description)
-        )
+        # La catégorie est déterminée par le titre uniquement.
+        category = category_of(title)
 
         store = get_store(title, description)
 
@@ -311,9 +305,7 @@ def main():
         encoding="utf-8"
     )
 
-    print(
-        f"{len(offers[:MAX_OFFERS])} offres importées."
-    )
+    print(f"{len(offers[:MAX_OFFERS])} offres importées.")
 
     print(
         "Prix explicitement confirmés : "
