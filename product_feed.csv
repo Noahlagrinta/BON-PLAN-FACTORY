@@ -1,1 +1,10 @@
+
 id,name,brand,category,image,merchant,price,currency,url,checked_at
+gta6,GTA VI,Rockstar Games,Gaming,,Rockstar Games,,EUR,https://www.rockstargames.com/VI/fr-FR,
+ps5,Console PlayStation 5,Sony,Gaming,,PlayStation,,EUR,https://www.playstation.com/fr-fr/consoles/ps5/shop-all/,
+ps5pro,PlayStation 5 Pro,Sony,Gaming,,PlayStation,,EUR,https://www.playstation.com/fr-fr/consoles/ps5/shop-all/,
+xboxseriesx,Xbox Series X,Microsoft,Gaming,,Xbox,,EUR,https://www.xbox.com/fr-FR/consoles/xbox-series-x,
+iphone18pro,iPhone 18 Pro,Apple,High-tech,,Apple,,EUR,https://www.apple.com/fr/shop/buy-iphone,
+iphone17,iPhone 17,Apple,High-tech,,Apple,,EUR,https://www.apple.com/fr/shop/buy-iphone,
+lego,LEGO - Tous les coffrets,LEGO,LEGO & loisirs,,LEGO,,EUR,https://www.lego.com/fr-fr/categories/all-sets,
+neptune3pro,ELEGOO Neptune 3 Pro,ELEGOO,Impression 3D,,ELEGOO,,EUR,https://fr.elegoo.com/products/elegoo-neptune-3-pro-fdm-3d-printer-225x225x280mm,
