@@ -1,6 +1,8 @@
 
 import csv
 import json
+import re
+
 from pathlib import Path
 from datetime import datetime, timezone
 from urllib.parse import urlparse
@@ -14,20 +16,64 @@ REQUIRED_COLUMNS = [
     "merchant", "price", "currency", "url", "checked_at"
 ]
 
+
 def valid_url(value):
-    parsed = urlparse(value)
-    return parsed.scheme == "https" and bool(parsed.netloc)
+    if not value:
+        return False
+
+    try:
+        parsed = urlparse(value)
+        return parsed.scheme == "https" and bool(parsed.netloc)
+    except ValueError:
+        return False
+
+
+def parse_price(value):
+    value = (value or "").strip()
+
+    # Un prix vide est autorisé.
+    if not value:
+        return None
+
+    value = value.replace("\u202f", "").replace(" ", "")
+    value = value.replace("€", "").replace(",", ".")
+
+    try:
+        price = float(value)
+
+        if price <= 0:
+            return None
+
+        return round(price, 2)
+
+    except ValueError:
+        return None
+
+
+def make_id(name, merchant, url):
+    base = f"{name}-{merchant}-{url}".lower()
+    base = re.sub(r"[^a-z0-9]+", "-", base)
+    return base.strip("-")
+
 
 def main():
     products = []
     seen = set()
 
-    with CSV_FILE.open("r", encoding="utf-8-sig", newline="") as file:
+    with CSV_FILE.open(
+        "r",
+        encoding="utf-8-sig",
+        newline=""
+    ) as file:
+
         sample = file.read(4096)
         file.seek(0)
 
         try:
-            dialect = csv.Sniffer().sniff(sample, delimiters=",;\t")
+            dialect = csv.Sniffer().sniff(
+                sample,
+                delimiters=",;\t"
+            )
         except csv.Error:
             dialect = csv.excel
 
@@ -53,62 +99,99 @@ def main():
             )
 
         for row in reader:
+
             row = {
-                (key or "").strip().lower(): (value or "").strip()
+                (key or "").strip().lower():
+                (value or "").strip()
                 for key, value in row.items()
             }
 
             name = row.get("name", "")
+            brand = row.get("brand", "")
+            category = row.get("category", "")
             merchant = row.get("merchant", "")
             url = row.get("url", "")
+            image = row.get("image", "")
             currency = row.get("currency", "").upper()
 
-            try:
-                price = float(row.get("price", "").replace(",", "."))
-            except ValueError:
+            # Le nom et le lien sont indispensables.
+            if not name or not valid_url(url):
                 continue
 
-            if not name or not merchant or not valid_url(url):
+            # Les prix sont désormais facultatifs.
+            price = parse_price(row.get("price", ""))
+
+            # Le catalogue est destiné au marché français.
+            if price is not None and currency != "EUR":
                 continue
 
-            if price <= 0 or currency != "EUR":
+            if price is not None and currency not in ("", "EUR"):
                 continue
 
-            product_id = row.get("id") or f"{name.lower()}-{merchant.lower()}"
+            if not currency:
+                currency = "EUR"
+
+            if image and not valid_url(image):
+                image = ""
+
+            product_id = row.get("id") or make_id(
+                name,
+                merchant,
+                url
+            )
 
             if product_id in seen:
                 continue
 
             seen.add(product_id)
 
-            image = row.get("image", "")
-            if image and not valid_url(image):
-                image = ""
-
             products.append({
                 "id": product_id,
                 "name": name,
-                "brand": row.get("brand", ""),
-                "category": row.get("category", ""),
+                "brand": brand,
+                "category": category,
                 "image": image,
                 "merchant": merchant,
-                "price": round(price, 2),
-                "currency": "EUR",
+                "price": price,
+                "currency": currency,
                 "url": url,
                 "checked_at": row.get("checked_at", "")
             })
 
-    products.sort(key=lambda item: (item["name"].lower(), item["price"]))
+    # Les produits avec un prix apparaissent en premier.
+    products.sort(
+        key=lambda item: (
+            item["name"].lower(),
+            item["price"] is None,
+            item["price"] or 0
+        )
+    )
+
+    data = {
+        "last_updated": datetime.now(
+            timezone.utc
+        ).isoformat(),
+        "products": products
+    }
 
     JSON_FILE.write_text(
-        json.dumps({
-            "last_updated": datetime.now(timezone.utc).isoformat(),
-            "products": products
-        }, ensure_ascii=False, indent=2),
+        json.dumps(
+            data,
+            ensure_ascii=False,
+            indent=2
+        ),
         encoding="utf-8"
     )
 
+    priced = sum(
+        1 for product in products
+        if product["price"] is not None
+    )
+
     print(f"{len(products)} produits importés.")
+    print(f"{priced} produits avec un prix.")
+    print(f"{len(products) - priced} produits sans prix.")
+
 
 if __name__ == "__main__":
     main()
