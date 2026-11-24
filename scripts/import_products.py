@@ -31,7 +31,6 @@ def valid_url(value):
 def parse_price(value):
     value = (value or "").strip()
 
-    # Un prix vide est autorisé.
     if not value:
         return None
 
@@ -40,12 +39,9 @@ def parse_price(value):
 
     try:
         price = float(value)
-
         if price <= 0:
             return None
-
         return round(price, 2)
-
     except ValueError:
         return None
 
@@ -60,27 +56,23 @@ def main():
     products = []
     seen = set()
 
+    if not CSV_FILE.exists():
+        raise FileNotFoundError(
+            f"Fichier introuvable : {CSV_FILE}"
+        )
+
     with CSV_FILE.open(
         "r",
         encoding="utf-8-sig",
         newline=""
     ) as file:
 
-        sample = file.read(4096)
-        file.seek(0)
-
-        try:
-            dialect = csv.Sniffer().sniff(
-                sample,
-                delimiters=",;\t"
-            )
-        except csv.Error:
-            dialect = csv.excel
-
-        reader = csv.DictReader(file, dialect=dialect)
+        reader = csv.DictReader(file, delimiter=",")
 
         if not reader.fieldnames:
-            raise ValueError("Le fichier CSV est vide.")
+            raise ValueError(
+                "Aucun en-tête trouvé dans product_feed.csv."
+            )
 
         reader.fieldnames = [
             (name or "").strip().lower().lstrip("\ufeff")
@@ -99,6 +91,8 @@ def main():
             )
 
         for row in reader:
+            if not row:
+                continue
 
             row = {
                 (key or "").strip().lower():
@@ -114,18 +108,12 @@ def main():
             image = row.get("image", "")
             currency = row.get("currency", "").upper()
 
-            # Le nom et le lien sont indispensables.
             if not name or not valid_url(url):
                 continue
 
-            # Les prix sont désormais facultatifs.
             price = parse_price(row.get("price", ""))
 
-            # Le catalogue est destiné au marché français.
             if price is not None and currency != "EUR":
-                continue
-
-            if price is not None and currency not in ("", "EUR"):
                 continue
 
             if not currency:
@@ -158,7 +146,6 @@ def main():
                 "checked_at": row.get("checked_at", "")
             })
 
-    # Les produits avec un prix apparaissent en premier.
     products.sort(
         key=lambda item: (
             item["name"].lower(),
@@ -191,6 +178,12 @@ def main():
     print(f"{len(products)} produits importés.")
     print(f"{priced} produits avec un prix.")
     print(f"{len(products) - priced} produits sans prix.")
+
+    if not products:
+        raise ValueError(
+            "Aucun produit valide importé. "
+            "Vérifie les noms et les liens HTTPS dans product_feed.csv."
+        )
 
 
 if __name__ == "__main__":
