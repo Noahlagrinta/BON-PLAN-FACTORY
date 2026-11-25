@@ -1,8 +1,112 @@
 {
-  "last_updated": "2026-11-25T22:53:32.341828+00:00",
+  "last_updated": "2026-11-25T23:48:35.991164+00:00",
   "offers": [
     {
-      "title": "103° - Câble Ethernet Ugreen - 5m, Cat 8 Plat 40Gbps (Vendeur Tiers)",
+      "title": "100° - Watercooling Aio Thermalright Wonder Vision 360 UB (vendeur tiers)",
+      "store": "Magasin à identifier",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/thermalright-aio-wonder-vision-360-ub-3463859",
+      "image": "https://static-pepper.dealabs.com/threads/raw/KRmYE/3463859_1/re/150x150/qt/55/3463859_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": null,
+      "sale_price": 138.2,
+      "discount_percent": null,
+      "price_verified": false,
+      "featured_score": 0
+    },
+    {
+      "title": "117° - Scie Sabre Bosch Professional GSA 18 V-LI - Sans Batterie",
+      "store": "Magasin à identifier",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/scie-sabre-bosch-professional-gsa-18-v-li-machine-seule-3469291",
+      "image": "https://static-pepper.dealabs.com/threads/raw/m4Lyd/3469291_1/re/150x150/qt/55/3469291_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": null,
+      "sale_price": 89.0,
+      "discount_percent": null,
+      "price_verified": false,
+      "featured_score": 0
+    },
+    {
+      "title": "114° - Cofftet Collection Blu-ray 3 films : Avatar + Avatar : La Voie de l'eau + Avatar : De Feu et de cendres",
+      "store": "Magasin à identifier",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/cofftet-avatar-4k-3468098",
+      "image": "https://static-pepper.dealabs.com/threads/raw/jzcdZ/3468098_1/re/150x150/qt/55/3468098_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": null,
+      "sale_price": 39.55,
+      "discount_percent": null,
+      "price_verified": false,
+      "featured_score": 0
+    },
+    {
+      "title": "115° - Blu-ray Coffret La 7ème Compagnie",
+      "store": "Magasin à identifier",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/coffret-la-7-eme-compagnie-blu-ray-3469187",
+      "image": "https://static-pepper.dealabs.com/threads/raw/D60yo/3469187_1/re/150x150/qt/55/3469187_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": null,
+      "sale_price": 15.0,
+      "discount_percent": null,
+      "price_verified": false,
+      "featured_score": 0
+    },
+    {
+      "title": "110° - Gears of war 3 (dématérialisé)",
+      "store": "Magasin à identifier",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/gears-of-war-3-dematerialise-3469233",
+      "image": "https://static-pepper.dealabs.com/threads/raw/YFGEg/3469233_1/re/150x150/qt/55/3469233_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": null,
+      "sale_price": 2.99,
+      "discount_percent": null,
+      "price_verified": false,
+      "featured_score": 0
+    },
+    {
+      "title": "115° - Rouleau de Laine de Verre Ursa 10m², pour Combles Perdus - Indre-et-Loire (37)",
+      "store": "Magasin à identifier",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/rouleau-laine-de-verre-combles-perdus-ursa-10m2-3468731",
+      "image": "https://static-pepper.dealabs.com/threads/raw/KjELG/3468731_1/re/150x150/qt/55/3468731_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": null,
+      "sale_price": 18.0,
+      "discount_percent": null,
+      "price_verified": false,
+      "featured_score": 0
+    },
+    {
+      "title": "134° - PC Portable 18\" Asus TUF A18 - WQXGA 240hz, Ryzen 7 260, RTX 5070 (115w), 16 Go RAM, 512 Go SSD",
+      "store": "Magasin à identifier",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/pc-portable-18-asus-tuf-a18-wqxga-240hz-ryzen-7-260-rtx-5070-115w-16-go-ram-512-go-ssd-3464485",
+      "image": "https://static-pepper.dealabs.com/threads/raw/pV1Ts/3464485_1/re/150x150/qt/55/3464485_1.jpg",
+      "category": "High-tech",
+      "original_price": null,
+      "sale_price": 1499.99,
+      "discount_percent": null,
+      "price_verified": false,
+      "featured_score": 0
+    },
+    {
+      "title": "132° - Climatiseur mobile Create Silkair Textile Dual Connect 9000 - avec pompe à chaleur et Wi-Fi, Gris (vendeur tiers)",
+      "store": "Magasin à identifier",
+      "source": "Dealabs",
+      "url": "https://www.dealabs.com/bons-plans/climatiseur-mobile-create-climatiseur-portable-avec-pompe-a-chaleur-et-wi-fi-gris-silkair-textile-dual-connect-9000-3468851",
+      "image": "https://static-pepper.dealabs.com/threads/raw/JJbaL/3468851_1/re/150x150/qt/55/3468851_1.jpg",
+      "category": "Autres bons plans",
+      "original_price": null,
+      "sale_price": 249.95,
+      "discount_percent": null,
+      "price_verified": false,
+      "featured_score": 0
+    },
+    {
+      "title": "140° - Câble Ethernet Ugreen - 5m, Cat 8 Plat 40Gbps (Vendeur Tiers)",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/cable-ethernet-ugreen-5m-cat-8-plat-40gbps-vendeur-tiers-3469349",
@@ -15,7 +119,7 @@
       "featured_score": 0
     },
     {
-      "title": "109° - Coffret Blu-Ray 4K Hunger Games - 5 Films",
+      "title": "118° - Coffret Blu-Ray 4K Hunger Games - 5 Films",
       "store": "Amazon sur le coffret int",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/coffret-blu-ray-4k-ultra-hd-hunger-games-lintegrale-5-films-3469435",
@@ -28,7 +132,7 @@
       "featured_score": 0
     },
     {
-      "title": "116° - Casque Marvel Legends Series Daredevil: Born Again",
+      "title": "146° - Casque Marvel Legends Series Daredevil: Born Again",
       "store": "Disney",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/masque-de-cosplay-premium-marvel-legends-series-daredevil-born-again-3461414",
@@ -41,7 +145,7 @@
       "featured_score": 0
     },
     {
-      "title": "112° - Levier de vitesse Logitech G - Driving force shifter, Pour volant G29 et G920, Compatible PC, PS5",
+      "title": "122° - Levier de vitesse Logitech G - Driving force shifter, Pour volant G29 et G920, Compatible PC, PS5",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/levier-de-vitesse-logitech-g-driving-force-shifter-pour-volant-g29-et-g920-compatible-pc-ps5-3457251",
@@ -54,7 +158,7 @@
       "featured_score": 0
     },
     {
-      "title": "117° - Fauteuil à Bascule songmics Accoudoirs en Bois",
+      "title": "124° - Fauteuil à Bascule songmics Accoudoirs en Bois",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/fauteuil-a-bascule-songmics-accoudoirs-en-bois-3469153",
@@ -67,7 +171,7 @@
       "featured_score": 0
     },
     {
-      "title": "137° - Ruban Adhésif Scotch 3M - 50mm x 25m",
+      "title": "149° - Ruban Adhésif Scotch 3M - 50mm x 25m",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/ruban-adhesif-scotch-50-mm-x-25-m-3468478",
@@ -80,7 +184,7 @@
       "featured_score": 0
     },
     {
-      "title": "120° - Alimentation PC 1000W Lian Li RS Series — 80 PLUS Gold, ATX 3.1, Entièrement Modulaire, Connecteur CA Rotatif (Blanche, Sans Moyeu)",
+      "title": "139° - Alimentation PC 1000W Lian Li RS Series — 80 PLUS Gold, ATX 3.1, Entièrement Modulaire, Connecteur CA Rotatif (Blanche, Sans Moyeu)",
       "store": "Caseking pour le Black Friday sur l'",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/alimentation-pc-1000w-lian-li-rs-series-80-plus-gold-atx-31-entierement-modulaire-connecteur-ca-rotatif-blanche-sans-moyeu-3469030",
@@ -93,7 +197,7 @@
       "featured_score": 0
     },
     {
-      "title": "130° - Plaque de cuisson induction Fagor FAI3531 - 3 foyers, 1 booster, noire, 59cm, 6200W (via 100€ sur carte fidélité)",
+      "title": "142° - Plaque de cuisson induction Fagor FAI3531 - 3 foyers, 1 booster, noire, 59cm, 6200W (via 100€ sur carte fidélité)",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/plaque-de-cuisson-induction-fagor-fai3531-3-foyers-1-booster-noire-59cm-6200w-via-100eur-sur-carte-fidelite-3468666",
@@ -106,7 +210,7 @@
       "featured_score": 0
     },
     {
-      "title": "117° - Montre LiP Général De Gaulle 35mm - 671022",
+      "title": "129° - Montre LiP Général De Gaulle 35mm - 671022",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/montre-lip-general-de-gaulle-35mm-671022-3468147",
@@ -119,7 +223,7 @@
       "featured_score": 0
     },
     {
-      "title": "101° - Chargeur double pour batteries Parkside PDSLG 20 B1 - 2 x 4,5 A 20 V",
+      "title": "123° - Chargeur double pour batteries Parkside PDSLG 20 B1 - 2 x 4,5 A 20 V",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/parkside-chargeur-double-pour-batterie-20-v-2x-45-a-pdslg-20-b1-sans-batterie-3469158",
@@ -132,7 +236,7 @@
       "featured_score": 0
     },
     {
-      "title": "115° - Baskets Nike Air Max 90 Tiempo - Tailles 39, 40.5, 41, 44, 44.5, 45, 47 (Hyper Venom à 75€)",
+      "title": "123° - Baskets Nike Air Max 90 Tiempo - Tailles 39, 40.5, 41, 44, 44.5, 45, 47 (Hyper Venom à 75€)",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/nike-air-max-90-tiempo-hyper-venom-a-75eur-3469379",
@@ -145,7 +249,7 @@
       "featured_score": 0
     },
     {
-      "title": "133° - Nettoyeur de tapis et tissus d’ameublement Silvercrest SPR 800 A1",
+      "title": "141° - Nettoyeur de tapis et tissus d’ameublement Silvercrest SPR 800 A1",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/nettoyeur-de-tapis-et-tissus-dameublement-silvercrest-spr-800-a1-3456794",
@@ -158,7 +262,7 @@
       "featured_score": 0
     },
     {
-      "title": "119° - Reconditionné : PC Portable 14\" Lenovo ThinkPad T14 Gen 3 - AMD Ryzen 5 Pro 6650U, Radeon 660M, RAM 32 Go, SSD 512 Go, W11 (Très Bon État)",
+      "title": "125° - Reconditionné : PC Portable 14\" Lenovo ThinkPad T14 Gen 3 - AMD Ryzen 5 Pro 6650U, Radeon 660M, RAM 32 Go, SSD 512 Go, W11 (Très Bon État)",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/lenovo-thinkpad-t14-gen-3-avec-32go-ram-512-ssd-amd-ryzen-5-pro-6650u-290-ghz-3468600",
@@ -184,7 +288,7 @@
       "featured_score": 0
     },
     {
-      "title": "150° - Bouteille de 70cl de Whisky Jack Daniel’s Old N.7 McLaren Edition 2025 - 43°",
+      "title": "171° - Bouteille de 70cl de Whisky Jack Daniel’s Old N.7 McLaren Edition 2025 - 43°",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/whisky-jack-daniels-old-n7-mclaren-edition-2025-3468953",
@@ -197,7 +301,7 @@
       "featured_score": 0
     },
     {
-      "title": "120° - Aspirateur balai Dyson V8 Cyclone Fluffy + Kit de nettoyage",
+      "title": "121° - Aspirateur balai Dyson V8 Cyclone Fluffy + Kit de nettoyage",
       "store": "Boulanger Prix",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/aspirateur-balai-dyson-v8-cyclone-fluffy-kit-de-nettoyage-3468275",
@@ -210,7 +314,7 @@
       "featured_score": 0
     },
     {
-      "title": "140° - Montre Connectée Garmin Forerunner 265 - 46mm, GPS, AMOLED, Noir ou Gris",
+      "title": "152° - Montre Connectée Garmin Forerunner 265 - 46mm, GPS, AMOLED, Noir ou Gris",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/montre-gps-connectee-running-garmin-forerunner-265-amoled-noir-ou-gris-46mm-3467310",
@@ -223,7 +327,7 @@
       "featured_score": 0
     },
     {
-      "title": "160° - Processeur AMD Ryzen 7 7800X3D - 8 cœurs 16 threads R7 7800X3D CPU 4,2 GHz 5 nm 96 Mo 120 W Zen4 DDR5 5200 MHz Socket AM5 CPU",
+      "title": "183° - Processeur AMD Ryzen 7 7800X3D - 8 cœurs 16 threads R7 7800X3D CPU 4,2 GHz 5 nm 96 Mo 120 W Zen4 DDR5 5200 MHz Socket AM5 CPU",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/amd-ryzen-7-7800x3d-3469406",
@@ -236,7 +340,7 @@
       "featured_score": 0
     },
     {
-      "title": "132° - Manette Sans Fil Sony DualSense V2 PS5 - Blanche, USB-C",
+      "title": "152° - Manette Sans Fil Sony DualSense V2 PS5 - Blanche, USB-C",
       "store": "PcComponentes dans le cadre du",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/manette-sans-fil-sony-dualsense-v2-ps5-blanche-usb-c-3469047",
@@ -249,7 +353,7 @@
       "featured_score": 0
     },
     {
-      "title": "141° - 25% de réductiton sur les Pass Interrail - Pass Global et Pass One Contry. Ex : Pass Global Europe 5 jours sur 1 mois (interrail.com)",
+      "title": "151° - 25% de réductiton sur les Pass Interrail - Pass Global et Pass One Contry. Ex : Pass Global Europe 5 jours sur 1 mois (interrail.com)",
       "store": "1 mois",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/25-sur-les-pass-interrail-pass-global-et-pass-one-contry-ex-pass-global-europe-5-jours-sur-1-mois-3467530",
@@ -262,7 +366,7 @@
       "featured_score": 0
     },
     {
-      "title": "141° - Sac de Sport Adidas Defender Duffle 39L - Vert, 3 Compartiments, Poche Chaussures Ventilée, Déperlant",
+      "title": "146° - Sac de Sport Adidas Defender Duffle 39L - Vert, 3 Compartiments, Poche Chaussures Ventilée, Déperlant",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/sac-de-sport-adidas-defender-duffle-39l-vert-3-compartiments-poche-chaussures-ventilee-deperlant-3461996",
@@ -275,7 +379,7 @@
       "featured_score": 0
     },
     {
-      "title": "126° - Baskets Nile air Jordan 4 Retro Comic - Tailles du 44,5 au 48,5",
+      "title": "129° - Baskets Nile air Jordan 4 Retro Comic - Tailles du 44,5 au 48,5",
       "store": "Magasin à identifier",
       "source": "Dealabs",
       "url": "https://www.dealabs.com/bons-plans/baskets-nile-air-jordan-4-retro-comic-tailles-du-3467929",
@@ -283,110 +387,6 @@
       "category": "Autres bons plans",
       "original_price": null,
       "sale_price": 109.45,
-      "discount_percent": null,
-      "price_verified": false,
-      "featured_score": 0
-    },
-    {
-      "title": "193° - Outer Wilds: Archaeologist sur Nintendo Switch",
-      "store": "Nintendo Switch 15",
-      "source": "Dealabs",
-      "url": "https://www.dealabs.com/bons-plans/outer-wilds-archaeologist-sur-nintendo-switch-3469479",
-      "image": "https://static-pepper.dealabs.com/threads/raw/3Tztp/3469479_1/re/150x150/qt/55/3469479_1.jpg",
-      "category": "Gaming",
-      "original_price": null,
-      "sale_price": 15.99,
-      "discount_percent": null,
-      "price_verified": false,
-      "featured_score": 0
-    },
-    {
-      "title": "138° - Sélection d'articles Mango en promotion - Ex : Manteau 100 % laine double boutonnage - Bleu marine (XS et M)",
-      "store": "Magasin à identifier",
-      "source": "Dealabs",
-      "url": "https://www.dealabs.com/bons-plans/selection-darticles-mango-en-promotion-ex-manteau-100-laine-double-boutonnage-bleu-marine-xs-et-m-3468641",
-      "image": "https://static-pepper.dealabs.com/threads/raw/Ll0kY/3468641_1/re/150x150/qt/55/3468641_1.jpg",
-      "category": "Autres bons plans",
-      "original_price": null,
-      "sale_price": 79.99,
-      "discount_percent": null,
-      "price_verified": false,
-      "featured_score": 0
-    },
-    {
-      "title": "173° - [Abonnés Netflix] Monster Hunter Rise rejoint le catalogue Netflix sur iOS & Android (Dématérialisé)",
-      "store": "Magasin à identifier",
-      "source": "Dealabs",
-      "url": "https://www.dealabs.com/bons-plans/abonnes-netflix-monster-hunter-gratuit-sur-ios-android-3468930",
-      "image": "https://static-pepper.dealabs.com/threads/raw/dfGHk/3468930_1/re/150x150/qt/55/3468930_1.jpg",
-      "category": "Autres bons plans",
-      "original_price": null,
-      "sale_price": null,
-      "discount_percent": null,
-      "price_verified": false,
-      "featured_score": 0
-    },
-    {
-      "title": "138° - Aspirateur laveur Tineco Floor One S7 Stretch (via 49,80€ cagnottés)",
-      "store": "Magasin à identifier",
-      "source": "Dealabs",
-      "url": "https://www.dealabs.com/bons-plans/aspirateur-laveur-floor-one-s7-strecth-tineco-20-cagnotte-carrefour-3467224",
-      "image": "https://static-pepper.dealabs.com/threads/raw/tIJQd/3467224_1/re/150x150/qt/55/3467224_1.jpg",
-      "category": "Autres bons plans",
-      "original_price": null,
-      "sale_price": 199.2,
-      "discount_percent": null,
-      "price_verified": false,
-      "featured_score": 0
-    },
-    {
-      "title": "157° - Processeur AMD Ryzen 5 5600 - 6 cœurs, 12 threads, boost 4.4GHz, 32Mo L3, AM4, DDR4, sans ventirad",
-      "store": "Magasin à identifier",
-      "source": "Dealabs",
-      "url": "https://www.dealabs.com/bons-plans/processeur-amd-ryzen-5-5600-6-coeurs-12-threads-boost-44ghz-32mo-l3-am4-ddr4-sans-ventirad-3468680",
-      "image": "https://static-pepper.dealabs.com/threads/raw/MgKwP/3468680_1/re/150x150/qt/55/3468680_1.jpg",
-      "category": "Autres bons plans",
-      "original_price": null,
-      "sale_price": 97.96,
-      "discount_percent": null,
-      "price_verified": false,
-      "featured_score": 0
-    },
-    {
-      "title": "109° - Goldorak: Le Festin Des Loups sur PS5",
-      "store": "PS5 14",
-      "source": "Dealabs",
-      "url": "https://www.dealabs.com/bons-plans/goldorak-le-festin-des-loups-ps5-3468145",
-      "image": "https://static-pepper.dealabs.com/threads/raw/kubXw/3468145_1/re/150x150/qt/55/3468145_1.jpg",
-      "category": "Autres bons plans",
-      "original_price": null,
-      "sale_price": 14.99,
-      "discount_percent": null,
-      "price_verified": false,
-      "featured_score": 0
-    },
-    {
-      "title": "172° - [Étudiant et/ou 18-24 ans - Nouveaux Abonnés Amazon Prime] Abonnement de 3 mois Gratuits puis 3,49€/mois (sans engagement)",
-      "store": "Magasin à identifier",
-      "source": "Dealabs",
-      "url": "https://www.dealabs.com/bons-plans/etudiant-etou-18-24-ans-nouveaux-abonnes-amazon-prime-abonnement-de-3-mois-gratuits-puis-349eurmois-sans-engagement-3469412",
-      "image": "https://static-pepper.dealabs.com/threads/raw/VKcxp/3469412_1/re/150x150/qt/55/3469412_1.jpg",
-      "category": "Autres bons plans",
-      "original_price": null,
-      "sale_price": null,
-      "discount_percent": null,
-      "price_verified": false,
-      "featured_score": 0
-    },
-    {
-      "title": "151° - Rayman 30th Anniversary Edition sur Nintendo Switch",
-      "store": "Nintendo Switch 16",
-      "source": "Dealabs",
-      "url": "https://www.dealabs.com/bons-plans/rayman-30th-anniversary-edition-sur-nintendo-switch-3469241",
-      "image": "https://static-pepper.dealabs.com/threads/raw/UiVoR/3469241_1/re/150x150/qt/55/3469241_1.jpg",
-      "category": "Gaming",
-      "original_price": null,
-      "sale_price": 16.25,
       "discount_percent": null,
       "price_verified": false,
       "featured_score": 0
