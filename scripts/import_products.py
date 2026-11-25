@@ -2,7 +2,6 @@
 import csv
 import json
 import re
-
 from pathlib import Path
 from datetime import datetime, timezone
 from urllib.parse import urlparse
@@ -18,11 +17,8 @@ REQUIRED_COLUMNS = [
 
 
 def valid_url(value):
-    if not value:
-        return False
-
     try:
-        parsed = urlparse(value)
+        parsed = urlparse((value or "").strip())
         return parsed.scheme == "https" and bool(parsed.netloc)
     except ValueError:
         return False
@@ -30,7 +26,6 @@ def valid_url(value):
 
 def parse_price(value):
     value = (value or "").strip()
-
     if not value:
         return None
 
@@ -39,150 +34,134 @@ def parse_price(value):
 
     try:
         price = float(value)
-        if price <= 0:
-            return None
-        return round(price, 2)
+        return round(price, 2) if price > 0 else None
     except ValueError:
         return None
 
 
 def make_id(name, merchant, url):
     base = f"{name}-{merchant}-{url}".lower()
-    base = re.sub(r"[^a-z0-9]+", "-", base)
-    return base.strip("-")
+    return re.sub(r"[^a-z0-9]+", "-", base).strip("-")
 
 
 def main():
+    if not CSV_FILE.exists():
+        raise FileNotFoundError(f"Fichier introuvable : {CSV_FILE}")
+
+    content = CSV_FILE.read_text(encoding="utf-8-sig").strip()
+
+    if not content:
+        raise ValueError("product_feed.csv est réellement vide.")
+
+    first_line = content.splitlines()[0]
+
+    if "," in first_line:
+        delimiter = ","
+    elif ";" in first_line:
+        delimiter = ";"
+    elif "\t" in first_line:
+        delimiter = "\t"
+    else:
+        raise ValueError(
+            f"Séparateur CSV introuvable. Première ligne : {first_line!r}"
+        )
+
+    reader = csv.DictReader(content.splitlines(), delimiter=delimiter)
+
+    if not reader.fieldnames:
+        raise ValueError(
+            f"En-têtes introuvables. Première ligne : {first_line!r}"
+        )
+
+    reader.fieldnames = [
+        (name or "").strip().lower().lstrip("\ufeff")
+        for name in reader.fieldnames
+    ]
+
+    missing = [
+        column for column in REQUIRED_COLUMNS
+        if column not in reader.fieldnames
+    ]
+
+    if missing:
+        raise ValueError(
+            f"Colonnes manquantes : {missing}. "
+            f"Colonnes trouvées : {reader.fieldnames}"
+        )
+
     products = []
     seen = set()
+    rejected = 0
 
-    if not CSV_FILE.exists():
-        raise FileNotFoundError(
-            f"Fichier introuvable : {CSV_FILE}"
+    for row in reader:
+        row = {
+            (key or "").strip().lower(): (value or "").strip()
+            for key, value in row.items()
+        }
+
+        name = row.get("name", "")
+        merchant = row.get("merchant", "")
+        url = row.get("url", "")
+
+        if not name or not valid_url(url):
+            rejected += 1
+            continue
+
+        currency = row.get("currency", "").upper() or "EUR"
+        price = parse_price(row.get("price", ""))
+
+        if price is not None and currency != "EUR":
+            rejected += 1
+            continue
+
+        image = row.get("image", "")
+        if image and not valid_url(image):
+            image = ""
+
+        product_id = row.get("id") or make_id(
+            name, merchant, url
         )
 
-    with CSV_FILE.open(
-        "r",
-        encoding="utf-8-sig",
-        newline=""
-    ) as file:
+        if product_id in seen:
+            continue
 
-        reader = csv.DictReader(file, delimiter=",")
+        seen.add(product_id)
 
-        if not reader.fieldnames:
-            raise ValueError(
-                "Aucun en-tête trouvé dans product_feed.csv."
-            )
+        products.append({
+            "id": product_id,
+            "name": name,
+            "brand": row.get("brand", ""),
+            "category": row.get("category", ""),
+            "image": image,
+            "merchant": merchant,
+            "price": price,
+            "currency": currency,
+            "url": url,
+            "checked_at": row.get("checked_at", "")
+        })
 
-        reader.fieldnames = [
-            (name or "").strip().lower().lstrip("\ufeff")
-            for name in reader.fieldnames
-        ]
-
-        missing = [
-            column for column in REQUIRED_COLUMNS
-            if column not in reader.fieldnames
-        ]
-
-        if missing:
-            raise ValueError(
-                f"Colonnes manquantes : {missing}. "
-                f"Colonnes trouvées : {reader.fieldnames}"
-            )
-
-        for row in reader:
-            if not row:
-                continue
-
-            row = {
-                (key or "").strip().lower():
-                (value or "").strip()
-                for key, value in row.items()
-            }
-
-            name = row.get("name", "")
-            brand = row.get("brand", "")
-            category = row.get("category", "")
-            merchant = row.get("merchant", "")
-            url = row.get("url", "")
-            image = row.get("image", "")
-            currency = row.get("currency", "").upper()
-
-            if not name or not valid_url(url):
-                continue
-
-            price = parse_price(row.get("price", ""))
-
-            if price is not None and currency != "EUR":
-                continue
-
-            if not currency:
-                currency = "EUR"
-
-            if image and not valid_url(image):
-                image = ""
-
-            product_id = row.get("id") or make_id(
-                name,
-                merchant,
-                url
-            )
-
-            if product_id in seen:
-                continue
-
-            seen.add(product_id)
-
-            products.append({
-                "id": product_id,
-                "name": name,
-                "brand": brand,
-                "category": category,
-                "image": image,
-                "merchant": merchant,
-                "price": price,
-                "currency": currency,
-                "url": url,
-                "checked_at": row.get("checked_at", "")
-            })
-
-    products.sort(
-        key=lambda item: (
-            item["name"].lower(),
-            item["price"] is None,
-            item["price"] or 0
-        )
-    )
+    products.sort(key=lambda p: p["name"].lower())
 
     data = {
-        "last_updated": datetime.now(
-            timezone.utc
-        ).isoformat(),
+        "last_updated": datetime.now(timezone.utc).isoformat(),
         "products": products
     }
 
     JSON_FILE.write_text(
-        json.dumps(
-            data,
-            ensure_ascii=False,
-            indent=2
-        ),
+        json.dumps(data, ensure_ascii=False, indent=2),
         encoding="utf-8"
     )
 
-    priced = sum(
-        1 for product in products
-        if product["price"] is not None
-    )
+    priced = sum(p["price"] is not None for p in products)
 
     print(f"{len(products)} produits importés.")
     print(f"{priced} produits avec un prix.")
     print(f"{len(products) - priced} produits sans prix.")
+    print(f"{rejected} lignes ignorées.")
 
     if not products:
         raise ValueError(
-            "Aucun produit valide importé. "
-            "Vérifie les noms et les liens HTTPS dans product_feed.csv."
+            "Aucun produit valide. Vérifie les noms et les liens HTTPS."
         )
 
 
