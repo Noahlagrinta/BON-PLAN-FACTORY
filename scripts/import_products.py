@@ -1,9 +1,9 @@
 
 import csv
 import json
-import re
-from pathlib import Path
+import os
 from datetime import datetime, timezone
+from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -23,54 +23,9 @@ REQUIRED_COLUMNS = [
     "checked_at",
 ]
 
-OPTIONAL_COLUMNS = [
-    "description",
-    "old_price",
-    "price_verified",
-]
-
-
-def clean(value):
-    return str(value or "").strip()
-
-
-def valid_url(value):
-    value = clean(value)
-
-    if not value:
-        return ""
-
-    try:
-        parsed = urlparse(value)
-        if parsed.scheme in ("http", "https") and parsed.netloc:
-            return value
-    except Exception:
-        pass
-
-    return ""
-
-
-def clean_price(value):
-    value = clean(value)
-
-    if not value:
-        return ""
-
-    value = value.replace(",", ".")
-    value = re.sub(r"[^0-9.]", "", value)
-
-    try:
-        number = float(value)
-
-        if number <= 0:
-            return ""
-
-        return str(number)
-    except ValueError:
-        return ""
-
 
 def detect_delimiter(sample):
+    """Détecte le séparateur du fichier CSV."""
     try:
         dialect = csv.Sniffer().sniff(
             sample,
@@ -81,10 +36,54 @@ def detect_delimiter(sample):
         return ","
 
 
+def valid_url(value):
+    """Vérifie qu'une URL est valide."""
+    value = (value or "").strip()
+
+    if not value:
+        return ""
+
+    parsed = urlparse(value)
+
+    if parsed.scheme not in ("http", "https"):
+        return ""
+
+    if not parsed.netloc:
+        return ""
+
+    return value
+
+
+def clean_price(value):
+    """Nettoie un prix sans inventer de valeur."""
+    value = (value or "").strip()
+
+    if not value:
+        return ""
+
+    value = value.replace("€", "")
+    value = value.replace("EUR", "")
+    value = value.replace(" ", "")
+    value = value.replace(",", ".")
+
+    try:
+        number = float(value)
+
+        if number < 0:
+            return ""
+
+        return str(number)
+
+    except ValueError:
+        return ""
+
+
 def read_csv():
+    """Lit le catalogue CSV et vérifie ses colonnes."""
+
     if not CSV_FILE.exists():
         raise FileNotFoundError(
-            "Le fichier product_feed.csv est introuvable."
+            f"Fichier introuvable : {CSV_FILE}"
         )
 
     content = CSV_FILE.read_text(
@@ -96,7 +95,9 @@ def read_csv():
             "Le fichier product_feed.csv est vide."
         )
 
-    delimiter = detect_delimiter(content[:5000])
+    # Détecte le séparateur à partir du début du fichier.
+    sample = content[:8192]
+    delimiter = detect_delimiter(sample)
 
     reader = csv.DictReader(
         content.splitlines(),
@@ -108,77 +109,95 @@ def read_csv():
             "Aucun en-tête trouvé dans product_feed.csv."
         )
 
-    headers = [
-        clean(header).lower()
-        for header in reader.fieldnames
+    # Nettoie les noms des colonnes.
+    reader.fieldnames = [
+        (name or "").strip().lower()
+        for name in reader.fieldnames
     ]
 
     missing = [
         column
         for column in REQUIRED_COLUMNS
-        if column not in headers
+        if column not in reader.fieldnames
     ]
 
     if missing:
         raise ValueError(
-            "Colonnes obligatoires manquantes : "
+            "Colonnes manquantes dans product_feed.csv : "
             + ", ".join(missing)
         )
 
-    reader.fieldnames = headers
+    rows = []
 
-    return list(reader)
+    for row in reader:
+        cleaned = {}
+
+        for key, value in row.items():
+            if key:
+                cleaned[key.strip().lower()] = (
+                    value.strip() if value else ""
+                )
+
+        rows.append(cleaned)
+
+    return rows
 
 
 def convert_product(row):
-    product = {
-        "id": clean(row.get("id")),
-        "name": clean(row.get("name")),
-        "brand": clean(row.get("brand")),
-        "category": clean(row.get("category")) or "Autres",
-        "image": valid_url(row.get("image")),
-        "merchant": clean(row.get("merchant")),
-        "price": clean_price(row.get("price")),
-        "currency": clean(row.get("currency")) or "€",
-        "url": valid_url(row.get("url")),
-        "checked_at": clean(row.get("checked_at")),
-        "description": clean(row.get("description")),
-        "old_price": clean_price(row.get("old_price")),
-        "price_verified": (
-            clean(row.get("price_verified")).lower()
-            in ("true", "1", "oui", "yes")
-        ),
-    }
+    """Transforme une ligne CSV en produit JSON."""
 
-    if not product["checked_at"]:
-        product["checked_at"] = datetime.now(
+    product_id = row.get("id", "").strip()
+    name = row.get("name", "").strip()
+    url = valid_url(row.get("url", ""))
+
+    if not product_id or not name or not url:
+        return None
+
+    price = clean_price(row.get("price", ""))
+
+    image = valid_url(row.get("image", ""))
+
+    checked_at = row.get("checked_at", "").strip()
+
+    if not checked_at:
+        checked_at = datetime.now(
             timezone.utc
         ).isoformat()
 
-    if not product["id"]:
-        return None
+    product = {
+        "id": product_id,
+        "name": name,
+        "brand": row.get("brand", "").strip(),
+        "category": row.get("category", "").strip(),
+        "image": image,
+        "merchant": row.get("merchant", "").strip(),
+        "price": price,
+        "currency": (
+            row.get("currency", "").strip() or "EUR"
+        ),
+        "url": url,
+        "checked_at": checked_at,
+        "description": row.get("description", "").strip(),
+        "old_price": clean_price(row.get("old_price", "")),
+        "price_verified": (
+            row.get("price_verified", "").strip().lower()
+            in ("true", "1", "yes", "oui")
+        ),
+    }
 
-    if not product["name"]:
-        return None
-
-    if not product["url"]:
-        return None
-
-    if not product["image"]:
-        product["image"] = ""
-
-    if not product["price"]:
+    if not price:
         product["price_verified"] = False
 
     return product
 
 
 def main():
+    print("Lecture du catalogue produits...")
+
     rows = read_csv()
 
     products = []
     seen_ids = set()
-
     ignored = 0
 
     for row in rows:
@@ -197,14 +216,21 @@ def main():
         seen_ids.add(product_id)
         products.append(product)
 
-    JSON_FILE.write_text(
-        json.dumps(
+    JSON_FILE.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
+    with JSON_FILE.open(
+        "w",
+        encoding="utf-8"
+    ) as file:
+        json.dump(
             products,
+            file,
             ensure_ascii=False,
             indent=2
-        ),
-        encoding="utf-8"
-    )
+        )
 
     with_price = sum(
         1 for product in products
@@ -216,14 +242,15 @@ def main():
         if product["image"]
     )
 
+    print("--------------------------------")
     print("IMPORTATION TERMINÉE")
-    print("--------------------")
+    print("--------------------------------")
     print(f"Produits importés : {len(products)}")
-    print(f"Produits avec prix : {with_price}")
-    print(f"Produits avec image : {with_image}")
-    print(f"Produits sans prix : {len(products) - with_price}")
-    print(f"Produits ignorés : {ignored}")
-    print(f"Fichier créé : {JSON_FILE.name}")
+    print(f"Avec prix : {with_price}")
+    print(f"Avec image : {with_image}")
+    print(f"Sans prix : {len(products) - with_price}")
+    print(f"Lignes ignorées : {ignored}")
+    print("--------------------------------")
 
 
 if __name__ == "__main__":
