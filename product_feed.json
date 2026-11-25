@@ -1,4 +1,101 @@
 {
-  "last_updated": "2026-11-24T18:56:54.844416+00:00",
-  "products": []
+  "last_updated": "2026-11-25T14:02:34.636954+00:00",
+  "products": [
+    {
+      "id": "ps5",
+      "name": "Console PlayStation 5",
+      "brand": "Sony",
+      "category": "Gaming",
+      "image": "",
+      "merchant": "PlayStation",
+      "price": null,
+      "currency": "EUR",
+      "url": "https://www.playstation.com/fr-fr/consoles/ps5/shop-all/",
+      "checked_at": ""
+    },
+    {
+      "id": "neptune3pro",
+      "name": "ELEGOO Neptune 3 Pro",
+      "brand": "ELEGOO",
+      "category": "Impression 3D",
+      "image": "",
+      "merchant": "ELEGOO",
+      "price": null,
+      "currency": "EUR",
+      "url": "https://fr.elegoo.com/products/elegoo-neptune-3-pro-fdm-3d-printer-225x225x280mm",
+      "checked_at": ""
+    },
+    {
+      "id": "gta6",
+      "name": "GTA VI",
+      "brand": "Rockstar Games",
+      "category": "Gaming",
+      "image": "",
+      "merchant": "Rockstar Games",
+      "price": null,
+      "currency": "EUR",
+      "url": "https://www.rockstargames.com/VI/fr-FR",
+      "checked_at": ""
+    },
+    {
+      "id": "iphone17",
+      "name": "iPhone 17",
+      "brand": "Apple",
+      "category": "High-tech",
+      "image": "",
+      "merchant": "Apple",
+      "price": null,
+      "currency": "EUR",
+      "url": "https://www.apple.com/fr/shop/buy-iphone",
+      "checked_at": ""
+    },
+    {
+      "id": "iphone18pro",
+      "name": "iPhone 18 Pro",
+      "brand": "Apple",
+      "category": "High-tech",
+      "image": "",
+      "merchant": "Apple",
+      "price": null,
+      "currency": "EUR",
+      "url": "https://www.apple.com/fr/shop/buy-iphone",
+      "checked_at": ""
+    },
+    {
+      "id": "lego",
+      "name": "LEGO - Tous les coffrets",
+      "brand": "LEGO",
+      "category": "LEGO & loisirs",
+      "image": "",
+      "merchant": "LEGO",
+      "price": null,
+      "currency": "EUR",
+      "url": "https://www.lego.com/fr-fr/categories/all-sets",
+      "checked_at": ""
+    },
+    {
+      "id": "ps5pro",
+      "name": "PlayStation 5 Pro",
+      "brand": "Sony",
+      "category": "Gaming",
+      "image": "",
+      "merchant": "PlayStation",
+      "price": null,
+      "currency": "EUR",
+      "url": "https://www.playstation.com/fr-fr/consoles/ps5/shop-all/",
+      "checked_at": ""
+    },
+    {
+      "id": "xboxseriesx",
+      "name": "Xbox Series X",
+      "brand": "Microsoft",
+      "category": "Gaming",
+      "image": "",
+      "merchant": "Xbox",
+      "price": null,
+      "currency": "EUR",
+      "url": "https://www.xbox.com/fr-FR/consoles/xbox-series-x",
+      "checked_at": ""
+    }
+  ]
 }
